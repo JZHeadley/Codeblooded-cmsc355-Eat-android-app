@@ -1,0 +1,3 @@
+[submodule "EatApi"]
+	path = EatApi
+	url = https://github.com/jzheadley/EatApi
