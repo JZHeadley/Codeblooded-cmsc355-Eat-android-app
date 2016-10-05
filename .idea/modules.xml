@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Eat.iml" filepath="$PROJECT_DIR$/Eat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Codeblooded-cmsc355-android-app.iml" filepath="$PROJECT_DIR$/Codeblooded-cmsc355-android-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testEat.iml" filepath="$PROJECT_DIR$/testEat.iml" />
     </modules>
   </component>
 </project>
