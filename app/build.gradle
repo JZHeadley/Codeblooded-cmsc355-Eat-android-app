@@ -39,7 +39,11 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
     // Espresso Dependencies
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     // ButterKnife Dependency
     compile 'com.jakewharton:butterknife:8.4.0'
+    // Glide Image library Dependency
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:support-v4:24.2.1'
+
 }

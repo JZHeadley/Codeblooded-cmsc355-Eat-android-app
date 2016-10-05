@@ -10,11 +10,27 @@
     tools:context="com.jzheadley.eat.MainActivity">
 
     <TextView
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/nearbyRestaurantsHeader"
+        android:textSize="48sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/nearbyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:text="@string/restaurants_near_you"
+        android:textSize="16sp" />
 
     <ListView
+        android:id="@+id/nearbyRestaurants"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nearbyText"
+        android:scrollbars="vertical" />
 </RelativeLayout>

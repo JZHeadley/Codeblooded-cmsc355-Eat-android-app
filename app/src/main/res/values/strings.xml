@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Eat</string>
     <string name="action_settings">Settings</string>
+    <string name="nearbyRestaurantsHeader">EAT</string>
+    <string name="restaurants_near_you">Restaurants near you:</string>
+    <string name="defaultRestaurantItemDistance">0 Miles</string>
+    <string name="defaultRestaurantName">RestaurantName</string>
+    <string name="restaurantItemImageViewDescription">Picture of the Restaurant</string>
 </resources>
