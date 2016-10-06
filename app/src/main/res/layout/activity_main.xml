@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         card_view:cardCornerRadius="4dp">
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/first_card"
@@ -61,8 +61,8 @@
                 android:id="@+id/food_photo"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/food"
                 android:contentDescription="@string/card_image"
+                android:src="@drawable/food"
                 />
 
             <TextView
@@ -98,7 +98,7 @@
                 />
 
         </RelativeLayout>
-
+-->
 
 
 
