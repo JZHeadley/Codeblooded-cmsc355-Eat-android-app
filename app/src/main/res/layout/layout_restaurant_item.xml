@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:padding="20dp">
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="4dp">
 
-    <ImageView
-        android:id="@+id/restaurant_picture"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/restaurantItemImageViewDescription" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/restaurant_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/defaultRestaurantName"
-        android:textSize="24sp" />
+        <ImageView
+            android:id="@+id/restaurant_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/restaurantItemImageViewDescription" />
 
-    <TextView
-        android:id="@+id/restaurant_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:padding="5dp"
-        android:text="@string/defaultRestaurantItemDistance"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/defaultRestaurantName"
+            android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/restaurant_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:text="@string/defaultRestaurantItemDistance"
+            android:textSize="12sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

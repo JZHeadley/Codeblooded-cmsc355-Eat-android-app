@@ -1,10 +1,9 @@
 package com.jzheadley.eat.adapters;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,42 +15,53 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by zephy on 9/28/2016.
- */
-public class NearbyRestaurantsAdapter extends ArrayAdapter<Restaurant> {
-    private LayoutInflater inflater;
+public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaurantsAdapter.RestaurantViewHolder> {
 
-    public NearbyRestaurantsAdapter(Context context, int textViewResourceId, List<Restaurant> restaurants) {
-        super(context, textViewResourceId, restaurants);
+    private List<Restaurant> restaurants;
+
+    public NearbyRestaurantsAdapter(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
+    @Override
+    public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.
+                from(parent.getContext())
+                .inflate(R.layout.layout_restaurant_item, parent, false);
+        return new RestaurantViewHolder(itemView);
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        View view = inflater.inflate(R.layout.layout_restaurant_item, parent, false);
-        holder = new ViewHolder(view);
-        // TODO: 9/28/2016 implement getting image and inflating it into the imageView
-       // Glide.with(inflater.getContext()).load(getItem(position).getPictureurl()).into(holder.image);
-        // Picasso.with(inflater.getContext()).load("http://lorempixel.com/200/200/sports/" + (position + 1)).into(holder.image);
-        // TODO: 9/28/2016 implement functionality to take current location and find distance to restaurant
-        double distanceToRestaurant = 0.0;
-        holder.restaurantDistance.setText(distanceToRestaurant + " Miles");
-        holder.restaurantName.setText(getItem(position).getName());
-
-        return view;
     }
 
-    static class ViewHolder {
+    @Override
+    public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int position) {
+        Restaurant restaurant = restaurants.get(position);
+
+        // TODO: 10/6/2016 Get the picture and set the viewHolder's image to be it
+
+        // TODO: 10/6/2016 implement getting current location and distance to restaurant
+        double restaurantDistance = 0;
+        String restaurantDistanceText = "" + restaurantDistance;
+
+        restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
+        restaurantViewHolder.restaurantName.setText(restaurant.getName());
+    }
+
+    @Override
+    public int getItemCount() {
+        return restaurants.size();
+    }
+
+    public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.restaurant_picture)
-        ImageView image;
+        protected ImageView image;
         @BindView(R.id.restaurant_distance)
-        TextView restaurantDistance;
+        protected TextView restaurantDistance;
         @BindView(R.id.restaurant_name)
-        TextView restaurantName;
+        protected TextView restaurantName;
 
 
-        public ViewHolder(View view) {
+        public RestaurantViewHolder(View view) {
+            super(view);
             ButterKnife.bind(this, view);
         }
     }
