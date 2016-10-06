@@ -10,4 +10,8 @@
     <string name="delicious_restaurant_1">Delicious Restaurant 1</string>
     <string name="restaurant_description_1">This is supposedly an amazing restaurant okay.</string>
     <string name="restaurant_distance_text">0.7 mi</string>
+    <string name="defaultRestaurantItemDistance">0 Miles</string>
+    <string name="defaultRestaurantName">RestaurantName</string>
+    <string name="restaurantItemImageViewDescription">Picture of the Restaurant</string>
+    <string name="nearbyRestaurantsHeader">Something funny</string>
 </resources>

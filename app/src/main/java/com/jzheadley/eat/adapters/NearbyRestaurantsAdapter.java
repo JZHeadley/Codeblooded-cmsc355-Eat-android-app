@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 
@@ -33,7 +32,7 @@ public class NearbyRestaurantsAdapter extends ArrayAdapter<Restaurant> {
         View view = inflater.inflate(R.layout.layout_restaurant_item, parent, false);
         holder = new ViewHolder(view);
         // TODO: 9/28/2016 implement getting image and inflating it into the imageView
-        Glide.with(inflater.getContext()).load(getItem(position).getPictureurl()).into(holder.image);
+       // Glide.with(inflater.getContext()).load(getItem(position).getPictureurl()).into(holder.image);
         // Picasso.with(inflater.getContext()).load("http://lorempixel.com/200/200/sports/" + (position + 1)).into(holder.image);
         // TODO: 9/28/2016 implement functionality to take current location and find distance to restaurant
         double distanceToRestaurant = 0.0;

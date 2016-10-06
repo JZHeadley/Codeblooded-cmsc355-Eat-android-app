@@ -62,7 +62,8 @@
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true"
                 android:src="@drawable/food"
-                android:contentDescription="@string/card_image"/>
+                android:contentDescription="@string/card_image"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
