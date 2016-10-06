@@ -1,14 +1,19 @@
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Embedded {
+    @SerializedName("menuItems")
+    @Expose
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
     private List<Menu> menus = new ArrayList<Menu>();
+    @SerializedName("categories")
+    @Expose
     private List<Category> categories = new ArrayList<Category>();
     @SerializedName("_links")
     private Links links;

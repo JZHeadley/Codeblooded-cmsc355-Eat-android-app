@@ -1,14 +1,25 @@
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class MenuItem {
+
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("price")
+    @Expose
     private String price;
+    @SerializedName("description")
+    @Expose
     private String description;
-    private String href;
     @SerializedName("_links")
+    @Expose
     private Links links;
+    @SerializedName("href")
+    @Expose
+    private String href;
 
     public MenuItem() {
 
@@ -19,6 +30,17 @@ public class MenuItem {
         this.name = name;
         this.price = price;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", description='" + description + '\'' +
+                ", links=" + links +
+                ", href='" + href + '\'' +
+                '}';
     }
 
     public String getName() {
