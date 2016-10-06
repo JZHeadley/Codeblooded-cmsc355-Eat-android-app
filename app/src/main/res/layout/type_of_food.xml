@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:text="@string/type_of_food_title"
+        android:id="@+id/type_of_food_title"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="#f4ad42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <CheckBox
+        android:text="@string/type_chinese"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_of_food_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_chinese"/>
+
+    <CheckBox
+        android:text="@string/type_indian"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_chinese"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_indian"/>
+
+    <CheckBox
+        android:text="@string/type_fast"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_indian"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_fast"/>
+
+    <CheckBox
+        android:text="@string/type_upscale"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_fast"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_upscale"/>
+
+    <CheckBox
+        android:text="@string/type_slovak"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_upscale"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_slovak"/>
+
+    <CheckBox
+        android:text="@string/type_affordable"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_slovak"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/type_affordable"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_description"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/done_button"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>

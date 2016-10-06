@@ -18,4 +18,11 @@
     <string name="done_button">Done</string>
     <string name="type_your_description_here">Type your description here.</string>
     <string name="enter_your_description">Enter your description.</string>
+    <string name="type_of_food_title">Type of Food</string>
+    <string name="type_chinese">Chinese Cuisine</string>
+    <string name="type_indian">Indian Cuisine</string>
+    <string name="type_fast">Fast Food</string>
+    <string name="type_upscale">Upscale</string>
+    <string name="type_slovak">Slovak Cuisine</string>
+    <string name="type_affordable">Affordable</string>
 </resources>
