@@ -1,16 +1,28 @@
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Links {
+    @SerializedName("self")
+    @Expose
     private Self self;
+    @SerializedName("menuItem")
+    @Expose
+    private MenuItem menuItem;
+    @SerializedName("category")
+    @Expose
     private Category category;
+    @SerializedName("menuItems")
+    @Expose
     private List<MenuItem> menuItems;
+
     private Menu menu;
     private List<Category> categories;
     private Restaurant restaurant;
     private List<Menu> menus;
-    private MenuItem menuItem;
 
     public Links() {
     }

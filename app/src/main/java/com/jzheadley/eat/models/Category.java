@@ -1,11 +1,17 @@
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Category {
+    @SerializedName("categoryName")
+    @Expose
     private String categoryName;
     @SerializedName("_links")
+    @Expose
     private Links links;
+    @SerializedName("href")
+    @Expose
     private String href;
 
     public Category() {
@@ -14,6 +20,15 @@ public class Category {
     public Category(String categoryName) {
 
         this.categoryName = categoryName;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryName='" + categoryName + '\'' +
+                ", links=" + links +
+                ", href='" + href + '\'' +
+                '}';
     }
 
     public String getCategoryName() {

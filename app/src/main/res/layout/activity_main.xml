@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
-    >
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/app_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="@string/app_name_title"
+        android:text="@string/app_name"
+        android:textAllCaps="true"
         android:textColor="#f4ad42"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:ignore="RelativeOverlap"
-        />
+        tools:ignore="RelativeOverlap" />
 
     <ImageView
         android:id="@+id/slide_in_menu_icon"
@@ -27,8 +24,7 @@
         android:layout_alignParentRight="true"
         android:contentDescription="@string/left_menu"
         android:src="@drawable/menu"
-        tools:ignore="RtlHardcoded"
-        />
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/restaurants_near_you"
@@ -36,74 +32,75 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/app_name_title"
         android:layout_marginTop="10dp"
-        android:text="@string/restaurants_near_you"
-        />
+        android:text="@string/restaurants_near_you" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/restaurant_card_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/restaurants_near_you"
+        android:layout_height="match_parent"
+        android:layout_below="@id/restaurants_near_you"
         android:layout_gravity="center"
-        android:layout_marginTop="14dp"
-        card_view:cardCornerRadius="4dp">
+        android:layout_marginTop="20dp" />
+    <!--
 
-        <RelativeLayout
-            android:id="@+id/first_card"
+           <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            >
+            android:layout_below="@id/restaurants_near_you"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            card_view:cardCornerRadius="4dp">
 
-            <ImageView
-                android:id="@+id/food_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:layout_alignParentTop="true"
-                android:contentDescription="@string/card_image"
-                android:scaleType="centerCrop"
-                android:src="@drawable/food"
-                />
-
-            <TextView
-                android:id="@+id/restaurant_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/food_photo"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/delicious_restaurant_1"
-                android:textSize="15sp"
-                />
-
-            <TextView
-                android:id="@+id/restaurant_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/restaurant_name"
-                android:text="@string/restaurant_description_1"
-                android:textSize="12sp"
-                />
-
-            <TextView
-                android:id="@+id/restaurant_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/food_photo"
-                android:layout_marginTop="10dp"
-                android:text="@string/restaurant_distance_text"
-                android:textSize="12sp"
-                />
-
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/restaurant_card"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp">
 
 
+                <ImageView
+                    android:id="@+id/food_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/card_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food" />
 
+                <TextView
+                    android:id="@+id/restaurant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/food_photo"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/delicious_restaurant_1"
+                    android:textSize="15sp" />
 
-    </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/restaurant_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/restaurant_name"
+                    android:text="@string/restaurant_description_1"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/restaurant_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/food_photo"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/restaurant_distance_text"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    -->
 
 </RelativeLayout>

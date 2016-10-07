@@ -14,6 +14,17 @@
     <string name="defaultRestaurantName">RestaurantName</string>
     <string name="restaurantItemImageViewDescription">Picture of the Restaurant</string>
     <string name="nearbyRestaurantsHeader">Something funny</string>
+    <string name="decription_title">Description</string>
+    <string name="done_button">Done</string>
+    <string name="type_your_description_here">Type your description here.</string>
+    <string name="enter_your_description">Enter your description.</string>
+    <string name="type_of_food_title">Type of Food</string>
+    <string name="type_chinese">Chinese Cuisine</string>
+    <string name="type_indian">Indian Cuisine</string>
+    <string name="type_fast">Fast Food</string>
+    <string name="type_upscale">Upscale</string>
+    <string name="type_slovak">Slovak Cuisine</string>
+    <string name="type_affordable">Affordable</string>
     <string name="name_hint">Restaurant Name</string>
     <string name="address_hint">Address</string>
     <string name="zipcode_hint">Zip</string>
