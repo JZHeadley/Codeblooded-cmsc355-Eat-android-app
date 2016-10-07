@@ -69,14 +69,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/zipcode_restaurant"
-                android:onClick="???"
+                android:onClick=""
                 android:text="@string/typeOfFood" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/typeOfFood"
-                android:onClick="???"
+                android:onClick=""
                 android:text="@string/description_restaurant" />
 
 
