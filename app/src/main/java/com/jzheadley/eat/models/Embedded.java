@@ -1,3 +1,4 @@
+
 package com.jzheadley.eat.models;
 
 import com.google.gson.annotations.Expose;
@@ -7,18 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Embedded {
+
     @SerializedName("menuItems")
     @Expose
-    private List<MenuItem> menuItems = new ArrayList<MenuItem>();
-    private List<Restaurant> restaurants = new ArrayList<Restaurant>();
-    private List<Menu> menus = new ArrayList<Menu>();
+    private List<MenuItem> menuItems = new ArrayList<>();
     @SerializedName("categories")
     @Expose
-    private List<Category> categories = new ArrayList<Category>();
-    @SerializedName("_links")
-    private Links links;
+    private List<Category> categories = new ArrayList<>();
+    @SerializedName("menus")
+    @Expose
+    private List<Menu> menus = new ArrayList<>();
+    @SerializedName("restaurants")
+    @Expose
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     public Embedded() {
+    }
+
+    public Embedded(List<?> items) {
+        if (!(items.size() > 0)) {
+            throw new IllegalArgumentException("no items in response");
+        }
+        if (items.get(1) instanceof MenuItem) {
+            this.menuItems = (List<MenuItem>) items;
+        } else if (items.get(1) instanceof Category) {
+            this.categories = (List<Category>) items;
+        } else if (items.get(1) instanceof Menu) {
+            this.menus = (List<Menu>) items;
+        } else if (items.get(1) instanceof Restaurant) {
+            this.restaurants = (List<Restaurant>) items;
+        }
     }
 
     public List<MenuItem> getMenuItems() {
@@ -29,12 +48,12 @@ public class Embedded {
         this.menuItems = menuItems;
     }
 
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public List<Menu> getMenus() {
@@ -45,19 +64,21 @@ public class Embedded {
         this.menus = menus;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
-    public Links getLinks() {
-        return links;
-    }
-
-    public void setLinks(Links links) {
-        this.links = links;
+    @Override
+    public String toString() {
+        return "Embedded{" +
+                "menuItems=" + menuItems +
+                ", categories=" + categories +
+                ", menus=" + menus +
+                ", restaurants=" + restaurants +
+                '}';
     }
 }

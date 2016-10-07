@@ -1,18 +1,37 @@
 package com.jzheadley.eat.services;
 
-import retrofit2.Retrofit;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-/**
- * Created by zephy on 10/5/2016.
- */
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class ServiceFactory {
     public static <T> T createRetrofitService(final Class<T> clazz, final String endPoint) {
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(endPoint)
                 .build();
-        T service = retrofit.create(clazz);
+        return retrofit.create(clazz);
+    }
 
-        return service;
+    public static <T> T createRetrofitDebugService(final Class<T> clazz, final String endPoint) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        builder.networkInterceptors().add(httpLoggingInterceptor);
+        builder.build();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
+        OkHttpClient okHttpClient = builder.build();
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(endPoint)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+        return retrofit.create(clazz);
     }
 }

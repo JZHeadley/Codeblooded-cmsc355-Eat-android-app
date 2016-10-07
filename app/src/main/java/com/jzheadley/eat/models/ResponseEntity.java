@@ -1,17 +1,24 @@
+
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+public class ResponseEntity {
 
-public class EmbeddedObject {
     @SerializedName("_embedded")
+    @Expose
     private Embedded embedded;
     @SerializedName("_links")
+    @Expose
     private Links links;
 
+    public ResponseEntity() {
+    }
 
-    public EmbeddedObject(Embedded embedded) {
+    public ResponseEntity(Embedded embedded, Links links) {
         this.embedded = embedded;
+        this.links = links;
     }
 
     public Embedded getEmbedded() {
@@ -28,5 +35,13 @@ public class EmbeddedObject {
 
     public void setLinks(Links links) {
         this.links = links;
+    }
+
+    @Override
+    public String toString() {
+        return "ResponseEntity{" +
+                "embedded=" + embedded +
+                ", links=" + links +
+                '}';
     }
 }

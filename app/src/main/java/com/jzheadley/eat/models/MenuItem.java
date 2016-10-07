@@ -1,3 +1,4 @@
+
 package com.jzheadley.eat.models;
 
 import com.google.gson.annotations.Expose;
@@ -17,30 +18,27 @@ public class MenuItem {
     @SerializedName("_links")
     @Expose
     private Links links;
-    @SerializedName("href")
-    @Expose
-    private String href;
 
     public MenuItem() {
+    }
 
+    public MenuItem(String name, String price, String description, Links links) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.links = links;
     }
 
     public MenuItem(String name, String price, String description) {
-
         this.name = name;
         this.price = price;
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "MenuItem{" +
-                "name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", description='" + description + '\'' +
-                ", links=" + links +
-                ", href='" + href + '\'' +
-                '}';
+    public MenuItem(String name, String description) {
+        this.name = name;
+        this.price = "Please ask your waiter for the current pricing";
+        this.description = description;
     }
 
     public String getName() {
@@ -67,19 +65,21 @@ public class MenuItem {
         this.description = description;
     }
 
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
-
     public Links getLinks() {
         return links;
     }
 
     public void setLinks(Links links) {
         this.links = links;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", description='" + description + '\'' +
+                ", links=" + links +
+                '}';
     }
 }

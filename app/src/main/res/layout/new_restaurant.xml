@@ -28,7 +28,7 @@
                 android:layout_alignParentTop="true"
                 android:contentDescription="@string/card_image"
                 android:scaleType="centerCrop"
-                android:src="@drawable/add_photo_icon" />
+                android:src="@drawable/restaurant_placeholder" />
 
             <EditText
                 android:id="@+id/name_restaurant"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/address_restaurant"
                 android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/zipcode_restaurant"
+                android:layout_marginStart="@+id/zipcode_restaurant"
                 android:hint="@string/state_hint"
                 android:inputType="text" />
 
@@ -69,14 +69,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/zipcode_restaurant"
-                android:onClick=""
                 android:text="@string/typeOfFood" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/typeOfFood"
-                android:onClick=""
                 android:text="@string/description_restaurant" />
 
 

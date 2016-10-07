@@ -1,19 +1,17 @@
-
 package com.jzheadley.eat.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Self {
-
+public class MenuItems {
     @SerializedName("href")
     @Expose
     private String href;
 
-    public Self() {
+    public MenuItems() {
     }
 
-    public Self(String href) {
+    public MenuItems(String href) {
         this.href = href;
     }
 
@@ -27,7 +25,7 @@ public class Self {
 
     @Override
     public String toString() {
-        return "Self{" +
+        return "MenuItems{" +
                 "href='" + href + '\'' +
                 '}';
     }

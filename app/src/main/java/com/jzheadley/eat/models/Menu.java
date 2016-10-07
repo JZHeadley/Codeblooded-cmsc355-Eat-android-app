@@ -1,20 +1,24 @@
+
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Menu {
+
+    @SerializedName("menuName")
+    @Expose
     private String menuName;
     @SerializedName("_links")
+    @Expose
     private Links links;
-    private String href;
 
     public Menu() {
-
     }
 
-    public Menu(String menuName) {
-
+    public Menu(String menuName, Links links) {
         this.menuName = menuName;
+        this.links = links;
     }
 
     public String getMenuName() {
@@ -33,11 +37,11 @@ public class Menu {
         this.links = links;
     }
 
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuName='" + menuName + '\'' +
+                ", links=" + links +
+                '}';
     }
 }

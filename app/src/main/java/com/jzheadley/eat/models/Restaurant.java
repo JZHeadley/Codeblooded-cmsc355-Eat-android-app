@@ -1,23 +1,32 @@
+
 package com.jzheadley.eat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Restaurant {
+
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("pictureurl")
+    @Expose
     private String pictureurl;
+    @SerializedName("location")
+    @Expose
     private String location;
-    private String href;
     @SerializedName("_links")
+    @Expose
     private Links links;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String pictureurl, String location) {
+    public Restaurant(String name, String pictureurl, String location, Links links) {
         this.name = name;
         this.pictureurl = pictureurl;
         this.location = location;
+        this.links = links;
     }
 
     public String getName() {
@@ -44,19 +53,21 @@ public class Restaurant {
         this.location = location;
     }
 
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
-
     public Links getLinks() {
         return links;
     }
 
     public void setLinks(Links links) {
         this.links = links;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", pictureurl='" + pictureurl + '\'' +
+                ", location='" + location + '\'' +
+                ", links=" + links +
+                '}';
     }
 }
