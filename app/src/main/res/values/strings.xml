@@ -14,4 +14,10 @@
     <string name="defaultRestaurantName">RestaurantName</string>
     <string name="restaurantItemImageViewDescription">Picture of the Restaurant</string>
     <string name="nearbyRestaurantsHeader">Something funny</string>
+    <string name="name_hint">Restaurant Name</string>
+    <string name="address_hint">Address</string>
+    <string name="zipcode_hint">Zip</string>
+    <string name="state_hint">State</string>
+    <string name="typeOfFood">Type of food?</string>
+    <string name="description_restaurant">Description</string>
 </resources>

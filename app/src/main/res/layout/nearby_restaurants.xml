@@ -31,6 +31,8 @@
         android:id="@+id/nearbyRestaurants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nearbyText"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:scrollbars="vertical" />
 </RelativeLayout>
