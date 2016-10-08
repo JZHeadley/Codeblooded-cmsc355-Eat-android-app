@@ -14,9 +14,6 @@ import com.jzheadley.eat.models.Restaurant;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaurantsAdapter.RestaurantViewHolder> {
 
     private List<Restaurant> restaurants;
@@ -24,6 +21,7 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
     public NearbyRestaurantsAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
+
 
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,11 +35,12 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
     @Override
     public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int position) {
         Restaurant restaurant = restaurants.get(position);
-
-        // TODO: 10/6/2016 Get the picture and set the viewHolder's image to be it
         Glide.with(restaurantViewHolder.itemView.getContext())
                 .load(restaurant.getPictureurl())
                 .crossFade()
+                // TODO: 10/8/2016 Tweak how the image is cropped and displayed.
+                .fitCenter()
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.restaurant_placeholder)
                 .into(restaurantViewHolder.image);
@@ -58,18 +57,18 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
         return restaurants.size();
     }
 
-    public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.restaurant_picture)
-        protected ImageView image;
-        @BindView(R.id.restaurant_distance)
-        protected TextView restaurantDistance;
-        @BindView(R.id.restaurant_name)
-        protected TextView restaurantName;
+    static class RestaurantViewHolder extends RecyclerView.ViewHolder {
+        // TODO: 10/8/2016 Figure out how to make this work with ButterKnife.
+        ImageView image;
+        TextView restaurantDistance;
+        TextView restaurantName;
 
 
-        public RestaurantViewHolder(View view) {
+        RestaurantViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            restaurantName = (TextView) view.findViewById(R.id.restaurant_name);
+            restaurantDistance = (TextView) view.findViewById(R.id.restaurant_distance);
+            image = (ImageView) view.findViewById(R.id.restaurant_photo);
         }
     }
 
