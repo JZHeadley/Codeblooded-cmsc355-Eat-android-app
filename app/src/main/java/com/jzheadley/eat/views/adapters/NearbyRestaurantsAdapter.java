@@ -1,6 +1,8 @@
-package com.jzheadley.eat.adapters;
+package com.jzheadley.eat.views.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
+import com.jzheadley.eat.views.RestaurantDetailsActivity;
 
 import java.util.List;
 
 public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaurantsAdapter.RestaurantViewHolder> {
 
+    private static final String TAG = "NearbyRestaurantsAdapte";
     private List<Restaurant> restaurants;
 
     public NearbyRestaurantsAdapter(List<Restaurant> restaurants) {
@@ -33,8 +37,8 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
     }
 
     @Override
-    public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int position) {
-        Restaurant restaurant = restaurants.get(position);
+    public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, final int position) {
+        final Restaurant restaurant = restaurants.get(position);
         Glide.with(restaurantViewHolder.itemView.getContext())
                 .load(restaurant.getPictureurl())
                 .crossFade()
@@ -50,6 +54,16 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
 
         restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
         restaurantViewHolder.restaurantName.setText(restaurant.getName());
+
+        restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: " + restaurant);
+                Intent restaurantDetailsIntent = new Intent(v.getContext(), RestaurantDetailsActivity.class);
+                restaurantDetailsIntent.putExtra("restaurant", getItemId(position));
+                v.getContext().startActivity(restaurantDetailsIntent);
+            }
+        });
     }
 
     @Override
@@ -59,13 +73,17 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
 
     static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         // TODO: 10/8/2016 Figure out how to make this work with ButterKnife.
+//        @BindView(R.id.restaurant_photo)
         ImageView image;
+        //        @BindView(R.id.restaurant_distance)
         TextView restaurantDistance;
+        //        @BindView(R.id.restaurant_name)
         TextView restaurantName;
 
 
         RestaurantViewHolder(View view) {
             super(view);
+//            ButterKnife.bind(this, view);
             restaurantName = (TextView) view.findViewById(R.id.restaurant_name);
             restaurantDistance = (TextView) view.findViewById(R.id.restaurant_distance);
             image = (ImageView) view.findViewById(R.id.restaurant_photo);

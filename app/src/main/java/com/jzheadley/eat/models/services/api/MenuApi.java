@@ -1,4 +1,4 @@
-package com.jzheadley.eat.services.api;
+package com.jzheadley.eat.models.services.api;
 
 import com.jzheadley.eat.models.Menu;
 import com.jzheadley.eat.models.ResponseEntity;
@@ -12,15 +12,15 @@ import rx.Observable;
 
 public interface MenuApi {
 
-    @GET
+    @GET("menus")
     Observable<ResponseEntity> getMenus();
 
-    @GET("{id}")
+    @GET("menus/{id}")
     Observable<Menu> getMenuById(@Path("id") int menuId);
 
-    @POST
+    @POST("menus/")
     Observable<Void> createMenu(@Body Menu menu);
 
-    @GET
+    @GET("menus/")
     Observable<ResponseEntity> getMenus(@Query("size") int numberOfItems);
 }

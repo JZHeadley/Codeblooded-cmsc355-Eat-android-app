@@ -1,11 +1,25 @@
 
 package com.jzheadley.eat.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Links {
+public class Links implements Parcelable {
 
+    public static final Parcelable.Creator<Links> CREATOR = new Parcelable.Creator<Links>() {
+        @Override
+        public Links createFromParcel(Parcel source) {
+            return new Links(source);
+        }
+
+        @Override
+        public Links[] newArray(int size) {
+            return new Links[size];
+        }
+    };
     @SerializedName("self")
     @Expose
     private Self self;
@@ -43,6 +57,17 @@ public class Links {
         this.self = self;
         this.category = category;
         this.menuItems = menuItems;
+    }
+
+    protected Links(Parcel in) {
+        this.self = in.readParcelable(Self.class.getClassLoader());
+        this.menuItem = in.readParcelable(MenuItem.class.getClassLoader());
+        this.category = in.readParcelable(Category.class.getClassLoader());
+        this.menuItems = in.readParcelable(MenuItems.class.getClassLoader());
+        this.menu = in.readParcelable(Menu.class.getClassLoader());
+        this.categories = in.readParcelable(Categories.class.getClassLoader());
+        this.restaurant = in.readParcelable(Restaurant.class.getClassLoader());
+        this.menus = in.readParcelable(Menus.class.getClassLoader());
     }
 
     public Self getSelf() {
@@ -121,5 +146,22 @@ public class Links {
                 ", restaurant=" + restaurant +
                 ", menus=" + menus +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.self, flags);
+        dest.writeParcelable(this.menuItem, flags);
+        dest.writeParcelable(this.category, flags);
+        dest.writeParcelable(this.menuItems, flags);
+        dest.writeParcelable(this.menu, flags);
+        dest.writeParcelable(this.categories, flags);
+        dest.writeParcelable(this.restaurant, flags);
+        dest.writeParcelable(this.menus, flags);
     }
 }

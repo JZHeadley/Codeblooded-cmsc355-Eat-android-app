@@ -1,11 +1,25 @@
 
 package com.jzheadley.eat.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MenuItem {
+public class MenuItem implements Parcelable {
 
+    public static final Parcelable.Creator<MenuItem> CREATOR = new Parcelable.Creator<MenuItem>() {
+        @Override
+        public MenuItem createFromParcel(Parcel source) {
+            return new MenuItem(source);
+        }
+
+        @Override
+        public MenuItem[] newArray(int size) {
+            return new MenuItem[size];
+        }
+    };
     @SerializedName("name")
     @Expose
     private String name;
@@ -39,6 +53,13 @@ public class MenuItem {
         this.name = name;
         this.price = "Please ask your waiter for the current pricing";
         this.description = description;
+    }
+
+    protected MenuItem(Parcel in) {
+        this.name = in.readString();
+        this.price = in.readString();
+        this.description = in.readString();
+        this.links = in.readParcelable(Links.class.getClassLoader());
     }
 
     public String getName() {
@@ -81,5 +102,18 @@ public class MenuItem {
                 ", description='" + description + '\'' +
                 ", links=" + links +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.price);
+        dest.writeString(this.description);
+        dest.writeParcelable(this.links, flags);
     }
 }

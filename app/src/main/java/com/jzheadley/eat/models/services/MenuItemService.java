@@ -1,6 +1,6 @@
-package com.jzheadley.eat.services;
+package com.jzheadley.eat.models.services;
 
-import com.jzheadley.eat.services.api.MenuItemApi;
+import com.jzheadley.eat.models.services.api.MenuItemApi;
 
 public class MenuItemService {
     private static final String SERVICE_ENDPOINT = "http://192.241.167.209:9000/menuItems";

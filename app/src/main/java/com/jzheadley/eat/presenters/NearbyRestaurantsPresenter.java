@@ -3,7 +3,7 @@ package com.jzheadley.eat.presenters;
 import android.util.Log;
 
 import com.jzheadley.eat.models.ResponseEntity;
-import com.jzheadley.eat.services.RestaurantService;
+import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.views.NearbyRestaurantActivity;
 
 import rx.Observer;
@@ -28,12 +28,12 @@ public class NearbyRestaurantsPresenter {
                 .subscribe(new Observer<ResponseEntity>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.d(TAG, "onCompleted: Restuarant Loading completed");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(TAG, "onError: ", e);
+                        Log.e(TAG, "onError: loadRestaurants has Failed");
                         Log.d(TAG, "onError: " + e.getLocalizedMessage());
                     }
 

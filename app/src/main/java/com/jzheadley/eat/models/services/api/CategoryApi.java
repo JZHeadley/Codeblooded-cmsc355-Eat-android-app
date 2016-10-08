@@ -1,4 +1,4 @@
-package com.jzheadley.eat.services.api;
+package com.jzheadley.eat.models.services.api;
 
 import com.jzheadley.eat.models.Category;
 import com.jzheadley.eat.models.ResponseEntity;
@@ -12,15 +12,15 @@ import rx.Observable;
 
 public interface CategoryApi {
 
-    @GET
+    @GET("categories/")
     Observable<ResponseEntity> getCategories();
 
-    @GET("{id}")
+    @GET("categories/{id}")
     Observable<Category> getCategoryById(@Path("id") int categoryId);
 
-    @POST
+    @POST("categories/")
     Observable<Void> createCategory(@Body Category category);
 
-    @GET
+    @GET("categories/")
     Observable<ResponseEntity> getCategories(@Query("size") int numberOfItems);
 }

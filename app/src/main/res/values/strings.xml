@@ -31,4 +31,6 @@
     <string name="state_hint">State</string>
     <string name="typeOfFood">Type of food?</string>
     <string name="description_restaurant">Description</string>
+    <string name="add_catagory">+ Add Catagory</string>
+    <string name="delete_catagory">- Delete Catagory</string>
 </resources>

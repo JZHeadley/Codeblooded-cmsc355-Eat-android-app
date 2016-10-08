@@ -7,10 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.adapters.NearbyRestaurantsAdapter;
 import com.jzheadley.eat.models.Restaurant;
+import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.presenters.NearbyRestaurantsPresenter;
-import com.jzheadley.eat.services.RestaurantService;
+import com.jzheadley.eat.views.adapters.NearbyRestaurantsAdapter;
 
 import java.util.List;
 
@@ -21,20 +21,17 @@ public class NearbyRestaurantActivity extends AppCompatActivity {
     private static final String TAG = "NearbyRestaurantActivit";
 
     private NearbyRestaurantsAdapter restaurantsListAdapter;
-
     private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
     private RestaurantService restaurantService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.nearby_restaurants);
         ButterKnife.bind(this);
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         nearbyRestaurantsPresenter.loadRestaurants();
-
-
     }
 
     public void displayRestaurants(List<Restaurant> restaurants) {

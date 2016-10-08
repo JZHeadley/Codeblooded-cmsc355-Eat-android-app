@@ -1,4 +1,4 @@
-package com.jzheadley.eat.services.api;
+package com.jzheadley.eat.models.services.api;
 
 import com.jzheadley.eat.models.ResponseEntity;
 import com.jzheadley.eat.models.Restaurant;
@@ -15,7 +15,7 @@ public interface RestaurantApi {
     @GET("restaurants/")
     Observable<ResponseEntity> getRestaurants();
 
-    @GET("{id}")
+    @GET("restaurants/{id}")
     Observable<Restaurant> getRestaurantById(@Path("id") int restaurantId);
 
     @POST("restaurants/")
