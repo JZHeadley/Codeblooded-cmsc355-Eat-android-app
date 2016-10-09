@@ -23,14 +23,24 @@ public class Restaurant implements Parcelable {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("zipcode")
+    @Expose
+    private String zipcode;
+    @SerializedName("address")
+    @Expose
+    private String address;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("country")
+    @Expose
+    private String country;
     @SerializedName("pictureurl")
     @Expose
     private String pictureurl;
-    @SerializedName("location")
-    @Expose
-    private String location;
-    @SerializedName("description")
-    private String description;
     @SerializedName("_links")
     @Expose
     private Links links;
@@ -38,19 +48,25 @@ public class Restaurant implements Parcelable {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String pictureurl, String location, String description, Links links) {
+    public Restaurant(String name, String pictureurl, String location, String description, String zipcode, String address, String city, String country, Links links) {
         this.name = name;
         this.pictureurl = pictureurl;
-        this.location = location;
         this.description = description;
+        this.zipcode = zipcode;
+        this.address = address;
+        this.city = city;
+        this.country = country;
         this.links = links;
     }
 
     protected Restaurant(Parcel in) {
         this.name = in.readString();
-        this.pictureurl = in.readString();
-        this.location = in.readString();
         this.description = in.readString();
+        this.zipcode = in.readString();
+        this.address = in.readString();
+        this.city = in.readString();
+        this.country = in.readString();
+        this.pictureurl = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
     }
 
@@ -62,20 +78,52 @@ public class Restaurant implements Parcelable {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public String getPictureurl() {
         return pictureurl;
     }
 
     public void setPictureurl(String pictureurl) {
         this.pictureurl = pictureurl;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public Links getLinks() {
@@ -87,6 +135,15 @@ public class Restaurant implements Parcelable {
     }
 
     @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", pictureurl='" + pictureurl + '\'' +
+                ", links=" + links +
+                '}';
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -94,20 +151,12 @@ public class Restaurant implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeString(this.pictureurl);
-        dest.writeString(this.location);
         dest.writeString(this.description);
+        dest.writeString(this.zipcode);
+        dest.writeString(this.address);
+        dest.writeString(this.city);
+        dest.writeString(this.country);
+        dest.writeString(this.pictureurl);
         dest.writeParcelable(this.links, flags);
     }
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "name='" + name + '\'' +
-                ", pictureurl='" + pictureurl + '\'' +
-                ", location='" + location + '\'' +
-                ", links=" + links +
-                '}';
-    }
-
 }
