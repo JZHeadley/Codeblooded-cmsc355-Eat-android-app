@@ -41,7 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/address_restaurant_detail"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border"
         android:fontFamily="sans-serif"
         android:text="@string/description_restaurant"
         android:textColor="#000000"
@@ -53,7 +52,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/description_restaurant_detail"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border"
         android:text="@string/menu_detail" />
 
 

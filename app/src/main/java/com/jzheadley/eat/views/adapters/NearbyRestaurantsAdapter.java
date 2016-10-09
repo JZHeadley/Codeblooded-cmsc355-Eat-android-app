@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.views.RestaurantDetailsActivity;
@@ -39,6 +40,11 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
     @Override
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, final int position) {
         final Restaurant restaurant = restaurants.get(position);
+        // TODO: 10/6/2016 implement getting current location and distance to restaurant
+        double restaurantDistance = 0;
+        String restaurantDistanceText = "" + restaurantDistance;
+
+        // Load image after text so it has something in the view if image doesn't immediately load
         Glide.with(restaurantViewHolder.itemView.getContext())
                 .load(restaurant.getPictureurl())
                 .crossFade()
@@ -46,21 +52,18 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
                 .fitCenter()
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.restaurant_placeholder)
-                .into(restaurantViewHolder.image);
-        // TODO: 10/6/2016 implement getting current location and distance to restaurant
-        double restaurantDistance = 0;
-        String restaurantDistanceText = "" + restaurantDistance;
+//                .placeholder(R.drawable.restaurant_placeholder)
+                .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
 
         restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
         restaurantViewHolder.restaurantName.setText(restaurant.getName());
-
         restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: " + restaurant);
+                Log.i(TAG, "onClick: " + position);
                 Intent restaurantDetailsIntent = new Intent(v.getContext(), RestaurantDetailsActivity.class);
-                restaurantDetailsIntent.putExtra("restaurant", getItemId(position));
+                restaurantDetailsIntent.putExtra("restaurantId", position);
                 v.getContext().startActivity(restaurantDetailsIntent);
             }
         });

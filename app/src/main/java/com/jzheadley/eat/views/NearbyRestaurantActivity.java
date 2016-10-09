@@ -34,6 +34,15 @@ public class NearbyRestaurantActivity extends AppCompatActivity {
         nearbyRestaurantsPresenter.loadRestaurants();
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        ButterKnife.bind(this);
+        restaurantService = new RestaurantService();
+        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
+        nearbyRestaurantsPresenter.loadRestaurants();
+    }
+
     public void displayRestaurants(List<Restaurant> restaurants) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.restaurant_card_list);
         recyclerView.setHasFixedSize(true);
