@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/address_restaurant"
                 android:layout_marginLeft="30dp"
-                android:layout_marginStart="@+id/zipcode_restaurant"
+                android:layout_toRightOf="@+id/zipcode_restaurant"
                 android:hint="@string/state_hint"
                 android:inputType="text" />
 
@@ -72,10 +72,18 @@
                 android:text="@string/typeOfFood" />
 
             <Button
+                android:id="@+id/description_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/typeOfFood"
                 android:text="@string/description_restaurant" />
+
+            <Button
+                android:id="@+id/hours_restaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description_restaurant"
+                android:text="@string/hours_restaurant" />
 
 
         </RelativeLayout>
