@@ -38,7 +38,7 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
     }
 
     @Override
-    public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
+    public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, final int position) {
         final Restaurant restaurant = restaurants.get(position);
         // TODO: 10/6/2016 implement getting current location and distance to restaurant
         double restaurantDistance = 0;
@@ -61,8 +61,9 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: " + restaurant);
+                Log.i(TAG, "onClick: " + position);
                 Intent restaurantDetailsIntent = new Intent(v.getContext(), RestaurantDetailsActivity.class);
-                restaurantDetailsIntent.putExtra("restaurant", getItemId(restaurantViewHolder.getAdapterPosition()));
+                restaurantDetailsIntent.putExtra("restaurantId", position);
                 v.getContext().startActivity(restaurantDetailsIntent);
             }
         });

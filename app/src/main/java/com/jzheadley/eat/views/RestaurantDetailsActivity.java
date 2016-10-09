@@ -36,7 +36,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         restaurantService = new RestaurantService();
         restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
         restaurantId = getIntent().getExtras().getInt("restaurantId");
-        Log.d(TAG, "onCreate: " + restaurantId);
+        Log.i(TAG, "onCreate: " + restaurantId);
         restaurantDetailsPresenter.loadRestaurantDetails(restaurantId + 1);
     }
 
