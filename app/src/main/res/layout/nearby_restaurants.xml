@@ -1,45 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="15dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/app_name_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/app_name"
-        android:textAllCaps="true"
-        android:textColor="#f4ad42"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:ignore="RelativeOverlap" />
 
-    <ImageView
-        android:id="@+id/slide_in_menu_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:contentDescription="@string/left_menu"
-        android:src="@drawable/menu"
-        tools:ignore="RtlHardcoded" />
+    <include
+        android:id="@+id/toolbar_nearby_restaurants"
+        layout="@layout/toolbar_main" />
+
 
     <TextView
         android:id="@+id/restaurants_near_you"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/app_name_title"
+        android:layout_below="@id/toolbar_nearby_restaurants"
         android:layout_marginTop="10dp"
         android:text="@string/restaurants_near_you" />
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/restaurants_near_you"
-        android:orientation="vertical"
-        android:scrollbars="vertical">-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/restaurant_card_list"
@@ -48,6 +24,5 @@
         android:layout_below="@id/restaurants_near_you"
         android:layout_gravity="center"
         android:layout_marginTop="20dp" />
-    <!--</LinearLayout>-->
 
 </RelativeLayout>

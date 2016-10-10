@@ -33,14 +33,20 @@
     <string name="hours_restaurant">Hours?</string>
     <string name="menu_detail">Menu</string>
     <string name="description_restaurant">Description</string>
-    <string name="add_catagory">+ Add Catagory</string>
-    <string name="delete_catagory">- Delete Catagory</string>
+    <string name="add_catagory">+ Add Category</string>
+    <string name="delete_catagory">- Delete Category</string>
     <string name="opening_hours_title">Opening Hours</string>
     <string name="opening_hours_monday">Monday:</string>
     <string name="opening_hours_tuesday">Tuesday:</string>
     <string name="opening_hours_wednesday">Wednesday:</string>
     <string name="opening_hours_thursday">Thursday:</string>
     <string name="opening_hours_friday">Friday:</string>
-    <string name="_9_00">09:00</string>
-    <string name="_17_00">17:00</string>
+    <string-array name="navigation_drawer_options">
+        <item>Sign Up</item>
+        <item>Map</item>
+        <item>Profile</item>
+        <item>Settings</item>
+        <item>Help</item>
+        <item>Restaurant Owners</item>
+    </string-array>
 </resources>

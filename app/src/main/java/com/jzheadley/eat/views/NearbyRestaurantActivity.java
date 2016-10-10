@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
@@ -29,6 +30,8 @@ public class NearbyRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nearby_restaurants);
         ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         nearbyRestaurantsPresenter.loadRestaurants();
