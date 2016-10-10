@@ -63,5 +63,9 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     //clock
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    // MaterialDrawer library for the navigation drawer
+    compile('com.mikepenz:materialdrawer:5.6.0@aar') {
+        transitive = true
+    }
 
 }
