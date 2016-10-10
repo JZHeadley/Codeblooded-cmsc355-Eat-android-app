@@ -2,7 +2,6 @@ package com.jzheadley.eat.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,8 +14,6 @@ import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.presenters.RestaurantDetailsPresenter;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
 
 
 public class RestaurantDetailsActivity extends BaseActivity {
@@ -35,9 +32,6 @@ public class RestaurantDetailsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_restaurant_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Drawer result = new DrawerBuilder().withActivity(this).withToolbar(toolbar).build();
         restaurantService = new RestaurantService();
         restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
 //        restaurantId = getIntent().getExtras().getParcelable("restaurant");

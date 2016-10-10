@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
-    <include
-        android:id="@+id/toolbar_nearby_restaurants"
-        layout="@layout/toolbar_main"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_nearby_restaurants"
-        android:padding="15dp">
+    android:padding="15dp">
 
 
-        <TextView
+    <TextView
         android:id="@+id/meal_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,8 +14,7 @@
         android:text="@string/appetizers_headline"
         android:textColor="#f4ad42"
         android:textSize="30sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/delete_btn_meal"
@@ -38,7 +26,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="18dp"
         android:layout_marginStart="18dp"
-        android:text="@string/delete_meal"/>
+        android:text="@string/delete_meal" />
 
     <Button
         android:id="@+id/add_btn_meal"
@@ -49,8 +37,7 @@
         android:layout_below="@id/meal_input_title"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
-        android:text="@string/add_meal"
-        />
+        android:text="@string/add_meal" />
 
     <Button
         android:id="@+id/confirm_description"
@@ -61,8 +48,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
         android:text="@string/done_button"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
 
-    </RelativeLayout>
 </RelativeLayout>
