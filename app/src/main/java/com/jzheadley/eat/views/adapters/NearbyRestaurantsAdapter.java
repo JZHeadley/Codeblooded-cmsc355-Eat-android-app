@@ -76,17 +76,13 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
 
     static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         // TODO: 10/8/2016 Figure out how to make this work with ButterKnife.
-//        @BindView(R.id.restaurant_photo)
         ImageView image;
-        //        @BindView(R.id.restaurant_distance)
         TextView restaurantDistance;
-        //        @BindView(R.id.restaurant_name)
         TextView restaurantName;
 
 
         RestaurantViewHolder(View view) {
             super(view);
-//            ButterKnife.bind(this, view);
             restaurantName = (TextView) view.findViewById(R.id.restaurant_name);
             restaurantDistance = (TextView) view.findViewById(R.id.restaurant_distance);
             image = (ImageView) view.findViewById(R.id.restaurant_photo);

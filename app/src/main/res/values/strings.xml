@@ -42,9 +42,9 @@
     <string name="opening_hours_thursday">Thursday:</string>
     <string name="opening_hours_friday">Friday:</string>
     <string-array name="navigation_drawer_options">
-        <item>Sign Up</item>
-        <item>Map</item>
+        <item>Home</item>
         <item>Profile</item>
+        <item>Map</item>
         <item>Settings</item>
         <item>Help</item>
         <item>Restaurant Owners</item>

@@ -32,5 +32,6 @@
         android:layout_marginRight="6dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/left_menu"
-        android:src="@drawable/ic_drawer" />
+        android:onClick="onDrawerClick"
+        android:src="@drawable/ic_menu" />
 </android.support.v7.widget.Toolbar>
