@@ -47,6 +47,7 @@
     <string name="menu_title">Menu</string>
     <string name="add_meal">+ Add meal</string>
     <string name="delete_meal">- delete meal</string>
+    <string name="nav_menu_description">Navigation Menu</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>
