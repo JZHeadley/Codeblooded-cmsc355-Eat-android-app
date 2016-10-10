@@ -16,6 +16,7 @@ android {
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 //        versionCode 1
 //        versionName "1.0"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -53,6 +54,15 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     // Espresso Dependencies
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    // Android runner and rules support
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    // Espresso support
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // Espresso intent mocking support
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
     // ButterKnife Dependency
     compile 'com.jakewharton:butterknife:8.4.0'
     // Dependency for nearby restaurant listings
@@ -67,5 +77,10 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.6.0@aar') {
         transitive = true
     }
-
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
 }
