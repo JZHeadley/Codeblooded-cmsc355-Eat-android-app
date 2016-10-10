@@ -3,18 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <include
         android:id="@+id/toolbar_nearby_restaurants"
         layout="@layout/toolbar_main" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_nearby_restaurants"
+        android:padding="15dp">
 
     <TextView
         android:id="@+id/restaurants_near_you"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_nearby_restaurants"
-        android:layout_marginTop="10dp"
         android:text="@string/restaurants_near_you" />
 
     <android.support.v7.widget.RecyclerView
@@ -24,5 +26,7 @@
         android:layout_below="@id/restaurants_near_you"
         android:layout_gravity="center"
         android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
