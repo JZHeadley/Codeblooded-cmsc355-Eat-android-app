@@ -26,7 +26,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nearby_restaurants);
+        setContentView(R.layout.activity_nearby_restaurants);
         ButterKnife.bind(this);
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);

@@ -31,7 +31,7 @@ public class RestaurantDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_restaurant_details);
+        setContentView(R.layout.activity_restaurant_details);
         restaurantService = new RestaurantService();
         restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
 //        restaurantId = getIntent().getExtras().getParcelable("restaurant");
