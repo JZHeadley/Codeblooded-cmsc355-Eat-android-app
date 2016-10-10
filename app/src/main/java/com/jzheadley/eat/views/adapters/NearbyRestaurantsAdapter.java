@@ -56,6 +56,7 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
                 .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
 
         restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
+        restaurantViewHolder.restaurantDescription.setText(restaurant.getDescription());
         restaurantViewHolder.restaurantName.setText(restaurant.getName());
         restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +80,12 @@ public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaur
         ImageView image;
         TextView restaurantDistance;
         TextView restaurantName;
-
+        TextView restaurantDescription;
 
         RestaurantViewHolder(View view) {
             super(view);
             restaurantName = (TextView) view.findViewById(R.id.restaurant_name);
+            restaurantDescription = (TextView) view.findViewById(R.id.restaurant_description);
             restaurantDistance = (TextView) view.findViewById(R.id.restaurant_distance);
             image = (ImageView) view.findViewById(R.id.restaurant_photo);
         }

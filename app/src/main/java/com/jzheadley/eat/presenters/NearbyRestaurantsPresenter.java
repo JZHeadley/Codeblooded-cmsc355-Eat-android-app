@@ -3,6 +3,7 @@ package com.jzheadley.eat.presenters;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.jzheadley.eat.R;
@@ -14,6 +15,7 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -48,6 +50,13 @@ public class NearbyRestaurantsPresenter {
                                 .withIcon(R.drawable.ic_help),
                         new SecondaryDrawerItem().withName(drawerItems[5])
                                 .withIcon(R.drawable.ic_restaurant)
+                                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                                    @Override
+                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+                                        return false;
+                                    }
+                                })
                 )
                 .withDrawerGravity(Gravity.END)
                 .build();
