@@ -1,8 +1,10 @@
 package com.jzheadley.eat.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,5 +60,10 @@ public class RestaurantDetailsActivity extends BaseActivity {
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new GlideDrawableImageViewTarget(restaurantPhoto));
+    }
+
+    public void onMenuClick(View view) {
+        Intent menuIntent = new Intent(view.getContext(), RestaurantMenuActivity.class);
+        view.getContext().startActivity(menuIntent);
     }
 }

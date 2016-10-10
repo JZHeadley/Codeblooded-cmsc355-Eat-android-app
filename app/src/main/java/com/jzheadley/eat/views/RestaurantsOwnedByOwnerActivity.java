@@ -1,10 +1,12 @@
 package com.jzheadley.eat.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
@@ -25,12 +27,13 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     private UserService userService;
     private User user;
 
-    public void logUser(User user) {
-        this.user = user;
-        int userId = Integer.parseInt(user.getLinks().getRestaurants().getHref().replace("http://192.99.0.20:9000/users/", "").replace("/restaurants", ""));// TODO: 10/10/2016 This is horrific.... wtf, fix this
+    public void logUser(User currentUser) {
+        // TODO: 10/10/2016 Fix this to actually call the currentUsers profile up from storage
+        this.user = currentUser;
+        int userId = Integer.parseInt(user.getLinks().getRestaurants().getHref()
+                .replace("http://192.99.0.20:9000/users/", "").replace("/restaurants", "")); // TODO: 10/10/2016 This is horrific.... wtf, fix this
         Log.d(TAG, "logUser: " + userId);
         restaurantsOwnedByOwnerPresenter.loadRestaurantsOfUser(userId);
-
     }
 
     @Override
@@ -54,6 +57,10 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
         recyclerView.setAdapter(restaurantsListAdapter);
+    }
 
+    public void onAddRestaurantClick(View view) {
+        Intent addRestaurantIntent = new Intent(view.getContext(), RestaurantCreationActivity.class);
+        view.getContext().startActivity(addRestaurantIntent);
     }
 }

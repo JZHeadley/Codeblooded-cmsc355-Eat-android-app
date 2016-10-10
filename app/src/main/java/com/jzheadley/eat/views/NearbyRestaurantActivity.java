@@ -51,4 +51,6 @@ public class NearbyRestaurantActivity extends BaseActivity {
         restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
         recyclerView.setAdapter(restaurantsListAdapter);
     }
+
+
 }

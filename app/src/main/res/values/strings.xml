@@ -18,13 +18,16 @@
     <string name="done_button">Done</string>
     <string name="type_your_description_here">Type your description here.</string>
     <string name="enter_your_description">Enter your description.</string>
+    <string-array name="types_of_food">
+        <item name="chinese">Chinese Cuisine</item>
+        <item name="indian">Indian Cuisine</item>
+        <item name="fast">Fast Food</item>
+        <item name="upscale">Upscale</item>
+        <item name="slovak">Slovakian Cuisine</item>
+        <item name="affordable">Affordable</item>
+        <item name="other">Other</item>
+    </string-array>
     <string name="type_of_food_title">Type of Food</string>
-    <string name="type_chinese">Chinese Cuisine</string>
-    <string name="type_indian">Indian Cuisine</string>
-    <string name="type_fast">Fast Food</string>
-    <string name="type_upscale">Upscale</string>
-    <string name="type_slovak">Slovak Cuisine</string>
-    <string name="type_affordable">Affordable</string>
     <string name="name_hint">Restaurant Name</string>
     <string name="address_hint">Address</string>
     <string name="zipcode_hint">Zip</string>
@@ -50,6 +53,7 @@
     <string name="nav_menu_description">Navigation Menu</string>
     <string name="owner_restaurant_add_btn">Add a new Restaurant</string>
     <string name="restaurant_owner_tv">Restaurants you manage:</string>
+    <string name="add_restaurant_country_hint">Country</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>

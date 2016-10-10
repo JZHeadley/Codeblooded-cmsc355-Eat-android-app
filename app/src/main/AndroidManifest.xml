@@ -4,6 +4,7 @@
     package="com.jzheadley.eat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,13 +21,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.RestaurantDetailsActivity" />
-        <activity android:name=".views.BaseActivity" />
-        <activity android:name=".views.RestaurantsOwnedByOwnerActivity" />
-        <activity android:name=".views.HelpActivity" />
-        <activity android:name=".views.SettingsActivity" />
+        <activity
+            android:name=".views.RestaurantDetailsActivity"
+            android:parentActivityName=".views.NearbyRestaurantActivity" />
 
+        <activity
+            android:name=".views.RestaurantsOwnedByOwnerActivity"
+            android:parentActivityName=".views.NearbyRestaurantActivity" />
 
+        <activity
+            android:name=".views.HelpActivity"
+            android:parentActivityName=".views.NearbyRestaurantActivity" />
+
+        <activity
+            android:name=".views.SettingsActivity"
+            android:parentActivityName=".views.NearbyRestaurantActivity" />
+
+        <activity
+            android:name=".views.RestaurantCreationActivity"
+            android:parentActivityName=".views.RestaurantsOwnedByOwnerActivity" />
+
+        <activity
+            android:name=".views.RestaurantMenuActivity"
+            android:parentActivityName=".views.RestaurantDetailsActivity" />
     </application>
 
 </manifest>

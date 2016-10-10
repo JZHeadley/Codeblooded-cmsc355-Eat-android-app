@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/description_restaurant_detail"
         android:layout_marginTop="20dp"
+        android:onClick="onMenuClick"
         android:text="@string/menu_detail" />
 
 

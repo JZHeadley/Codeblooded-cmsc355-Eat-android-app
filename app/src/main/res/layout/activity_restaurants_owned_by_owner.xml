@@ -7,7 +7,8 @@
         android:id="@+id/add_new_restaurant_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_margin="2dp"
+        android:onClick="onAddRestaurantClick"
         android:text="@string/owner_restaurant_add_btn" />
 
     <TextView
@@ -15,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_new_restaurant_btn"
+        android:layout_margin="2dp"
         android:text="@string/restaurant_owner_tv" />
 
     <android.support.v7.widget.RecyclerView
@@ -23,5 +25,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/restaurants_owned"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 </RelativeLayout>
