@@ -28,10 +28,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_gravity="end"
         android:layout_marginEnd="6dp"
         android:layout_marginRight="6dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/left_menu"
         android:onClick="onDrawerClick"
         android:src="@drawable/ic_menu" />
+
 </android.support.v7.widget.Toolbar>

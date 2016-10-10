@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
 
     <TextView
-        android:id="@+id/menu_input_title"
+        android:id="@+id/meal_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif"
-        android:text="@string/menu_title"
+        android:text="@string/appetizers_headline"
         android:textColor="#f4ad42"
         android:textSize="30sp"
         android:textStyle="bold"
         />
 
     <Button
-        android:id="@+id/delete_btn"
+        android:id="@+id/delete_btn_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/menu_input_title"
+        android:layout_below="@id/meal_input_title"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="18dp"
         android:layout_marginStart="18dp"
-        android:text="@string/delete_category"/>
-
+        android:text="@string/delete_meal"/>
 
     <Button
-        android:id="@+id/Add_btn"
+        android:id="@+id/add_btn_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/menu_input_title"
+        android:layout_below="@id/meal_input_title"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
-        android:text="@string/add_category"
+        android:text="@string/add_meal"
         />
 
     <Button
-        android:id="@+id/confirm_menu"
+        android:id="@+id/confirm_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -51,6 +52,5 @@
         android:text="@string/done_button"
         android:textSize="16sp"
         />
-
 
 </RelativeLayout>
