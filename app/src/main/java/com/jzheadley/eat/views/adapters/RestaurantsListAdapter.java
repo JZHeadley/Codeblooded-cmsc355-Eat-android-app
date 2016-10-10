@@ -18,12 +18,12 @@ import com.jzheadley.eat.views.RestaurantDetailsActivity;
 
 import java.util.List;
 
-public class NearbyRestaurantsAdapter extends RecyclerView.Adapter<NearbyRestaurantsAdapter.RestaurantViewHolder> {
+public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
     private List<Restaurant> restaurants;
 
-    public NearbyRestaurantsAdapter(List<Restaurant> restaurants) {
+    public RestaurantsListAdapter(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 

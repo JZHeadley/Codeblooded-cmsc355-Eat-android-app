@@ -44,11 +44,14 @@ public class Restaurant implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
+    @SerializedName("restaurantOwner")
+    @Expose
+    private User user;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String pictureurl, String location, String description, String zipcode, String address, String city, String country, Links links) {
+    public Restaurant(String name, String pictureurl, String location, String description, String zipcode, String address, String city, String country, Links links, User user) {
         this.name = name;
         this.pictureurl = pictureurl;
         this.description = description;
@@ -57,6 +60,7 @@ public class Restaurant implements Parcelable {
         this.city = city;
         this.country = country;
         this.links = links;
+        this.user = user;
     }
 
     protected Restaurant(Parcel in) {
@@ -68,6 +72,7 @@ public class Restaurant implements Parcelable {
         this.country = in.readString();
         this.pictureurl = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
+        this.user = in.readParcelable(User.class.getClassLoader());
     }
 
     public String getName() {
@@ -143,6 +148,14 @@ public class Restaurant implements Parcelable {
                 '}';
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -158,5 +171,6 @@ public class Restaurant implements Parcelable {
         dest.writeString(this.country);
         dest.writeString(this.pictureurl);
         dest.writeParcelable(this.links, flags);
+        dest.writeParcelable(this.user, flags);
     }
 }

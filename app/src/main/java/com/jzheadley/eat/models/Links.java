@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -44,6 +43,12 @@ public class Links implements Parcelable {
     @SerializedName("menus")
     @Expose
     private Menus menus;
+    @SerializedName("user")
+    @Expose
+    private User user;
+    @SerializedName("restaurants")
+    @Expose
+    private Restaurants restaurants;
 
     public Links() {
     }
@@ -59,7 +64,7 @@ public class Links implements Parcelable {
         this.menuItems = menuItems;
     }
 
-    protected Links(Parcel in) {
+    private Links(Parcel in) {
         this.self = in.readParcelable(Self.class.getClassLoader());
         this.menuItem = in.readParcelable(MenuItem.class.getClassLoader());
         this.category = in.readParcelable(Category.class.getClassLoader());
@@ -163,5 +168,21 @@ public class Links implements Parcelable {
         dest.writeParcelable(this.categories, flags);
         dest.writeParcelable(this.restaurant, flags);
         dest.writeParcelable(this.menus, flags);
+    }
+
+    public Restaurants getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Restaurants restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

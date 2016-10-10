@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -12,7 +11,8 @@ import java.util.List;
 
 public class Embedded implements Parcelable {
 
-    public static final Parcelable.Creator<Embedded> CREATOR = new Parcelable.Creator<Embedded>() {
+
+    public static final Creator<Embedded> CREATOR = new Creator<Embedded>() {
         @Override
         public Embedded createFromParcel(Parcel source) {
             return new Embedded(source);
@@ -35,6 +35,9 @@ public class Embedded implements Parcelable {
     @SerializedName("restaurants")
     @Expose
     private List<Restaurant> restaurants = new ArrayList<>();
+    @SerializedName("users")
+    @Expose
+    private List<User> users = new ArrayList<User>();
 
     public Embedded() {
     }
@@ -51,17 +54,18 @@ public class Embedded implements Parcelable {
             this.menus = (List<Menu>) items;
         } else if (items.get(1) instanceof Restaurant) {
             this.restaurants = (List<Restaurant>) items;
+        } else if (items.get(1) instanceof User) {
+            this.users = (List<User>) items;
         }
     }
 
-    protected Embedded(Parcel in) {
-        this.menuItems = new ArrayList<MenuItem>();
-        in.readList(this.menuItems, MenuItem.class.getClassLoader());
+    private Embedded(Parcel in) {
+        this.menuItems = in.createTypedArrayList(MenuItem.CREATOR);
         this.categories = in.createTypedArrayList(Category.CREATOR);
-        this.menus = new ArrayList<Menu>();
-        in.readList(this.menus, Menu.class.getClassLoader());
-        this.restaurants = new ArrayList<Restaurant>();
-        in.readList(this.restaurants, Restaurant.class.getClassLoader());
+        this.menus = in.createTypedArrayList(Menu.CREATOR);
+        this.restaurants = in.createTypedArrayList(Restaurant.CREATOR);
+        this.users = new ArrayList<>();
+        in.readList(this.users, User.class.getClassLoader());
     }
 
     public List<MenuItem> getMenuItems() {
@@ -106,6 +110,14 @@ public class Embedded implements Parcelable {
                 '}';
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -113,9 +125,10 @@ public class Embedded implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(this.menuItems);
+        dest.writeTypedList(this.menuItems);
         dest.writeTypedList(this.categories);
-        dest.writeList(this.menus);
-        dest.writeList(this.restaurants);
+        dest.writeTypedList(this.menus);
+        dest.writeTypedList(this.restaurants);
+        dest.writeList(this.users);
     }
 }

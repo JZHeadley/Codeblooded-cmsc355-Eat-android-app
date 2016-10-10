@@ -9,7 +9,7 @@ import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.presenters.NearbyRestaurantsPresenter;
-import com.jzheadley.eat.views.adapters.NearbyRestaurantsAdapter;
+import com.jzheadley.eat.views.adapters.RestaurantsListAdapter;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 public class NearbyRestaurantActivity extends BaseActivity {
     private static final String TAG = "NearbyRestaurantActivit";
 
-    private NearbyRestaurantsAdapter restaurantsListAdapter;
+    private RestaurantsListAdapter restaurantsListAdapter;
     private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
     private RestaurantService restaurantService;
 
@@ -48,7 +48,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new NearbyRestaurantsAdapter(restaurants);
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
         recyclerView.setAdapter(restaurantsListAdapter);
     }
 }
