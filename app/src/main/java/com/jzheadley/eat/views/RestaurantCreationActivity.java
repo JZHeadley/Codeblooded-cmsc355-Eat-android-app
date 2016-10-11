@@ -23,6 +23,11 @@ public class RestaurantCreationActivity extends BaseActivity {
     private RestaurantService restaurantService;
     private int PICK_IMAGE_REQUEST = 1;
 
+    public void onMenuHoursButtonClick(View view) {
+        Intent menuHoursIntent = new Intent(view.getContext(), MenuHoursActivity.class);
+        view.getContext().startActivity(menuHoursIntent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
