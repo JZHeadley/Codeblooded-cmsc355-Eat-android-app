@@ -14,8 +14,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.intent.Intents.intended;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -29,11 +27,24 @@ public class RestaurantDetailsTest {
     public ActivityTestRule<NearbyRestaurantActivity> mActivityTestRule = new ActivityTestRule<>(NearbyRestaurantActivity.class, true, true);
 
     @Test
-    public void restaurantDetailsTest() {
+    public void restaurantDetailsConnectionTest() {
         onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
-        intended(hasComponent(RestaurantDetailsActivity.class.getName()));
+//        intended(hasComponent(RestaurantDetailsActivity.class.getName()));
         onView(allOf(withId(R.id.menu_restaurant_detail), withText("Menu"), isDisplayed())).perform(click());
         onView(withId(R.id.restaurant_menu_title)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void restaurantDetailsInformationTest() {
+        onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
+//        intended(toPackage("com.jzheadley.eat.views.RestaurantDetailsActivity"));
+        onView(withId(R.id.restaurant_name_detail)).check(matches(withText("La Toque")));
+    }
+
+    @Test
+    public void nearbyRestaurantActivityTest() {
+        onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.menu_restaurant_detail)).check(matches(isDisplayed()));
     }
 
 }
