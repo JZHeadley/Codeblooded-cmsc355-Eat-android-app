@@ -23,16 +23,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
-        android:onClick="onDoneButtonClick"
         android:text="@string/done_button"
-        android:textSize="16sp"/>
-
-    <!-- TODO list view -->
+        android:textSize="16sp" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/confirm_description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/opening_hours_title"
@@ -42,7 +38,6 @@
         <TextView
             android:id="@+id/opening_hours_sunday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
             android:layout_row="0"
             android:text="@string/opening_hours_sunday"
             android:textSize="20sp" />
@@ -51,176 +46,186 @@
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
             android:layout_row="0"
             android:hint="@string/placeholder_string_opening_hours_start"
             android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
             android:layout_row="0"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_monday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="1"
             android:text="@string/opening_hours_monday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="1"
-            android:text="@string/placeholder_string_opening_hours_start"
-            android:textSize="20sp"
-            android:timePickerMode="clock" />
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
+            android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="1"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_tuesday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="2"
             android:text="@string/opening_hours_tuesday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="2"
-            android:text="@string/placeholder_string_opening_hours_start"
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="2"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_wednesday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="3"
             android:text="@string/opening_hours_wednesday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="3"
-            android:text="@string/placeholder_string_opening_hours_start"
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="3"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_thursday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="4"
             android:text="@string/opening_hours_thursday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="4"
-            android:text="@string/placeholder_string_opening_hours_start"
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="4"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_friday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="5"
             android:text="@string/opening_hours_friday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="5"
-            android:text="@string/placeholder_string_opening_hours_start"
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="5"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_saturday"
             android:layout_column="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="6"
             android:text="@string/opening_hours_saturday"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="1"
             android:layout_marginLeft="70dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="6"
-            android:text="@string/placeholder_string_opening_hours_start"
+            android:hint="@string/placeholder_string_opening_hours_start"
+            android:inputType="text"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:layout_column="2"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_row="6"
-            android:text="@string/placeholder_string_opening_hours_end"
+            android:hint="@string/placeholder_string_opening_hours_end"
+            android:inputType="text"
             android:textSize="20sp" />
 
     </GridLayout>
