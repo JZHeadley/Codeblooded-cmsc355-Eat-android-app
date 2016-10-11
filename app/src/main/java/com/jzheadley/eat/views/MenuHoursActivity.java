@@ -7,9 +7,6 @@ import android.view.View;
 
 import com.jzheadley.eat.R;
 
-/**
- * Created by CJP on 10/10/2016.
- */
 public class MenuHoursActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,5 +17,6 @@ public class MenuHoursActivity extends BaseActivity {
     public void onDoneButtonClick(View view) {
         Intent doneIntent = new Intent(view.getContext(), RestaurantCreationActivity.class);
         view.getContext().startActivity(doneIntent);
+        finishActivity(2);
     }
 }

@@ -173,4 +173,6 @@ public class Restaurant implements Parcelable {
         dest.writeParcelable(this.links, flags);
         dest.writeParcelable(this.user, flags);
     }
+
+
 }

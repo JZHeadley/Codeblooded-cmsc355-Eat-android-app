@@ -56,6 +56,7 @@
     <string name="owner_restaurant_add_btn">Add a new Restaurant</string>
     <string name="restaurant_owner_tv">Restaurants you manage:</string>
     <string name="add_restaurant_country_hint">Country</string>
+    <string name="city_hint">City</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>

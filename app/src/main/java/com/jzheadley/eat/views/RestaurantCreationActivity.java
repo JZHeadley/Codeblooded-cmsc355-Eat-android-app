@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.presenters.RestaurantCreationPresenter;
 import com.jzheadley.eat.utils.Constants;
@@ -32,11 +34,8 @@ public class RestaurantCreationActivity extends BaseActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private RestaurantCreationPresenter restaurantCreationPresenter;
     private RestaurantService restaurantService;
-
-    public void onMenuHoursButtonClick(View view) {
-        Intent menuHoursIntent = new Intent(view.getContext(), MenuHoursActivity.class);
-        view.getContext().startActivity(menuHoursIntent);
-    }
+    private Restaurant restaurant;
+    private String imgurPhotoUrl = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,12 +45,13 @@ public class RestaurantCreationActivity extends BaseActivity {
         restaurantCreationPresenter = new RestaurantCreationPresenter(this, restaurantService);
         createFoodTypeCheckBoxes();
         setupCountrySpinner();
+        restaurant = new Restaurant();
 
     }
 
     private void setupCountrySpinner() {
         Locale[] locale = Locale.getAvailableLocales();
-        ArrayList<String> countries = new ArrayList<String>();
+        ArrayList<String> countries = new ArrayList<>();
         String country;
         for (Locale loc : locale) {
             country = loc.getDisplayCountry();
@@ -60,13 +60,14 @@ public class RestaurantCreationActivity extends BaseActivity {
             }
         }
         Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
-        Spinner countrySpinner = (Spinner) findViewById(R.id.country_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
+        Spinner countrySpinner = (Spinner) findViewById(R.id.restaurant_creation_country_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, countries);
         countrySpinner.setAdapter(adapter);
+        countrySpinner.setSelection(adapter.getPosition("United States"));
     }
 
     private void createFoodTypeCheckBoxes() {
-        CheckBoxGroupView checkBoxGroup = (CheckBoxGroupView) findViewById(R.id.type_of_food_check_group);
+        CheckBoxGroupView checkBoxGroup = (CheckBoxGroupView) findViewById(R.id.restaurant_creation_type_of_food_check_group);
         for (String str : getResources().getStringArray(R.array.types_of_food)) {
             CheckBox checkbox = new CheckBox(getApplicationContext());
             checkbox.setText(str);
@@ -114,4 +115,27 @@ public class RestaurantCreationActivity extends BaseActivity {
         }
     }
 
+    public void setRestaurantUrl(String url) {
+        imgurPhotoUrl = url;
+    }
+
+
+    public void onSubmitButton(View view) {
+        Log.d(TAG, "onSubmitButton: " + ((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
+        restaurant.setAddress(((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
+        restaurant.setCity(((EditText) findViewById(R.id.restaurant_creation_city)).getText().toString());
+        restaurant.setCountry(((Spinner) findViewById(R.id.restaurant_creation_country_spinner)).getSelectedItem().toString());
+        restaurant.setDescription(((EditText) findViewById(R.id.restaurant_creation_description)).getText().toString());
+        restaurant.setName(((EditText) findViewById(R.id.restaurant_creation_name)).getText().toString());
+        restaurant.setZipcode(((EditText) findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
+        restaurant.setPictureurl(imgurPhotoUrl);
+        restaurantCreationPresenter.postRestaurant(restaurant);
+        finish();
+    }
+
+    public void onMenuHoursButtonClick(View view) {
+        Intent menuHoursIntent = new Intent(view.getContext(), MenuHoursActivity.class);
+        menuHoursIntent.putExtra("restaurant", restaurant);
+        startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
+    }
 }

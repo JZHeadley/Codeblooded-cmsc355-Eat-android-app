@@ -20,7 +20,7 @@
             android:src="@drawable/restaurant_placeholder" />
 
         <EditText
-            android:id="@+id/name_restaurant"
+            android:id="@+id/restaurant_creation_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/restaurant_creation_add_photo"
@@ -28,81 +28,93 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/address_restaurant"
+            android:id="@+id/restaurant_creation_address"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name_restaurant"
+            android:layout_below="@+id/restaurant_creation_name"
             android:hint="@string/address_hint"
             android:inputType="text" />
 
-        <EditText
-            android:id="@+id/zipcode_restaurant"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/address_restaurant"
-            android:hint="@string/zipcode_hint"
-            android:inputType="number" />
 
-        <EditText
-            android:id="@+id/state_restaurant"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/address_restaurant"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/zipcode_restaurant"
-            android:layout_toRightOf="@+id/zipcode_restaurant"
-            android:hint="@string/state_hint"
-            android:inputType="text" />
-
-        <Spinner
-            android:id="@+id/country_spinner"
+        <LinearLayout
+            android:id="@+id/layout_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/state_restaurant"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/address_restaurant"
-            android:layout_toEndOf="@id/state_restaurant"
-            android:layout_toRightOf="@id/state_restaurant"
-            android:hint="@string/add_restaurant_country_hint"/>
+            android:layout_below="@+id/restaurant_creation_address">
+
+            <EditText
+                android:id="@+id/restaurant_creation_city"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="11dp"
+                android:hint="@string/city_hint"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/restaurant_creation_state"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:hint="@string/state_hint"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/restaurant_creation_zipcode"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/zipcode_hint"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/restaurant_creation_country_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_line1"
+            android:hint="@string/add_restaurant_country_hint" />
 
         <EditText
-            android:id="@+id/description_restaurant"
+            android:id="@+id/restaurant_creation_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/zipcode_restaurant"
+            android:layout_below="@+id/restaurant_creation_country_spinner"
             android:hint="@string/description_restaurant"
             android:lines="2"
             android:maxLines="4" />
 
         <Button
-            android:id="@+id/hours_restaurant"
+            android:id="@+id/restaurant_creation_hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/description_restaurant"
+            android:layout_below="@id/restaurant_creation_description"
             android:onClick="onMenuHoursButtonClick"
             android:text="@string/hours_restaurant" />
 
         <com.jzheadley.eat.views.layoutViews.CheckBoxGroupView
-            android:id="@+id/type_of_food_check_group"
+            android:id="@+id/restaurant_creation_type_of_food_check_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hours_restaurant"
+            android:layout_below="@id/restaurant_creation_hours"
             android:orientation="vertical" />
 
         <Button
-            android:id="@+id/confirm_new_restaurant"
+            android:id="@+id/submit_new_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@id/type_of_food_check_group"
+            android:layout_below="@id/restaurant_creation_type_of_food_check_group"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
-            android:onClick="onDoneButtonClick"
+            android:onClick="onSubmitButton"
             android:text="@string/done_button"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
+
 
     </RelativeLayout>
 
