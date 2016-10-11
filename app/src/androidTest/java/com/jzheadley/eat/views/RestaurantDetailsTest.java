@@ -29,7 +29,6 @@ public class RestaurantDetailsTest {
     @Test
     public void restaurantDetailsConnectionTest() {
         onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
-//        intended(hasComponent(RestaurantDetailsActivity.class.getName()));
         onView(allOf(withId(R.id.menu_restaurant_detail), withText("Menu"), isDisplayed())).perform(click());
         onView(withId(R.id.restaurant_menu_title)).check(matches(isDisplayed()));
     }

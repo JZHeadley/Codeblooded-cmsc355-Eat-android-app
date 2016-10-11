@@ -1,6 +1,7 @@
 package com.jzheadley.eat.views;
 
 
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -28,6 +29,12 @@ public class NearbyRestaurantActivityTest {
     public void ensureNavigationMenuAppears() {
         onView(withId(R.id.slide_in_menu_icon)).perform(click());
         onView(withText("Home")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void ensureRestaurantDetailsAppear() {
+        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.restaurant_name_detail)).check(matches(isDisplayed()));
     }
 
 
