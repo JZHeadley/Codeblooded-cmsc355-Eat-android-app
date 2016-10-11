@@ -23,8 +23,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
+        android:onClick="onDoneButtonClick"
         android:text="@string/done_button"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <!-- TODO list view -->
 
