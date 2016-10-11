@@ -46,6 +46,16 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         restaurantsOwnedByOwnerPresenter.loadUser(0);
         Log.d(TAG, "onCreate: " + user);
         restaurantsOwnedByOwnerPresenter.loadRestaurants(user);
+        /*
+        FloatingActionButton fab = new FloatingActionButton(getApplicationContext());
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addRestaurantIntent = new Intent(v.getContext(), RestaurantCreationActivity.class);
+                v.getContext().startActivity(addRestaurantIntent);
+            }
+        });
+        */
     }
 
     public void displayRestaurantsOfOwner(List<Restaurant> restaurants) {

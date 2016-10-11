@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.allOf;
 public class RestaurantDetailsTest {
 
     @Rule
-    public ActivityTestRule<NearbyRestaurantActivity> mActivityTestRule = new ActivityTestRule<>(NearbyRestaurantActivity.class, true, true);
+    public ActivityTestRule<RestaurantDetailsActivity> mActivityTestRule = new ActivityTestRule<>(RestaurantDetailsActivity.class, true, true);
 
     @Test
     public void restaurantDetailsConnectionTest() {
@@ -37,7 +37,6 @@ public class RestaurantDetailsTest {
     @Test
     public void restaurantDetailsInformationTest() {
         onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
-//        intended(toPackage("com.jzheadley.eat.views.RestaurantDetailsActivity"));
         onView(withId(R.id.restaurant_name_detail)).check(matches(withText("La Toque")));
     }
 
