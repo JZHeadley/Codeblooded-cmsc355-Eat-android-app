@@ -37,5 +37,10 @@ public class NearbyRestaurantActivityTest {
         onView(withId(R.id.restaurant_name_detail)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void ensureNearbyRestaurantsAppear() {
+        onView(withId(R.id.restaurant_card_list)).check(matches(isDisplayed()));
+    }
+
 
 }
