@@ -69,4 +69,10 @@ public class RestaurantCreationActivity extends BaseActivity {
             }
         }
     }
+
+    public void onDoneButtonClick(View view) {
+        Intent doneIntent = new Intent(view.getContext(), RestaurantMenuActivity.class);
+        view.getContext().startActivity(doneIntent);
+    }
+
 }

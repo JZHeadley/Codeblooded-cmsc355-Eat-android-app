@@ -87,6 +87,18 @@
             android:layout_below="@id/hours_restaurant"
             android:orientation="vertical" />
 
+        <Button
+            android:id="@+id/confirm_new_restaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/type_of_food_check_group"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:onClick="onDoneButtonClick"
+            android:text="@string/done_button"
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 
