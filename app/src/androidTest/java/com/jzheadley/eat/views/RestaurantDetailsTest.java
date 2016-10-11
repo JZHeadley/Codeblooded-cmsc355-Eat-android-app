@@ -1,0 +1,39 @@
+package com.jzheadley.eat.views;
+
+
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import com.jzheadley.eat.R;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+
+
+@RunWith(AndroidJUnit4.class)
+public class RestaurantDetailsTest {
+
+    @Rule
+    public ActivityTestRule<NearbyRestaurantActivity> mActivityTestRule = new ActivityTestRule<>(NearbyRestaurantActivity.class, true, true);
+
+    @Test
+    public void restaurantDetailsTest() {
+        onView(withId(R.id.restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
+        intended(hasComponent(RestaurantDetailsActivity.class.getName()));
+        onView(allOf(withId(R.id.menu_restaurant_detail), withText("Menu"), isDisplayed())).perform(click());
+        onView(withId(R.id.restaurant_menu_title)).check(matches(isDisplayed()));
+    }
+
+}
