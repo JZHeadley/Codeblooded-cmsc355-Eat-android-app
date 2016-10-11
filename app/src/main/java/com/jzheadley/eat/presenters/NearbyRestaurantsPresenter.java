@@ -12,7 +12,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class NearbyRestaurantsPresenter {
-    private static final String TAG = "NearbyRestaurantsPresen";
+    private static final String TAG = "NearbyRestaurantsPrsntr";
     private NearbyRestaurantActivity nearbyRestaurantActivity;
     private RestaurantService restaurantService;
 
@@ -30,7 +30,7 @@ public class NearbyRestaurantsPresenter {
                 .subscribe(new Observer<ResponseEntity>() {
                     @Override
                     public void onCompleted() {
-                        Log.d(TAG, "onCompleted: Restuarant Loading completed");
+                        Log.d(TAG, "onCompleted: Restaurant Loading completed");
                     }
 
                     @Override

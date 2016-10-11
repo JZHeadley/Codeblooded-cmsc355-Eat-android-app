@@ -34,9 +34,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        ButterKnife.bind(this);
+    protected void onResume() {
+        super.onResume();
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         nearbyRestaurantsPresenter.loadRestaurants();

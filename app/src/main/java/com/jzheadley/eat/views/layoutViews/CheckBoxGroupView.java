@@ -27,21 +27,21 @@ public class CheckBoxGroupView extends GridLayout {
     }
 
     public List<?> getCheckboxesChecked() {
-        List<CheckBox> checkeds = new ArrayList<>();
-        for (CheckBox c : checkboxes) {
+        List<CheckBox> checkboxes = new ArrayList<>();
+        for (CheckBox c : this.checkboxes) {
             if (c.isChecked())
-                checkeds.add(c);
+                checkboxes.add(c);
         }
-        return checkeds;
+        return checkboxes;
     }
 
     public List<Object> getCheckedIds() {
-        List<Object> checkeds = new ArrayList<>();
-        for (CheckBox c : checkboxes) {
+        List<Object> checkboxes = new ArrayList<>();
+        for (CheckBox c : this.checkboxes) {
             if (c.isChecked())
-                checkeds.add(c.getTag());
+                checkboxes.add(c.getTag());
         }
-        return checkeds;
+        return checkboxes;
     }
 
     @Override

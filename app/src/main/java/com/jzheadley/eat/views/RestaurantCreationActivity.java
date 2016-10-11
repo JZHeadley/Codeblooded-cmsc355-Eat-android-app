@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.services.RestaurantService;
@@ -17,11 +19,19 @@ import com.jzheadley.eat.presenters.RestaurantCreationPresenter;
 import com.jzheadley.eat.views.layoutViews.CheckBoxGroupView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
 
 public class RestaurantCreationActivity extends BaseActivity {
     private RestaurantCreationPresenter restaurantCreationPresenter;
     private RestaurantService restaurantService;
     private int PICK_IMAGE_REQUEST = 1;
+
+    public void onMenuHoursButtonClick(View view) {
+        Intent menuHoursIntent = new Intent(view.getContext(), MenuHoursActivity.class);
+        view.getContext().startActivity(menuHoursIntent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +40,21 @@ public class RestaurantCreationActivity extends BaseActivity {
         restaurantService = new RestaurantService();
         restaurantCreationPresenter = new RestaurantCreationPresenter(this, restaurantService);
         createFoodTypeCheckBoxes();
+
+        Locale[] locale = Locale.getAvailableLocales();
+        ArrayList<String> countries = new ArrayList<String>();
+        String country;
+        for (Locale loc : locale) {
+            country = loc.getDisplayCountry();
+            if (country.length() > 0 && !countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+        Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
+
+        Spinner countrySpinner = (Spinner) findViewById(R.id.country_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
+        countrySpinner.setAdapter(adapter);
     }
 
     private void createFoodTypeCheckBoxes() {
@@ -64,4 +89,11 @@ public class RestaurantCreationActivity extends BaseActivity {
             }
         }
     }
+
+    public void onDoneButtonClick(View view) {
+        Intent doneIntent = new Intent(view.getContext(), RestaurantMenuActivity.class);
+        view.getContext().startActivity(doneIntent);
+    }
+
+
 }
