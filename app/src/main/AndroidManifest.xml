@@ -46,7 +46,7 @@
             android:parentActivityName=".views.RestaurantDetailsActivity" />
 
         <activity
-            android:name=".views.MenuHoursActivity"
+            android:name=".views.OpeningHoursActivity"
             android:parentActivityName=".views.RestaurantCreationActivity" />
     </application>
 

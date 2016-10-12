@@ -43,6 +43,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/sun_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -52,6 +53,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/sun_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -69,6 +71,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/mon_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -79,6 +82,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/mon_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -97,6 +101,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/tue_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -107,6 +112,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/tue_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -125,6 +131,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/wed_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -135,6 +142,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/wed_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -153,6 +161,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/thu_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -163,6 +172,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/thu_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -170,7 +180,7 @@
             android:layout_row="4"
             android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/opening_hours_friday"
@@ -181,6 +191,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/fri_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -191,6 +202,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/fri_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
@@ -209,6 +221,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/sat_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
@@ -219,6 +232,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/sat_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
