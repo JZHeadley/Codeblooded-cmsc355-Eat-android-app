@@ -3,6 +3,7 @@ package com.jzheadley.eat.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,8 +47,8 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         restaurantsOwnedByOwnerPresenter.loadUser(0);
         Log.d(TAG, "onCreate: " + user);
         restaurantsOwnedByOwnerPresenter.loadRestaurants(user);
-        /*
-        FloatingActionButton fab = new FloatingActionButton(getApplicationContext());
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +56,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
                 v.getContext().startActivity(addRestaurantIntent);
             }
         });
-        */
+
     }
 
     public void displayRestaurantsOfOwner(List<Restaurant> restaurants) {
