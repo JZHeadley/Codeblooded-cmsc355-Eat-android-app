@@ -8,7 +8,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.RecyclerViewMatcher;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,9 +39,6 @@ public class RestaurantDetailsTest {
                 }
             };
 
-    public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
-        return new RecyclerViewMatcher(recyclerViewId);
-    }
 
 
     @Test
