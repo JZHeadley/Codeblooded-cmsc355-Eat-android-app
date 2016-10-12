@@ -28,7 +28,7 @@ public class RestaurantDetailsTest {
 
     @Rule
     public ActivityTestRule<RestaurantDetailsActivity> mActivityRule =
-            new ActivityTestRule<RestaurantDetailsActivity>(RestaurantDetailsActivity.class) {
+            new ActivityTestRule<RestaurantDetailsActivity>(RestaurantDetailsActivity.class, false, true) {
                 @Override
                 protected Intent getActivityIntent() {
                     Context targetContext = InstrumentationRegistry.getInstrumentation()
@@ -40,6 +40,11 @@ public class RestaurantDetailsTest {
             };
 
 
+    // Given [I am a customer]when [I click on a specific restaurant from my home screen]then [I want to see a picture or pictures of the restaurant interior]
+    @Test
+    public void checkForRestaurantPicture() {
+        onView(withId(R.id.restaurant_photo_detail)).check(matches(isDisplayed()));
+    }
 
     @Test
     public void restaurantDetailsConnectionTest() {
@@ -48,12 +53,18 @@ public class RestaurantDetailsTest {
     }
 
     @Test
+    // Given [ that I am a customer]when [I have selected a restaurants "view details" page]then [I should see details like parking, alcohol, attire, etc.]
+    // Checks to see if specific details of the restaurant passed in from the mock are shown
     public void restaurantDetailsInformationTest() {
+        onView(withId(R.id.restaurant_name_detail)).check(matches(isDisplayed()));
         onView(withId(R.id.restaurant_name_detail)).check(matches(withText("La Toque")));
+//        onView(withId(R.id.restaurant_description)).check(matches(withText("Some Description of the restaurant")));
+//        onView(withId(R.id.description_restaurant_detail)).check(matches(withText("1314 McKinstry St. Napa, Napa 94559")));
     }
 
     @Test
-    public void nearbyRestaurantActivityTest() {
+    // Given [ that I am a customer]when [I am looking at a restaurant's page]then [I should be able to select a "view menu" option for the restaurant]
+    public void checkForViewMenuButton() {
         onView(withId(R.id.menu_restaurant_detail)).check(matches(isDisplayed()));
     }
 

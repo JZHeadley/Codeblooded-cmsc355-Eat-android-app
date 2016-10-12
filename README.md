@@ -17,3 +17,5 @@ __Viewing Restaurant Details:__ After the user finds a restaurant in the list, t
 * The menu input is now relocated to another iteration
 
 After creating (fumbling through) acceptance tests for each of the scenarios, we realized that tests couldn't be written as easily as expected and required out-of-the-box thinking for some, while we completely over thought others. In the end we collectively have 10 tests that run and pass(sometimes when they feel like it).
+
+For the first iteration the app will show you a list of “nearby restaurants” but currently there is just 1 dummy restaurant for demonstrative purposes.  The app also shows a navigation menu for the app and details of the selected restaurant i.e. description, menu, location, etc.  One thing we found to be difficult was dealing with location services to find actual nearby restaurants so that feature was put on ice for this iteration.  After the first iteration, we have a nice skeleton for our app and we hope to give it more functionality and real data in the following iterations.  
