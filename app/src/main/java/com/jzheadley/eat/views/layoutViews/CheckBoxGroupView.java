@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CheckBoxGroupView extends GridLayout {
 
-    List<CheckBox> checkboxes = new ArrayList<>();
+    private List<CheckBox> checkboxes = new ArrayList<>();
 
     public CheckBoxGroupView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -27,21 +27,23 @@ public class CheckBoxGroupView extends GridLayout {
     }
 
     public List<?> getCheckboxesChecked() {
-        List<CheckBox> checkboxes = new ArrayList<>();
+        List<CheckBox> checkedboxes = new ArrayList<>();
         for (CheckBox c : this.checkboxes) {
-            if (c.isChecked())
-                checkboxes.add(c);
+            if (c.isChecked()) {
+                checkedboxes.add(c);
+            }
         }
-        return checkboxes;
+        return checkedboxes;
     }
 
     public List<Object> getCheckedIds() {
-        List<Object> checkboxes = new ArrayList<>();
+        List<Object> checkedboxes = new ArrayList<>();
         for (CheckBox c : this.checkboxes) {
-            if (c.isChecked())
-                checkboxes.add(c.getTag());
+            if (c.isChecked()) {
+                checkedboxes.add(c.getTag());
+            }
         }
-        return checkboxes;
+        return checkedboxes;
     }
 
     @Override

@@ -44,9 +44,9 @@ public class Categories implements Parcelable {
 
     @Override
     public String toString() {
-        return "Categories{" +
-                "href='" + href + '\'' +
-                '}';
+        return "Categories{"
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

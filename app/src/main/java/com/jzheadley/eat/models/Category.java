@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -62,10 +61,10 @@ public class Category implements Parcelable {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryName='" + categoryName + '\'' +
-                ", links=" + links +
-                '}';
+        return "Category{"
+                + "categoryName='" + categoryName + '\''
+                + ", links=" + links
+                + '}';
     }
 
     @Override

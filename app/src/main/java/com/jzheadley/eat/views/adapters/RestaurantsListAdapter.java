@@ -48,7 +48,6 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         Glide.with(restaurantViewHolder.itemView.getContext())
                 .load(restaurant.getPictureurl())
                 .crossFade()
-                // TODO: 10/8/2016 Tweak how the image is cropped and displayed.
                 .fitCenter()
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

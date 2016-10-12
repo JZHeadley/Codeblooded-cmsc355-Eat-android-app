@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -45,9 +44,9 @@ public class Profile implements Parcelable {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "href='" + href + '\'' +
-                '}';
+        return "Profile{"
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override
@@ -60,3 +59,4 @@ public class Profile implements Parcelable {
         dest.writeString(this.href);
     }
 }
+

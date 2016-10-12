@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -45,9 +44,9 @@ public class Self implements Parcelable {
 
     @Override
     public String toString() {
-        return "Self{" +
-                "href='" + href + '\'' +
-                '}';
+        return "Self{"
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

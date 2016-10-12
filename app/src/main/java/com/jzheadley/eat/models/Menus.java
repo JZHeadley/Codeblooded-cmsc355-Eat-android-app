@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -45,9 +44,9 @@ public class Menus implements Parcelable {
 
     @Override
     public String toString() {
-        return "Menus{" +
-                "href='" + href + '\'' +
-                '}';
+        return "Menus{"
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

@@ -141,16 +141,16 @@ public class Links implements Parcelable {
 
     @Override
     public String toString() {
-        return "Links{" +
-                "self=" + self +
-                ", menuItem=" + menuItem +
-                ", category=" + category +
-                ", menuItems=" + menuItems +
-                ", menu=" + menu +
-                ", categories=" + categories +
-                ", restaurant=" + restaurant +
-                ", menus=" + menus +
-                '}';
+        return "Links{"
+                + "self=" + self
+                + ", menuItem=" + menuItem
+                + ", category=" + category
+                + ", menuItems=" + menuItems
+                + ", menu=" + menu
+                + ", categories=" + categories
+                + ", restaurant=" + restaurant
+                + ", menus=" + menus
+                + '}';
     }
 
     @Override

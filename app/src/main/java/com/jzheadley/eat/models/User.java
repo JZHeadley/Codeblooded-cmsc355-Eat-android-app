@@ -82,11 +82,11 @@ public class User implements Parcelable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", links=" + links +
-                ", href='" + href + '\'' +
-                '}';
+        return "User{"
+                + "name='" + name + '\''
+                + ", links=" + links
+                + ", href='" + href + '\''
+                + '}';
     }
 
     @Override

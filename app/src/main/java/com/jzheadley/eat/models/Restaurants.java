@@ -33,8 +33,9 @@ public class Restaurants {
 
     @Override
     public String toString() {
-        return "Restaurants{" +
-                "href='" + href + '\'' +
-                '}';
+        return "Restaurants{"
+                + "href='" + href + '\''
+                + '}';
     }
 }
+

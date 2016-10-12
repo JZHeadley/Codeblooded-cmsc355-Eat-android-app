@@ -1,4 +1,3 @@
-
 package com.jzheadley.eat.models;
 
 import android.os.Parcel;
@@ -58,10 +57,10 @@ public class ResponseEntity implements Parcelable {
 
     @Override
     public String toString() {
-        return "ResponseEntity{" +
-                "embedded=" + embedded +
-                ", links=" + links +
-                '}';
+        return "ResponseEntity{"
+                + "embedded=" + embedded
+                + ", links=" + links
+                + '}';
     }
 
     @Override
@@ -75,3 +74,4 @@ public class ResponseEntity implements Parcelable {
         dest.writeParcelable(this.links, flags);
     }
 }
+

@@ -2,9 +2,9 @@ package com.jzheadley.eat.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
@@ -34,9 +34,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
         if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
             nearbyRestaurantsPresenter.loadRestaurants();
         } else {
-            Toast.makeText(this, "You are disconnected from the network. " +
-                            "Please resolve your connection issues and try again."
-                    , Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.toolbar), "You are disconnected from the network. "
+                    + "Please resolve your connection issues and try again.", Snackbar.LENGTH_LONG).show();
         }
     }
 

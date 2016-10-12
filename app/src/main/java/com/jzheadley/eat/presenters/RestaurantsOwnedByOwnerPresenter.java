@@ -20,7 +20,8 @@ public class RestaurantsOwnedByOwnerPresenter {
     private RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity;
     private RestaurantService restaurantService;
 
-    public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity, RestaurantService restaurantService, UserService userService) {
+    public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity,
+                                            RestaurantService restaurantService, UserService userService) {
         this.restaurantsOwnedByOwnerActivity = restaurantsOwnedByOwnerActivity;
         this.restaurantService = restaurantService;
         this.userService = userService;
@@ -40,7 +41,8 @@ public class RestaurantsOwnedByOwnerPresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "onError: loadRestaurants has Failed");
-                        Toast.makeText(restaurantsOwnedByOwnerActivity, "Eat appears to be down.  Please try again later!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(restaurantsOwnedByOwnerActivity, "Eat appears to be down.  "
+                                + "Please try again later!", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onError: " + e.getLocalizedMessage());
                     }
 

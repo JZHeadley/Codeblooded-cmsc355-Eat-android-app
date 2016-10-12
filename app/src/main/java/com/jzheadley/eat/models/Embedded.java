@@ -102,12 +102,12 @@ public class Embedded implements Parcelable {
 
     @Override
     public String toString() {
-        return "Embedded{" +
-                "menuItems=" + menuItems +
-                ", categories=" + categories +
-                ", menus=" + menus +
-                ", restaurants=" + restaurants +
-                '}';
+        return "Embedded{"
+                + "menuItems=" + menuItems
+                + ", categories=" + categories
+                + ", menus=" + menus
+                + ", restaurants=" + restaurants
+                + '}';
     }
 
     public List<User> getUsers() {

@@ -43,9 +43,9 @@ public class MenuItems implements Parcelable {
 
     @Override
     public String toString() {
-        return "MenuItems{" +
-                "href='" + href + '\'' +
-                '}';
+        return "MenuItems{"
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

@@ -51,7 +51,8 @@ public class Restaurant implements Parcelable {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String pictureurl, String location, String description, String zipcode, String address, String city, String country, Links links, User user) {
+    public Restaurant(String name, String pictureurl, String location, String description,
+                      String zipcode, String address, String city, String country, Links links, User user) {
         this.name = name;
         this.pictureurl = pictureurl;
         this.description = description;
@@ -141,11 +142,11 @@ public class Restaurant implements Parcelable {
 
     @Override
     public String toString() {
-        return "Restaurant{" +
-                "name='" + name + '\'' +
-                ", pictureurl='" + pictureurl + '\'' +
-                ", links=" + links +
-                '}';
+        return "Restaurant{"
+                + "name='" + name + '\''
+                + ", pictureurl='" + pictureurl + '\''
+                + ", links=" + links
+                + '}';
     }
 
     public User getUser() {
@@ -173,6 +174,5 @@ public class Restaurant implements Parcelable {
         dest.writeParcelable(this.links, flags);
         dest.writeParcelable(this.user, flags);
     }
-
-
 }
+

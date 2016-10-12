@@ -51,7 +51,8 @@ public class RestaurantDetailsActivity extends BaseActivity {
         restaurantPhoto = (ImageView) findViewById(R.id.restaurant_photo_detail);
 
         restaurantName.setText(restaurant.getName());
-        restaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity() + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
+        restaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity()
+                + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
         restaurantDescription.setText(restaurant.getDescription());
         Glide.with(this)
                 .load(restaurant.getPictureurl())
