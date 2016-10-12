@@ -4,6 +4,7 @@ import android.support.test.rule.ActivityTestRule;
 
 import com.jzheadley.eat.R;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -24,6 +25,7 @@ public class RestaurantsOwnedByOwnersActivityTest {
     @Rule
     public ActivityTestRule<RestaurantsOwnedByOwnerActivity> mActivityTestRule = new ActivityTestRule<>(RestaurantsOwnedByOwnerActivity.class, false, true);
 
+    @Before
     @Test
     public void restaurantOwnersRecyclerView() {
         onView(withId(R.id.owned_restaurant_card_list)).check(matches(isDisplayed()));

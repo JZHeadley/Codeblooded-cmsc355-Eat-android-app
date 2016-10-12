@@ -1,5 +1,8 @@
 package com.jzheadley.eat.presenters;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -46,5 +49,12 @@ public class NearbyRestaurantsPresenter {
                         nearbyRestaurantActivity.displayRestaurants(responseEntity.getEmbedded().getRestaurants());
                     }
                 });
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) nearbyRestaurantActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
