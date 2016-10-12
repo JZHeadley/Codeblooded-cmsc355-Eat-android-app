@@ -35,5 +35,11 @@ public class NearbyRestaurantActivityTest {
         onView(withId(R.id.restaurant_card_list)).check(matches(isDisplayed()));
     }
 
+    @Test
+    //test fails if scrolling isn't possible
+    public void isItScrollable() {
+        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.scrollToPosition(4));
+        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+    }
 
 }
