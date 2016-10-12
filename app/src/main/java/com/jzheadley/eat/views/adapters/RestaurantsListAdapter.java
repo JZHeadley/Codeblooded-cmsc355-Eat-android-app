@@ -54,7 +54,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.restaurant_placeholder)
                 .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
-
+        Log.d(TAG, "onBindViewHolder: Position is " + position);
         restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
         restaurantViewHolder.restaurantDescription.setText(restaurant.getDescription());
         restaurantViewHolder.restaurantName.setText(restaurant.getName());

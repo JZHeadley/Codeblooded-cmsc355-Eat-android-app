@@ -121,6 +121,7 @@ public class RestaurantCreationActivity extends BaseActivity {
 
 
     public void onSubmitButton(View view) {
+        // TODO: 10/11/2016 Figure out how to represent menuHours in the database and add them
         Log.d(TAG, "onSubmitButton: " + ((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setAddress(((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setCity(((EditText) findViewById(R.id.restaurant_creation_city)).getText().toString());
