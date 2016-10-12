@@ -13,7 +13,6 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -28,7 +27,6 @@ public class RestaurantsOwnedByOwnersActivityTest {
     @Test
     public void restaurantOwnersRecyclerView() {
         onView(withId(R.id.owned_restaurant_card_list)).check(matches(isDisplayed()));
-        onView(withId(R.id.owned_restaurant_card_list)).perform(actionOnItemAtPosition(0, click()));
     }
 
     @Test
@@ -59,5 +57,13 @@ public class RestaurantsOwnedByOwnersActivityTest {
         // Submit the restaurant
         onView(allOf(withId(R.id.submit_new_restaurant), withText("Done"))).perform(scrollTo(), click());
     }
+
+    @Test
+    public void opensHourSelectionScreen() {
+        onView(withId(R.id.add_new_restaurant_btn)).perform(click());
+        onView(withId(R.id.restaurant_creation_hours)).perform(click());
+        onView(withId(R.id.opening_hours_title)).check(matches(isDisplayed()));
+    }
+
 
 }
