@@ -40,8 +40,8 @@ public class NearbyRestaurantActivityTest {
     //test fails if scrolling isn't possible
     // Given [I am on the nearby restaurants screen] when [I am Looking for restaurants] then [i should be able to scroll on the list to view others]
     public void isItScrollable() {
-        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.scrollToPosition(4));
-        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.scrollToPosition(3));
+        onView(withId(R.id.restaurant_card_list)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
     }
 
 }
