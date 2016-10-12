@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.jzheadley.eat.R;
 
 import java.util.Calendar;
 
-public class MenuHoursActivity extends BaseActivity {
+public class OpeningHoursActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,8 @@ public class MenuHoursActivity extends BaseActivity {
         finishActivity(2);
     }
 
-    public void onHoursClick(View v) {
-        // TODO Auto-generated method stub
+
+    public void onHoursClick(final View v) {
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -34,7 +35,18 @@ public class MenuHoursActivity extends BaseActivity {
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        //TODO show the set time and store it
+                        String strTimeToShow;
+                        String strHrsToShow = (hourOfDay == 0) ? "00" : hourOfDay + "";
+                        if (minute == 0) {
+                            String zeroMinute = "00";
+                            strTimeToShow = strHrsToShow + ":" + zeroMinute;
+                        } else if (minute < 10 && minute > 0) {
+                            strTimeToShow = strHrsToShow + ":0" + minute;
+                        } else {
+                            strTimeToShow = strHrsToShow + ":" + minute;
+                        }
+
+                        ((TextView) findViewById(v.getId())).setText(strTimeToShow);
                     }
                 }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");

@@ -137,7 +137,7 @@ public class RestaurantCreationActivity extends BaseActivity {
     }
 
     public void onMenuHoursButtonClick(View view) {
-        Intent menuHoursIntent = new Intent(view.getContext(), MenuHoursActivity.class);
+        Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
         menuHoursIntent.putExtra("restaurant", restaurant);
         startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
     }
