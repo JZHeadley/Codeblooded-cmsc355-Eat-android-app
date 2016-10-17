@@ -163,7 +163,9 @@
             <message key="name.invalidPattern"
                 value="Method type name ''{0}'' must match pattern ''{1}''." />
         </module>
-
     </module>
-
+    <module name="SuppressionFilter">
+        <property name="file" default="config/quality/checkstyle/suppressions.xml"
+            value="${checkstyle.suppressions.file}" />
+    </module>
 </module>
