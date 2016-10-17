@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+apply plugin: 'io.fabric'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -6,6 +8,22 @@ def versionPatch = 0
 
 android {
     signingConfigs {
+        // You must set up an environment var before release signing
+        // Run: export APP_KEY={password}
+        // TODO Add  release keystore in /keystore folder
+        release {
+            storeFile file('keystore/release.keystore')
+            keyAlias 'alias'
+            storePassword "$System.env.APP_KEY"
+            keyPassword "$System.env.APP_KEY"
+        }
+
+        debug {
+            storeFile file('keystore/debug.keystore')
+            keyAlias 'androiddebugkey'
+            storePassword 'android'
+            keyPassword 'android'
+        }
     }
     compileSdkVersion 24
     buildToolsVersion '24.0.2'
@@ -49,6 +67,9 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     // ButterKnife Dependency
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.+@aar') {
+        transitive = true;
+    }
 
     /*
     *       Networking
@@ -104,6 +125,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
+
 
 }
 apply plugin: 'com.google.gms.google-services'

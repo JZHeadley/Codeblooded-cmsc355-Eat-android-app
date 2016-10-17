@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Class mName="~.*\.R\$.*" />
+    </Match>
+    <Match>
+        <Class mName="~.*\.Manifest\$.*" />
+    </Match>
+    <!-- All bugs in test classes, except for JUnit-specific bugs -->
+    <Match>
+        <Class mName="~.*\.*Test" />
+        <Not>
+            <Bug code="IJU" />
+        </Not>
+    </Match>
+
+
+</FindBugsFilter>

@@ -19,7 +19,7 @@
         <activity android:name=".views.NearbyRestaurantActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.mCategory.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -49,6 +49,10 @@
         <activity
             android:name=".views.OpeningHoursActivity"
             android:parentActivityName=".views.RestaurantCreationActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />
     </application>
 
 </manifest>
