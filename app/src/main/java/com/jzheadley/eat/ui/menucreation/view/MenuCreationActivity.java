@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.menucreation.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

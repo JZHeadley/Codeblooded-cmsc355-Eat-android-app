@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.ownedrestaurants.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,39 +14,41 @@ import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.User;
 import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.models.services.UserService;
-import com.jzheadley.eat.presenters.RestaurantsOwnedByOwnerPresenter;
-import com.jzheadley.eat.views.adapters.RestaurantsListAdapter;
+import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
+import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.ownedrestaurants.presenter.RestaurantsOwnedByOwnerPresenter;
+import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
 
 import java.util.List;
 
 
 public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     private static final String TAG = "RestaurantsOwnedByOwner";
-    private RestaurantsListAdapter restaurantsListAdapter;
-    private RestaurantsOwnedByOwnerPresenter restaurantsOwnedByOwnerPresenter;
-    private RestaurantService restaurantService;
-    private UserService userService;
-    private User user;
+    private RestaurantsListAdapter mRestaurantsListAdapter;
+    private RestaurantsOwnedByOwnerPresenter mRestaurantsOwnedByOwnerPresenter;
+    private RestaurantService mRestaurantService;
+    private UserService mUserService;
+    private User mUser;
 
     public void logUser(User currentUser) {
         // TODO: 10/10/2016 Fix this to actually call the currentUsers profile up from storage
-        this.user = currentUser;
-        int userId = Integer.parseInt(user.getLinks().getRestaurants().getHref()
+        this.mUser = currentUser;
+        int userId = Integer.parseInt(mUser.getLinks().getRestaurants().getHref()
                 .replace("http://192.99.0.20:9000/users/", "").replace("/restaurants", "")); // TODO: 10/10/2016 This is horrific.... wtf, fix this
         Log.d(TAG, "logUser: " + userId);
-        restaurantsOwnedByOwnerPresenter.loadRestaurantsOfUser(userId);
+        mRestaurantsOwnedByOwnerPresenter.loadRestaurantsOfUser(userId);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants_owned_by_owner);
-        restaurantService = new RestaurantService();
-        userService = new UserService();
-        restaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this, restaurantService, userService);
-        restaurantsOwnedByOwnerPresenter.loadUser(0);
-        Log.d(TAG, "onCreate: " + user);
-        restaurantsOwnedByOwnerPresenter.loadRestaurants(user);
+        mRestaurantService = new RestaurantService();
+        mUserService = new UserService();
+        mRestaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this, mRestaurantService, mUserService);
+        mRestaurantsOwnedByOwnerPresenter.loadUser(0);
+        Log.d(TAG, "onCreate: " + mUser);
+        mRestaurantsOwnedByOwnerPresenter.loadRestaurants(mUser);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +68,8 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
-        recyclerView.setAdapter(restaurantsListAdapter);
+        mRestaurantsListAdapter = new RestaurantsListAdapter(restaurants);
+        recyclerView.setAdapter(mRestaurantsListAdapter);
     }
 
     public void onAddRestaurantClick(View view) {

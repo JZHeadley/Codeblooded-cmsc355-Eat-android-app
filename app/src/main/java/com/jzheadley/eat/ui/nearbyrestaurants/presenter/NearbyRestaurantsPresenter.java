@@ -1,4 +1,4 @@
-package com.jzheadley.eat.presenters;
+package com.jzheadley.eat.ui.nearbyrestaurants.presenter;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.jzheadley.eat.models.ResponseEntity;
 import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.views.NearbyRestaurantActivity;
+import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -16,17 +16,17 @@ import rx.schedulers.Schedulers;
 
 public class NearbyRestaurantsPresenter {
     private static final String TAG = "NearbyRestaurantsPrsntr";
-    private NearbyRestaurantActivity nearbyRestaurantActivity;
-    private RestaurantService restaurantService;
+    private NearbyRestaurantActivity mNearbyRestaurantActivity;
+    private RestaurantService mRestaurantService;
 
     public NearbyRestaurantsPresenter(NearbyRestaurantActivity nearbyRestaurantActivity, RestaurantService restaurantService) {
-        this.nearbyRestaurantActivity = nearbyRestaurantActivity;
-        this.restaurantService = restaurantService;
+        this.mNearbyRestaurantActivity = nearbyRestaurantActivity;
+        this.mRestaurantService = restaurantService;
     }
 
 
     public void loadRestaurants() {
-        restaurantService.getRestaurantApi()
+        mRestaurantService.getRestaurantApi()
                 .getRestaurants()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -39,21 +39,21 @@ public class NearbyRestaurantsPresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "onError: loadRestaurants has Failed");
-                        Toast.makeText(nearbyRestaurantActivity, "Eat appears to be down.  Please try again later!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mNearbyRestaurantActivity, "Eat appears to be down.  Please try again later!", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onError: " + e.getLocalizedMessage());
                     }
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
                         Log.d(TAG, "onNext: " + responseEntity);
-                        nearbyRestaurantActivity.displayRestaurants(responseEntity.getEmbedded().getRestaurants());
+                        mNearbyRestaurantActivity.displayRestaurants(responseEntity.getEmbedded().getRestaurants());
                     }
                 });
     }
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) nearbyRestaurantActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) mNearbyRestaurantActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

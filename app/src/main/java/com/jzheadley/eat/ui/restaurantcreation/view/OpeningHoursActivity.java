@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.restaurantcreation.view;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.base.view.BaseActivity;
 
 import java.util.Calendar;
 

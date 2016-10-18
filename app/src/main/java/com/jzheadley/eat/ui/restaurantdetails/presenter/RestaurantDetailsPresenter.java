@@ -1,8 +1,8 @@
-package com.jzheadley.eat.presenters;
+package com.jzheadley.eat.ui.restaurantdetails.presenter;
 
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.views.RestaurantDetailsActivity;
+import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -11,16 +11,16 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantDetailsPresenter {
     private static final String TAG = "RestaurantDetailsPresen";
-    private RestaurantDetailsActivity restaurantDetailsActivity;
-    private RestaurantService restaurantService;
+    private RestaurantDetailsActivity mRestaurantDetailsActivity;
+    private RestaurantService mRestaurantService;
 
     public RestaurantDetailsPresenter(RestaurantDetailsActivity restaurantDetailsActivity, RestaurantService restaurantService) {
-        this.restaurantDetailsActivity = restaurantDetailsActivity;
-        this.restaurantService = restaurantService;
+        this.mRestaurantDetailsActivity = restaurantDetailsActivity;
+        this.mRestaurantService = restaurantService;
     }
 
     public void loadRestaurantDetails(int restaurantId) {
-        restaurantService.getRestaurantApi()
+        mRestaurantService.getRestaurantApi()
                 .getRestaurantById(restaurantId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -37,7 +37,7 @@ public class RestaurantDetailsPresenter {
 
                     @Override
                     public void onNext(Restaurant restaurant) {
-                        restaurantDetailsActivity.displayRestaurant(restaurant);
+                        mRestaurantDetailsActivity.displayRestaurant(restaurant);
                     }
                 });
     }

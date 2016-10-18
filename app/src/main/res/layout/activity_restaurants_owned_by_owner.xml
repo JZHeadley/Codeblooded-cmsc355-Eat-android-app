@@ -36,5 +36,5 @@
         android:src="@drawable/ic_add"
         app:layout_anchor="@+id/owned_restaurant_card_list"
         app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior="com.jzheadley.eat.views.layoutViews.ScrollAwareFABBehavior" />
+        app:layout_behavior="com.jzheadley.eat.ui.layoutobject.ScrollAwareFABBehavior" />
 </android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.restaurantcreation.view;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,9 +19,10 @@ import android.widget.Spinner;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.presenters.RestaurantCreationPresenter;
+import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView;
+import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPresenter;
 import com.jzheadley.eat.utils.Constants;
-import com.jzheadley.eat.views.layoutviews.CheckBoxGroupView;
 import com.sakebook.android.uploadhelper.UploadHelper;
 
 import java.io.IOException;
@@ -95,7 +96,6 @@ public class RestaurantCreationActivity extends BaseActivity {
             case PICK_IMAGE_REQUEST:
                 Log.d(TAG, "onActivityResult: It got here at least?");
                 if (resultCode == RESULT_OK) {
-                    Log.d(TAG, "onActivityResult: It should be uploading now?");
                     UploadHelper helper = new UploadHelper(this, mRestaurantCreationPresenter);
                     helper.setClientId(Constants.IMGUR_CLIENT_ID);
                     helper.setSecretId(Constants.IMGUR_SECRET);

@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views.layoutViews;
+package com.jzheadley.eat.ui.layoutobjects;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,14 +10,14 @@ import java.util.List;
 
 public class CheckBoxGroupView extends GridLayout {
 
-    private List<CheckBox> checkboxes = new ArrayList<>();
+    private List<CheckBox> mCheckboxes = new ArrayList<>();
 
     public CheckBoxGroupView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public void put(CheckBox checkBox) {
-        checkboxes.add(checkBox);
+        mCheckboxes.add(checkBox);
         invalidate();
         requestLayout();
     }
@@ -28,7 +28,7 @@ public class CheckBoxGroupView extends GridLayout {
 
     public List<?> getCheckboxesChecked() {
         List<CheckBox> checkedboxes = new ArrayList<>();
-        for (CheckBox c : this.checkboxes) {
+        for (CheckBox c : this.mCheckboxes) {
             if (c.isChecked()) {
                 checkedboxes.add(c);
             }
@@ -38,7 +38,7 @@ public class CheckBoxGroupView extends GridLayout {
 
     public List<Object> getCheckedIds() {
         List<Object> checkedboxes = new ArrayList<>();
-        for (CheckBox c : this.checkboxes) {
+        for (CheckBox c : this.mCheckboxes) {
             if (c.isChecked()) {
                 checkedboxes.add(c.getTag());
             }
@@ -49,7 +49,7 @@ public class CheckBoxGroupView extends GridLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        for (CheckBox c : checkboxes) {
+        for (CheckBox c : mCheckboxes) {
             addView(c);
         }
         invalidate();

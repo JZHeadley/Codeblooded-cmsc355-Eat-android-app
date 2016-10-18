@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.nearbyrestaurants.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
 import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.presenters.NearbyRestaurantsPresenter;
-import com.jzheadley.eat.views.adapters.RestaurantsListAdapter;
+import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
+import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.nearbyrestaurants.presenter.NearbyRestaurantsPresenter;
 
 import java.util.List;
 
@@ -20,19 +21,19 @@ import butterknife.ButterKnife;
 public class NearbyRestaurantActivity extends BaseActivity {
     private static final String TAG = "NearbyRestaurantActivit";
 
-    private RestaurantsListAdapter restaurantsListAdapter;
-    private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
-    private RestaurantService restaurantService;
+    private RestaurantsListAdapter mRestaurantsListAdapter;
+    private NearbyRestaurantsPresenter mNearbyRestaurantsPresenter;
+    private RestaurantService mRestaurantService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
         ButterKnife.bind(this);
-        restaurantService = new RestaurantService();
-        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
-        if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
-            nearbyRestaurantsPresenter.loadRestaurants();
+        mRestaurantService = new RestaurantService();
+        mNearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, mRestaurantService);
+        if (mNearbyRestaurantsPresenter.isNetworkAvailable()) {
+            mNearbyRestaurantsPresenter.loadRestaurants();
         } else {
             Snackbar.make(findViewById(R.id.toolbar), "You are disconnected from the network. "
                     + "Please resolve your connection issues and try again.", Snackbar.LENGTH_LONG).show();
@@ -42,9 +43,9 @@ public class NearbyRestaurantActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        restaurantService = new RestaurantService();
-        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
-        nearbyRestaurantsPresenter.loadRestaurants();
+        mRestaurantService = new RestaurantService();
+        mNearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, mRestaurantService);
+        mNearbyRestaurantsPresenter.loadRestaurants();
     }
 
     public void displayRestaurants(List<Restaurant> restaurants) {
@@ -53,8 +54,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
-        recyclerView.setAdapter(restaurantsListAdapter);
+        mRestaurantsListAdapter = new RestaurantsListAdapter(restaurants);
+        recyclerView.setAdapter(mRestaurantsListAdapter);
     }
 
 

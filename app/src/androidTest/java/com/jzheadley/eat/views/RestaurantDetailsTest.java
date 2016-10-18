@@ -8,6 +8,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -3,6 +3,7 @@ package com.jzheadley.eat.views;
 import android.support.test.rule.ActivityTestRule;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

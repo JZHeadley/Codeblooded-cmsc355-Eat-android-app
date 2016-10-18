@@ -95,7 +95,7 @@
             android:onClick="onMenuHoursButtonClick"
             android:text="@string/hours_restaurant" />
 
-        <com.jzheadley.eat.views.layoutviews.CheckBoxGroupView
+        <com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView
             android:id="@+id/restaurant_creation_type_of_food_check_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

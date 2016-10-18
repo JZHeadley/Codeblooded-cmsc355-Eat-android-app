@@ -1,9 +1,10 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.ui.help.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.base.view.BaseActivity;
 
 
 public class HelpActivity extends BaseActivity {

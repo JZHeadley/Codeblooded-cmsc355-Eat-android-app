@@ -1,4 +1,4 @@
-package com.jzheadley.eat.presenters;
+package com.jzheadley.eat.ui.ownedrestaurants.presenter;
 
 
 import android.util.Log;
@@ -8,7 +8,7 @@ import com.jzheadley.eat.models.ResponseEntity;
 import com.jzheadley.eat.models.User;
 import com.jzheadley.eat.models.services.RestaurantService;
 import com.jzheadley.eat.models.services.UserService;
-import com.jzheadley.eat.views.RestaurantsOwnedByOwnerActivity;
+import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;

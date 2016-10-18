@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views.layoutViews;
+package com.jzheadley.eat.ui.layoutobjects;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

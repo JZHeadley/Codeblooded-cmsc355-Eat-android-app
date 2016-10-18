@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views.adapters;
+package com.jzheadley.eat.ui.adapters;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -14,17 +14,17 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.views.RestaurantDetailsActivity;
+import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import java.util.List;
 
 public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
-    private List<Restaurant> restaurants;
+    private List<Restaurant> mRestaurants;
 
     public RestaurantsListAdapter(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
+        this.mRestaurants = restaurants;
     }
 
 
@@ -39,7 +39,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
 
     @Override
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
-        final Restaurant restaurant = restaurants.get(position);
+        final Restaurant restaurant = mRestaurants.get(position);
         // TODO: 10/6/2016 implement getting current location and distance to restaurant
         double restaurantDistance = 0;
         String restaurantDistanceText = "" + restaurantDistance;
@@ -63,7 +63,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
                 Log.i(TAG, "onClick: " + restaurantViewHolder.getAdapterPosition());
                 Intent restaurantDetailsIntent = new Intent(v.getContext(), RestaurantDetailsActivity.class);
                 restaurantDetailsIntent.putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
-//                restaurantDetailsIntent.putExtra("restaurantId", restaurants.get(restaurantViewHolder.getAdapterPosition()));
+//                restaurantDetailsIntent.putExtra("restaurantId", mRestaurants.get(restaurantViewHolder.getAdapterPosition()));
                 v.getContext().startActivity(restaurantDetailsIntent);
             }
         });
@@ -71,7 +71,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
 
     @Override
     public int getItemCount() {
-        return restaurants.size();
+        return mRestaurants.size();
     }
 
     static class RestaurantViewHolder extends RecyclerView.ViewHolder {
