@@ -7,15 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.presenter.NearbyRestaurantsPresenter;
 
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 
 public class NearbyRestaurantActivity extends BaseActivity {
@@ -29,9 +27,9 @@ public class NearbyRestaurantActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
-        ButterKnife.bind(this);
         mRestaurantService = new RestaurantService();
         mNearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, mRestaurantService);
+
         if (mNearbyRestaurantsPresenter.isNetworkAvailable()) {
             mNearbyRestaurantsPresenter.loadRestaurants();
         } else {
@@ -43,8 +41,6 @@ public class NearbyRestaurantActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mRestaurantService = new RestaurantService();
-        mNearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, mRestaurantService);
         mNearbyRestaurantsPresenter.loadRestaurants();
     }
 

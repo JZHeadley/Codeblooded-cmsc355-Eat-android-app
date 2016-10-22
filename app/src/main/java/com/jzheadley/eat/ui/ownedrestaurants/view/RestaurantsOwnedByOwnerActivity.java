@@ -10,10 +10,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.models.User;
-import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.models.services.UserService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.User;
+import com.jzheadley.eat.data.models.services.EatUserService;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.ownedrestaurants.presenter.RestaurantsOwnedByOwnerPresenter;
@@ -27,7 +27,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     private RestaurantsListAdapter mRestaurantsListAdapter;
     private RestaurantsOwnedByOwnerPresenter mRestaurantsOwnedByOwnerPresenter;
     private RestaurantService mRestaurantService;
-    private UserService mUserService;
+    private EatUserService mUserService;
     private User mUser;
 
     public void logUser(User currentUser) {
@@ -44,13 +44,13 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants_owned_by_owner);
         mRestaurantService = new RestaurantService();
-        mUserService = new UserService();
+        mUserService = new EatUserService();
         mRestaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this, mRestaurantService, mUserService);
         mRestaurantsOwnedByOwnerPresenter.loadUser(0);
         Log.d(TAG, "onCreate: " + mUser);
         mRestaurantsOwnedByOwnerPresenter.loadRestaurants(mUser);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_restaurant);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

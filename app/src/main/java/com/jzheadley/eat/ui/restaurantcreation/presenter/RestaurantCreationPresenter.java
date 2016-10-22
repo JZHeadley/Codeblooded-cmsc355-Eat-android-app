@@ -3,8 +3,8 @@ package com.jzheadley.eat.ui.restaurantcreation.presenter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
 import com.sakebook.android.uploadhelper.UploadTaskCallback;
 

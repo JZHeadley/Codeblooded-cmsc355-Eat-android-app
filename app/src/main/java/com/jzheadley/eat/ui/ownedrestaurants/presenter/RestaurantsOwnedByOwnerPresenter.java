@@ -4,10 +4,10 @@ package com.jzheadley.eat.ui.ownedrestaurants.presenter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jzheadley.eat.models.ResponseEntity;
-import com.jzheadley.eat.models.User;
-import com.jzheadley.eat.models.services.RestaurantService;
-import com.jzheadley.eat.models.services.UserService;
+import com.jzheadley.eat.data.models.ResponseEntity;
+import com.jzheadley.eat.data.models.User;
+import com.jzheadley.eat.data.models.services.EatUserService;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 
 import rx.Observer;
@@ -16,12 +16,12 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantsOwnedByOwnerPresenter {
     private static final String TAG = "RestaurantsOwnedByOwner";
-    private UserService mUserService;
+    private EatUserService mUserService;
     private RestaurantsOwnedByOwnerActivity mRestaurantsOwnedByOwnerActivity;
     private RestaurantService mRestaurantService;
 
     public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity,
-                                            RestaurantService restaurantService, UserService userService) {
+                                            RestaurantService restaurantService, EatUserService userService) {
         this.mRestaurantsOwnedByOwnerActivity = restaurantsOwnedByOwnerActivity;
         this.mRestaurantService = restaurantService;
         this.mUserService = userService;

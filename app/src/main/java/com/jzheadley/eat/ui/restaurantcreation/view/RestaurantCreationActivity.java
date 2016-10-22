@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView;
 import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPresenter;

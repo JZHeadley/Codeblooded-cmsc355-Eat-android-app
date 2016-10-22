@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.models.Restaurant;
+import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import java.util.List;

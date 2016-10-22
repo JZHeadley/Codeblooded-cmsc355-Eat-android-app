@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenter;
+import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;
 
-public class RestaurantMenuActivity extends BaseActivity {
+public class RestaurantMenuActivity extends BaseActivity implements RestaurantMenuView {
 
     private RestaurantMenuPresenter mRestaurantMenuPresenter;
     private RestaurantService mRestaurantService;
@@ -19,6 +20,6 @@ public class RestaurantMenuActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         mRestaurantService = new RestaurantService();
-        mRestaurantMenuPresenter = new RestaurantMenuPresenter(this, mRestaurantService);
+        mRestaurantMenuPresenter = new RestaurantMenuPresenterImpl(this, mRestaurantService);
     }
 }

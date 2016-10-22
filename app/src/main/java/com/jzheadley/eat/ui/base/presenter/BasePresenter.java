@@ -1,13 +1,17 @@
 package com.jzheadley.eat.ui.base.presenter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
+import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 import com.jzheadley.eat.ui.settings.view.SettingsActivity;
@@ -15,22 +19,27 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
 public class BasePresenter {
 
+    public ProgressDialog mProgressDialog;
     private BaseActivity mBaseActivity;
+
 
     public BasePresenter(BaseActivity baseActivity) {
         this.mBaseActivity = baseActivity;
     }
 
+    public BasePresenter() {
+    }
 
     public Drawer createDrawer(final Toolbar toolbar, final BaseActivity activity) {
         String[] drawerItems = activity.getResources().getStringArray(R.array.navigation_drawer_options);
-        return new DrawerBuilder()
+        Drawer drawer = new DrawerBuilder()
                 .withActivity(activity)
 //                .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(true)
@@ -85,5 +94,55 @@ public class BasePresenter {
                 )
                 .withDrawerGravity(Gravity.END)
                 .build();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            drawer.addItem(new SecondaryDrawerItem()
+                            .withName("Sign Out")
+                            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                                @Override
+                                public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                                    FirebaseAuth.getInstance().signOut();
+//                            Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
+//                            toolbar.getContext().startActivity(signInIntent);
+                                    return false;
+                                }
+                            })
+            );
+            drawer.addItemAtPosition(new ProfileDrawerItem()
+                            .withEmail(currentUser.getEmail())
+                            .withName(currentUser.getDisplayName())
+                    , 0);
+        } else {
+            drawer.addItem(new SecondaryDrawerItem()
+                    .withName("Sign In")
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                            Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
+                            toolbar.getContext().startActivity(signInIntent);
+                            return false;
+                        }
+                    })
+            );
+        }
+        return drawer;
     }
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(mBaseActivity);
+            mProgressDialog.setMessage(mBaseActivity.getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+
 }

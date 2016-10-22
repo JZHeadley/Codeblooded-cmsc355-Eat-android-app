@@ -1,7 +1,7 @@
 package com.jzheadley.eat.ui.restaurantdetails.presenter;
 
-import com.jzheadley.eat.models.Restaurant;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import rx.Observer;

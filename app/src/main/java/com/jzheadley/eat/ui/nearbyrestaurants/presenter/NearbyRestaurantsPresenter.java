@@ -6,22 +6,27 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jzheadley.eat.models.ResponseEntity;
-import com.jzheadley.eat.models.services.RestaurantService;
+import com.jzheadley.eat.data.models.ResponseEntity;
+import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
+import retrofit2.Retrofit;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class NearbyRestaurantsPresenter {
     private static final String TAG = "NearbyRestaurantsPrsntr";
+
+
     private NearbyRestaurantActivity mNearbyRestaurantActivity;
     private RestaurantService mRestaurantService;
+    private Retrofit mRetrofit;
 
     public NearbyRestaurantsPresenter(NearbyRestaurantActivity nearbyRestaurantActivity, RestaurantService restaurantService) {
         this.mNearbyRestaurantActivity = nearbyRestaurantActivity;
         this.mRestaurantService = restaurantService;
+//        mRetrofit = retrofit;
     }
 
 

@@ -53,6 +53,10 @@
             android:name=".ui.restaurantcreation.view.OpeningHoursActivity"
             android:parentActivityName=".ui.restaurantcreation.view.RestaurantCreationActivity" />
 
+        <activity
+            android:name=".ui.login.view.LoginActivity"
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />
