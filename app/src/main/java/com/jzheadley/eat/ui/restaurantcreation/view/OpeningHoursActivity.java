@@ -27,12 +27,12 @@ public class OpeningHoursActivity extends BaseActivity {
     }
 
 
-    public void onHoursClick(final View v) {
+    public void onHoursClick(final View view) {
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
-        TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(v.getContext(),
+        TimePickerDialog timePicker;
+        timePicker = new TimePickerDialog(view.getContext(),
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -47,11 +47,11 @@ public class OpeningHoursActivity extends BaseActivity {
                             strTimeToShow = strHrsToShow + ":" + minute;
                         }
 
-                        ((TextView) findViewById(v.getId())).setText(strTimeToShow);
+                        ((TextView) findViewById(view.getId())).setText(strTimeToShow);
                     }
                 }, hour, minute, true); //Yes 24 hour time
-        mTimePicker.setTitle("Select Time");
-        mTimePicker.show();
+        timePicker.setTitle("Select Time");
+        timePicker.show();
 
     }
 }

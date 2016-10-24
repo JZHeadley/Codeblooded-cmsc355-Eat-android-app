@@ -1,9 +1,5 @@
 package com.jzheadley.eat.ui.login.presenteres;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -16,19 +12,22 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.jzheadley.eat.ui.base.presenter.BasePresenter;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 
 public class LoginPresenterImpl extends BasePresenter implements LoginPresenter {
     private static final String TAG = "LoginPresenterImpl";
-    private LoginActivity mLoginActivity;
-    private FirebaseAuth mAuth;
-//    private FirebaseUserService mFirebaseUserService;
+    private LoginActivity loginActivity;
+    private FirebaseAuth auth;
 
     public LoginPresenterImpl(LoginActivity loginActivity/*, FirebaseUserService firebaseUserService*/) {
-        mLoginActivity = loginActivity;
-//        mFirebaseUserService = firebaseUserService;
-        mAuth = FirebaseAuth.getInstance();
+        this.loginActivity = loginActivity;
+        auth = FirebaseAuth.getInstance();
 
     }
 
@@ -49,15 +48,15 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
         this.showProgressDialog();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(mLoginActivity, new OnCompleteListener<AuthResult>() {
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(mLoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(loginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                         hideProgressDialog();
                     }
@@ -70,8 +69,8 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
     }
 
     @Override
-    public void signOut(GoogleApiClient mGoogleApiClient) {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+    public void signOut(GoogleApiClient googleApiClient) {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {

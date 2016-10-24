@@ -19,19 +19,19 @@ public class NearbyRestaurantsPresenter {
     private static final String TAG = "NearbyRestaurantsPrsntr";
 
 
-    private NearbyRestaurantActivity mNearbyRestaurantActivity;
-    private RestaurantService mRestaurantService;
-    private Retrofit mRetrofit;
+    private NearbyRestaurantActivity nearbyRestaurantActivity;
+    private RestaurantService restaurantService;
+    private Retrofit retrofit;
 
     public NearbyRestaurantsPresenter(NearbyRestaurantActivity nearbyRestaurantActivity, RestaurantService restaurantService) {
-        this.mNearbyRestaurantActivity = nearbyRestaurantActivity;
-        this.mRestaurantService = restaurantService;
-//        mRetrofit = retrofit;
+        this.nearbyRestaurantActivity = nearbyRestaurantActivity;
+        this.restaurantService = restaurantService;
+        // retrofit = retrofit;
     }
 
 
     public void loadRestaurants() {
-        mRestaurantService.getRestaurantApi()
+        restaurantService.getRestaurantApi()
                 .getRestaurants()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -42,23 +42,23 @@ public class NearbyRestaurantsPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable exception) {
                         Log.e(TAG, "onError: loadRestaurants has Failed");
-                        Toast.makeText(mNearbyRestaurantActivity, "Eat appears to be down.  Please try again later!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                        Toast.makeText(nearbyRestaurantActivity, "Eat appears to be down.  Please try again later!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onError: " + exception.getLocalizedMessage());
                     }
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
                         Log.d(TAG, "onNext: " + responseEntity);
-                        mNearbyRestaurantActivity.displayRestaurants(responseEntity.getEmbedded().getRestaurants());
+                        nearbyRestaurantActivity.displayRestaurants(responseEntity.getEmbedded().getRestaurants());
                     }
                 });
     }
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) mNearbyRestaurantActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) nearbyRestaurantActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

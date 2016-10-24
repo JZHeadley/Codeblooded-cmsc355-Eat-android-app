@@ -1,13 +1,14 @@
 package com.jzheadley.eat.ui.base.presenter;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
@@ -26,12 +27,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class BasePresenter {
 
-    public ProgressDialog mProgressDialog;
-    private BaseActivity mBaseActivity;
+    public ProgressDialog progressDialog;
+    private BaseActivity baseActivity;
 
 
     public BasePresenter(BaseActivity baseActivity) {
-        this.mBaseActivity = baseActivity;
+        this.baseActivity = baseActivity;
     }
 
     public BasePresenter() {
@@ -41,7 +42,7 @@ public class BasePresenter {
         String[] drawerItems = activity.getResources().getStringArray(R.array.navigation_drawer_options);
         Drawer drawer = new DrawerBuilder()
                 .withActivity(activity)
-//                .withToolbar(toolbar)
+                // .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(drawerItems[0])
@@ -97,21 +98,20 @@ public class BasePresenter {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             drawer.addItem(new SecondaryDrawerItem()
-                            .withName("Sign Out")
-                            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
-                                @Override
-                                public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                    FirebaseAuth.getInstance().signOut();
-//                            Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
-//                            toolbar.getContext().startActivity(signInIntent);
-                                    return false;
-                                }
-                            })
+                    .withName("Sign Out")
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                            FirebaseAuth.getInstance().signOut();
+                            // Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
+                            // toolbar.getContext().startActivity(signInIntent);
+                            return false;
+                        }
+                    })
             );
             drawer.addItemAtPosition(new ProfileDrawerItem()
-                            .withEmail(currentUser.getEmail())
-                            .withName(currentUser.getDisplayName())
-                    , 0);
+                    .withEmail(currentUser.getEmail())
+                    .withName(currentUser.getDisplayName()), 0);
         } else {
             drawer.addItem(new SecondaryDrawerItem()
                     .withName("Sign In")
@@ -129,18 +129,18 @@ public class BasePresenter {
     }
 
     public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(mBaseActivity);
-            mProgressDialog.setMessage(mBaseActivity.getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(baseActivity);
+            progressDialog.setMessage(baseActivity.getString(R.string.loading));
+            progressDialog.setIndeterminate(true);
         }
 
-        mProgressDialog.show();
+        progressDialog.show();
     }
 
     public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
         }
     }
 

@@ -1,10 +1,10 @@
 package com.jzheadley.eat.data.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 public class Category implements Parcelable {
 

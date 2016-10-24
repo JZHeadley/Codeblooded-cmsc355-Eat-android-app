@@ -14,5 +14,5 @@ public interface LoginPresenter {
 
     void getAuthWithGoogle(GoogleSignInResult result);
 
-    void signOut(GoogleApiClient mGoogleApiClient);
+    void signOut(GoogleApiClient googleApiClient);
 }

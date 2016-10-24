@@ -16,14 +16,14 @@ import com.mikepenz.materialdrawer.Drawer;
 public class BaseActivity extends AppCompatActivity implements BaseView {
     private static final String TAG = "BaseActivity";
     // Anything that will be used by all activities should be put here.
-    private Toolbar mToolbar;
-    private Drawer mDrawer;
-    private BasePresenter mBasePresenter;
+    private Toolbar toolbar;
+    private Drawer drawer;
+    private BasePresenter basePresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBasePresenter = new BasePresenter(this);
+        basePresenter = new BasePresenter(this);
 
     }
 
@@ -39,21 +39,21 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     }
 
     @Override
-    public void setContentView(int layoutResID) {
+    public void setContentView(int layoutResId) {
         LinearLayout fullView = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
-        getLayoutInflater().inflate(layoutResID, activityContainer, true);
+        getLayoutInflater().inflate(layoutResId, activityContainer, true);
         super.setContentView(fullView);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mDrawer = mBasePresenter.createDrawer(mToolbar, this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawer = basePresenter.createDrawer(toolbar, this);
 
-        // to opt out of using the mToolbar override useToolbar() and return false
+        // to opt out of using the toolbar override useToolbar() and return false
         if (useToolbar()) {
-            setSupportActionBar(mToolbar);
+            setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         } else {
-            mToolbar.setVisibility(View.GONE);
+            toolbar.setVisibility(View.GONE);
         }
     }
 
@@ -62,10 +62,10 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     }
 
     public void onDrawerClick(View view) {
-        if (mDrawer.isDrawerOpen()) {
-            mDrawer.closeDrawer();
-        } else if (!(mDrawer.isDrawerOpen())) {
-            mDrawer.openDrawer();
+        if (drawer.isDrawerOpen()) {
+            drawer.closeDrawer();
+        } else if (!(drawer.isDrawerOpen())) {
+            drawer.openDrawer();
         }
     }
 

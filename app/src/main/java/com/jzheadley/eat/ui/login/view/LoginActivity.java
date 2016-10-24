@@ -1,14 +1,5 @@
 package com.jzheadley.eat.ui.login.view;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,6 +14,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenter;
@@ -31,33 +32,33 @@ import com.jzheadley.eat.ui.login.presenteres.LoginPresenterImpl;
 public class LoginActivity extends BaseActivity implements LoginView, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_SIGN_GOOGLE = 9001;
     private static final String TAG = "LoginActivity";
-    private SignInButton mSignInButton;
-    private GoogleApiClient mGoogleApiClient;
-    private LoginPresenter mLoginPresenter;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private ProgressBar mProgressBar;
+    private SignInButton signInButton;
+    private GoogleApiClient googleApiClient;
+    private LoginPresenter loginPresenter;
+    private FirebaseAuth auth;
+    private FirebaseAuth.AuthStateListener authListener;
+    private ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mLoginPresenter = new LoginPresenterImpl(this);
-        mSignInButton = (SignInButton) findViewById(R.id.google_sign_in_btn);
-        mSignInButton.setOnClickListener(this);
-        mProgressBar = (ProgressBar) findViewById(R.id.progress);
-        mAuth = FirebaseAuth.getInstance();
+        loginPresenter = new LoginPresenterImpl(this);
+        signInButton = (SignInButton) findViewById(R.id.google_sign_in_btn);
+        signInButton.setOnClickListener(this);
+        progressBar = (ProgressBar) findViewById(R.id.progress);
+        auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -70,8 +71,7 @@ public class LoginActivity extends BaseActivity implements LoginView, GoogleApiC
                 }
             }
         };
-        mAuth.addAuthStateListener(mAuthListener);
-//        ((TextView) findViewById(R.id.test_txt)).setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        auth.addAuthStateListener(authListener);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class LoginActivity extends BaseActivity implements LoginView, GoogleApiC
     @Override
     protected void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
         }
     }
 
@@ -109,12 +109,12 @@ public class LoginActivity extends BaseActivity implements LoginView, GoogleApiC
 
     private void googleSignIn() {
         Log.d(TAG, "googleSignIn: Made it to the sign in method");
-        Intent intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(intent, REQUEST_SIGN_GOOGLE);
     }
 
     private void signOut() {
-        mLoginPresenter.signOut(mGoogleApiClient);
+        loginPresenter.signOut(googleApiClient);
     }
 
     private void signIn() {
@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements LoginView, GoogleApiC
 
 
     public void showLoading(boolean loading) {
-        mProgressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
+        progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class LoginActivity extends BaseActivity implements LoginView, GoogleApiC
         // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

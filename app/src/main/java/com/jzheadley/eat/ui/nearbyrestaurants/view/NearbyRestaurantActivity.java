@@ -19,19 +19,19 @@ import java.util.List;
 public class NearbyRestaurantActivity extends BaseActivity {
     private static final String TAG = "NearbyRestaurantActivit";
 
-    private RestaurantsListAdapter mRestaurantsListAdapter;
-    private NearbyRestaurantsPresenter mNearbyRestaurantsPresenter;
-    private RestaurantService mRestaurantService;
+    private RestaurantsListAdapter restaurantsListAdapter;
+    private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
+    private RestaurantService restaurantService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
-        mRestaurantService = new RestaurantService();
-        mNearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, mRestaurantService);
+        restaurantService = new RestaurantService();
+        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
 
-        if (mNearbyRestaurantsPresenter.isNetworkAvailable()) {
-            mNearbyRestaurantsPresenter.loadRestaurants();
+        if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
+            nearbyRestaurantsPresenter.loadRestaurants();
         } else {
             Snackbar.make(findViewById(R.id.toolbar), "You are disconnected from the network. "
                     + "Please resolve your connection issues and try again.", Snackbar.LENGTH_LONG).show();
@@ -41,7 +41,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mNearbyRestaurantsPresenter.loadRestaurants();
+        nearbyRestaurantsPresenter.loadRestaurants();
     }
 
     public void displayRestaurants(List<Restaurant> restaurants) {
@@ -50,8 +50,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mRestaurantsListAdapter = new RestaurantsListAdapter(restaurants);
-        recyclerView.setAdapter(mRestaurantsListAdapter);
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
+        recyclerView.setAdapter(restaurantsListAdapter);
     }
 
 

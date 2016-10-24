@@ -10,14 +10,14 @@ import java.util.List;
 
 public class CheckBoxGroupView extends GridLayout {
 
-    private List<CheckBox> mCheckboxes = new ArrayList<>();
+    private List<CheckBox> checkboxes = new ArrayList<>();
 
     public CheckBoxGroupView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public void put(CheckBox checkBox) {
-        mCheckboxes.add(checkBox);
+        checkboxes.add(checkBox);
         invalidate();
         requestLayout();
     }
@@ -28,7 +28,7 @@ public class CheckBoxGroupView extends GridLayout {
 
     public List<?> getCheckboxesChecked() {
         List<CheckBox> checkedboxes = new ArrayList<>();
-        for (CheckBox c : this.mCheckboxes) {
+        for (CheckBox c : this.checkboxes) {
             if (c.isChecked()) {
                 checkedboxes.add(c);
             }
@@ -38,7 +38,7 @@ public class CheckBoxGroupView extends GridLayout {
 
     public List<Object> getCheckedIds() {
         List<Object> checkedboxes = new ArrayList<>();
-        for (CheckBox c : this.mCheckboxes) {
+        for (CheckBox c : this.checkboxes) {
             if (c.isChecked()) {
                 checkedboxes.add(c.getTag());
             }
@@ -49,7 +49,7 @@ public class CheckBoxGroupView extends GridLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        for (CheckBox c : mCheckboxes) {
+        for (CheckBox c : checkboxes) {
             addView(c);
         }
         invalidate();

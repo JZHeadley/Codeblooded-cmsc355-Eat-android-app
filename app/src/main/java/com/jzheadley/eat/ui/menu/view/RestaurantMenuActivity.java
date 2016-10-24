@@ -12,14 +12,14 @@ import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;
 
 public class RestaurantMenuActivity extends BaseActivity implements RestaurantMenuView {
 
-    private RestaurantMenuPresenter mRestaurantMenuPresenter;
-    private RestaurantService mRestaurantService;
+    private RestaurantMenuPresenter restaurantMenuPresenter;
+    private RestaurantService restaurantService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        mRestaurantService = new RestaurantService();
-        mRestaurantMenuPresenter = new RestaurantMenuPresenterImpl(this, mRestaurantService);
+        restaurantService = new RestaurantService();
+        restaurantMenuPresenter = new RestaurantMenuPresenterImpl(this, restaurantService);
     }
 }

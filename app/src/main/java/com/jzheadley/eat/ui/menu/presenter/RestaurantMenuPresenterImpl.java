@@ -6,12 +6,12 @@ import com.jzheadley.eat.ui.menu.view.RestaurantMenuView;
 
 public class RestaurantMenuPresenterImpl implements RestaurantMenuPresenter {
 
-    private RestaurantMenuView mRestaurantMenuActivity;
-    private RestaurantService mRestaurantService;
+    private RestaurantMenuView restaurantMenuActivity;
+    private RestaurantService restaurantService;
 
     public RestaurantMenuPresenterImpl(RestaurantMenuActivity restaurantMenuActivity, RestaurantService restaurantService) {
-        this.mRestaurantMenuActivity = restaurantMenuActivity;
-        this.mRestaurantService = restaurantService;
+        this.restaurantMenuActivity = restaurantMenuActivity;
+        this.restaurantService = restaurantService;
     }
 
 }

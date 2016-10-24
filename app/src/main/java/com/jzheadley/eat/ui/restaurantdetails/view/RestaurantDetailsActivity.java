@@ -22,47 +22,47 @@ import com.jzheadley.eat.ui.restaurantdetails.presenter.RestaurantDetailsPresent
 
 public class RestaurantDetailsActivity extends BaseActivity {
     private static final String TAG = "RestaurantDetailsActivi";
-    private ImageView mRestaurantPhoto;
-    private TextView mRestaurantAddress;
-    private TextView mRestaurantDescription;
-    private Button mShowMenuBtn;
-    private TextView mRestaurantName;
+    private ImageView restaurantPhoto;
+    private TextView restaurantAddress;
+    private TextView restaurantDescription;
+    private Button showMenuBtn;
+    private TextView restaurantName;
 
-    private RestaurantDetailsPresenter mRestaurantDetailsPresenter;
-    private RestaurantService mRestaurantService;
-    private int mRestaurantId;
+    private RestaurantDetailsPresenter restaurantDetailsPresenter;
+    private RestaurantService restaurantService;
+    private int restaurantId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
-        mRestaurantService = new RestaurantService();
-        mRestaurantDetailsPresenter = new RestaurantDetailsPresenter(this, mRestaurantService);
-//        mRestaurantId = getIntent().getExtras().getParcelable("restaurant");
-        mRestaurantId = getIntent().getExtras().getInt("restaurantId");
-        Log.i(TAG, "onCreate: " + mRestaurantId);
-        mRestaurantDetailsPresenter.loadRestaurantDetails(mRestaurantId + 1);
+        restaurantService = new RestaurantService();
+        restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
+        // restaurantId = getIntent().getExtras().getParcelable("restaurant");
+        restaurantId = getIntent().getExtras().getInt("restaurantId");
+        Log.i(TAG, "onCreate: " + restaurantId);
+        restaurantDetailsPresenter.loadRestaurantDetails(restaurantId + 1);
     }
 
     // TODO: 10/9/2016 Fix the bug and actually display the restaurant that is clicked on...
     public void displayRestaurant(Restaurant restaurant) {
         Log.d(TAG, "displayRestaurant: " + restaurant);
-        mRestaurantAddress = (TextView) findViewById(R.id.address_restaurant_detail);
-        mRestaurantName = (TextView) findViewById(R.id.restaurant_name_detail);
-        mRestaurantDescription = (TextView) findViewById(R.id.description_restaurant_detail);
-        mRestaurantPhoto = (ImageView) findViewById(R.id.restaurant_photo_detail);
+        restaurantAddress = (TextView) findViewById(R.id.address_restaurant_detail);
+        restaurantName = (TextView) findViewById(R.id.restaurant_name_detail);
+        restaurantDescription = (TextView) findViewById(R.id.description_restaurant_detail);
+        restaurantPhoto = (ImageView) findViewById(R.id.restaurant_photo_detail);
 
-        mRestaurantName.setText(restaurant.getName());
-        mRestaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity()
+        restaurantName.setText(restaurant.getName());
+        restaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity()
                 + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
-        mRestaurantDescription.setText(restaurant.getDescription());
+        restaurantDescription.setText(restaurant.getDescription());
         Glide.with(this)
                 .load(restaurant.getPictureurl())
                 .crossFade()
                 .fitCenter()
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(new GlideDrawableImageViewTarget(mRestaurantPhoto));
+                .into(new GlideDrawableImageViewTarget(restaurantPhoto));
     }
 
     public void onMenuClick(View view) {

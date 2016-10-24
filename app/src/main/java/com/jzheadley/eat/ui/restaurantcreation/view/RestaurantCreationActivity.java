@@ -34,21 +34,21 @@ public class RestaurantCreationActivity extends BaseActivity {
     private static final String TAG = "RestaurantCreationActiv";
     private static final int OPENING_HOURS_RESULT = 2;
     private static final int PICK_IMAGE_REQUEST = 1;
-    private RestaurantCreationPresenter mRestaurantCreationPresenter;
-    private RestaurantService mRestaurantService;
-    private Restaurant mRestaurant;
-    private String mImgurPhotoUrl = "";
+    private RestaurantCreationPresenter restaurantCreationPresenter;
+    private RestaurantService restaurantService;
+    private Restaurant restaurant;
+    private String imgurPhotoUrl = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_restaurant);
-        mRestaurantService = new RestaurantService();
-        mRestaurantCreationPresenter = new RestaurantCreationPresenter(this, mRestaurantService);
+        restaurantService = new RestaurantService();
+        restaurantCreationPresenter = new RestaurantCreationPresenter(this, restaurantService);
         createFoodTypeCheckBoxes();
         setupCountrySpinner();
-        mRestaurant = new Restaurant();
+        restaurant = new Restaurant();
 
     }
 
@@ -96,7 +96,7 @@ public class RestaurantCreationActivity extends BaseActivity {
             case PICK_IMAGE_REQUEST:
                 Log.d(TAG, "onActivityResult: It got here at least?");
                 if (resultCode == RESULT_OK) {
-                    UploadHelper helper = new UploadHelper(this, mRestaurantCreationPresenter);
+                    UploadHelper helper = new UploadHelper(this, restaurantCreationPresenter);
                     helper.setClientId(Constants.IMGUR_CLIENT_ID);
                     helper.setSecretId(Constants.IMGUR_SECRET);
                     Uri pathToFile = data.getData();
@@ -106,39 +106,38 @@ public class RestaurantCreationActivity extends BaseActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), pathToFile);
                         ImageView imageView = (ImageView) findViewById(R.id.restaurant_creation_add_photo);
                         imageView.setImageBitmap(bitmap);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (IOException error) {
+                        error.printStackTrace();
                     }
                 }
                 break;
             case OPENING_HOURS_RESULT:
-
                 break;
         }
     }
 
     public void setRestaurantUrl(String url) {
-        mImgurPhotoUrl = url;
+        imgurPhotoUrl = url;
     }
 
 
     public void onSubmitButton(View view) {
         // TODO: 10/11/2016 Figure out how to represent menuHours in the database and add them
         Log.d(TAG, "onSubmitButton: " + ((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
-        mRestaurant.setAddress(((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
-        mRestaurant.setCity(((EditText) findViewById(R.id.restaurant_creation_city)).getText().toString());
-        mRestaurant.setCountry(((Spinner) findViewById(R.id.restaurant_creation_country_spinner)).getSelectedItem().toString());
-        mRestaurant.setDescription(((EditText) findViewById(R.id.restaurant_creation_description)).getText().toString());
-        mRestaurant.setName(((EditText) findViewById(R.id.restaurant_creation_name)).getText().toString());
-        mRestaurant.setZipcode(((EditText) findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
-        mRestaurant.setPictureurl(mImgurPhotoUrl);
-        mRestaurantCreationPresenter.postRestaurant(mRestaurant);
+        restaurant.setAddress(((EditText) findViewById(R.id.restaurant_creation_address)).getText().toString());
+        restaurant.setCity(((EditText) findViewById(R.id.restaurant_creation_city)).getText().toString());
+        restaurant.setCountry(((Spinner) findViewById(R.id.restaurant_creation_country_spinner)).getSelectedItem().toString());
+        restaurant.setDescription(((EditText) findViewById(R.id.restaurant_creation_description)).getText().toString());
+        restaurant.setName(((EditText) findViewById(R.id.restaurant_creation_name)).getText().toString());
+        restaurant.setZipcode(((EditText) findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
+        restaurant.setPictureurl(imgurPhotoUrl);
+        restaurantCreationPresenter.postRestaurant(restaurant);
         finish();
     }
 
     public void onMenuHoursButtonClick(View view) {
         Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
-        menuHoursIntent.putExtra("mRestaurant", mRestaurant);
+        menuHoursIntent.putExtra("restaurant", restaurant);
         startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
     }
 }

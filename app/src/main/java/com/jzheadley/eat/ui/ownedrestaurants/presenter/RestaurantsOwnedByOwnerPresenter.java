@@ -16,19 +16,19 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantsOwnedByOwnerPresenter {
     private static final String TAG = "RestaurantsOwnedByOwner";
-    private EatUserService mUserService;
-    private RestaurantsOwnedByOwnerActivity mRestaurantsOwnedByOwnerActivity;
-    private RestaurantService mRestaurantService;
+    private EatUserService userService;
+    private RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity;
+    private RestaurantService restaurantService;
 
     public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity,
                                             RestaurantService restaurantService, EatUserService userService) {
-        this.mRestaurantsOwnedByOwnerActivity = restaurantsOwnedByOwnerActivity;
-        this.mRestaurantService = restaurantService;
-        this.mUserService = userService;
+        this.restaurantsOwnedByOwnerActivity = restaurantsOwnedByOwnerActivity;
+        this.restaurantService = restaurantService;
+        this.userService = userService;
     }
 
     public void loadRestaurants(User restaurantOwner) {
-        mRestaurantService.getRestaurantApi()
+        restaurantService.getRestaurantApi()
                 .getRestaurantsByRestaurantOwner(restaurantOwner)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -39,11 +39,11 @@ public class RestaurantsOwnedByOwnerPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable error) {
                         Log.e(TAG, "onError: loadRestaurants has Failed");
-                        Toast.makeText(mRestaurantsOwnedByOwnerActivity, "Eat appears to be down.  "
+                        Toast.makeText(restaurantsOwnedByOwnerActivity, "Eat appears to be down.  "
                                 + "Please try again later!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                        Log.d(TAG, "onError: " + error.getLocalizedMessage());
                     }
 
                     @Override
@@ -55,7 +55,7 @@ public class RestaurantsOwnedByOwnerPresenter {
 
     public void loadUser(final int userId) {
         final User[] user = new User[1];
-        mUserService.getUserApi()
+        userService.getUserApi()
                 .getUsers()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -66,20 +66,20 @@ public class RestaurantsOwnedByOwnerPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable error) {
 
                     }
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
-                        mRestaurantsOwnedByOwnerActivity.logUser(responseEntity.getEmbedded().getUsers().get(userId));
+                        restaurantsOwnedByOwnerActivity.logUser(responseEntity.getEmbedded().getUsers().get(userId));
 
                     }
                 });
     }
 
     public void loadRestaurantsOfUser(int userId) {
-        mUserService.getUserApi()
+        userService.getUserApi()
                 .getRestaurantsOfUser(userId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -90,13 +90,13 @@ public class RestaurantsOwnedByOwnerPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable error) {
 
                     }
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
-                        mRestaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(responseEntity.getEmbedded().getRestaurants());
+                        restaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(responseEntity.getEmbedded().getRestaurants());
                     }
                 });
     }

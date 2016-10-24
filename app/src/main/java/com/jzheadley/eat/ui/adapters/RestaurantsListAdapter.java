@@ -21,10 +21,10 @@ import java.util.List;
 public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
-    private List<Restaurant> mRestaurants;
+    private List<Restaurant> restaurants;
 
     public RestaurantsListAdapter(List<Restaurant> restaurants) {
-        this.mRestaurants = restaurants;
+        this.restaurants = restaurants;
     }
 
 
@@ -39,7 +39,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
 
     @Override
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
-        final Restaurant restaurant = mRestaurants.get(position);
+        final Restaurant restaurant = restaurants.get(position);
         // TODO: 10/6/2016 implement getting current location and distance to restaurant
         double restaurantDistance = 0;
         String restaurantDistanceText = "" + restaurantDistance;
@@ -59,19 +59,19 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         restaurantViewHolder.restaurantName.setText(restaurant.getName());
         restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Log.i(TAG, "onClick: " + restaurantViewHolder.getAdapterPosition());
-                Intent restaurantDetailsIntent = new Intent(v.getContext(), RestaurantDetailsActivity.class);
+                Intent restaurantDetailsIntent = new Intent(view.getContext(), RestaurantDetailsActivity.class);
                 restaurantDetailsIntent.putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
-//                restaurantDetailsIntent.putExtra("restaurantId", mRestaurants.get(restaurantViewHolder.getAdapterPosition()));
-                v.getContext().startActivity(restaurantDetailsIntent);
+                // restaurantDetailsIntent.putExtra("restaurantId", restaurants.get(restaurantViewHolder.getAdapterPosition()));
+                view.getContext().startActivity(restaurantDetailsIntent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mRestaurants.size();
+        return restaurants.size();
     }
 
     static class RestaurantViewHolder extends RecyclerView.ViewHolder {

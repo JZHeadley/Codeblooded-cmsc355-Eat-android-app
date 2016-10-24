@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.models.services.RestaurantService;
 import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
+import com.jzheadley.eat.utils.Constants;
 import com.sakebook.android.uploadhelper.UploadTaskCallback;
 
 import rx.Observer;
@@ -14,16 +15,16 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantCreationPresenter implements UploadTaskCallback {
     private static final String TAG = "RestaurantCreationPrese";
-    private RestaurantCreationActivity mRestaurantCreationActivity;
-    private RestaurantService mRestaurantService;
+    private RestaurantCreationActivity restaurantCreationActivity;
+    private RestaurantService restaurantService;
 
     public RestaurantCreationPresenter(RestaurantCreationActivity restaurantCreationActivity, RestaurantService restaurantService) {
-        this.mRestaurantCreationActivity = restaurantCreationActivity;
-        this.mRestaurantService = restaurantService;
+        this.restaurantCreationActivity = restaurantCreationActivity;
+        this.restaurantService = restaurantService;
     }
 
     public void postRestaurant(Restaurant restaurant) {
-        mRestaurantService.getRestaurantApi()
+        restaurantService.getRestaurantApi()
                 .createRestaurant(restaurant)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,12 +35,13 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable error) {
+
 
                     }
 
                     @Override
-                    public void onNext(Void aVoid) {
+                    public void onNext(Void avoid) {
 
                     }
                 });
@@ -48,18 +50,20 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
     @Override
     public void success(String url) {
         Log.d(TAG, "success: Things worked! Heres the url to the image you just uploaded " + url);
-        mRestaurantCreationActivity.setRestaurantUrl(url);
-//        Toast.makeText(mRestaurantCreationActivity.getApplicationContext(), url, Toast.LENGTH_LONG).show();
+        restaurantCreationActivity.setRestaurantUrl(url);
+        if (Constants.DEBUG) {
+            Toast.makeText(restaurantCreationActivity.getApplicationContext(), url, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void fail(String message) {
         Log.d(TAG, "fail: Things didn't work out between us...");
-        Toast.makeText(mRestaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void cancel(String message) {
-        Toast.makeText(mRestaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

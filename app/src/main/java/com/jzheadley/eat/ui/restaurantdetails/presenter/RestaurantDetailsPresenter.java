@@ -11,16 +11,16 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantDetailsPresenter {
     private static final String TAG = "RestaurantDetailsPresen";
-    private RestaurantDetailsActivity mRestaurantDetailsActivity;
-    private RestaurantService mRestaurantService;
+    private RestaurantDetailsActivity restaurantDetailsActivity;
+    private RestaurantService restaurantService;
 
     public RestaurantDetailsPresenter(RestaurantDetailsActivity restaurantDetailsActivity, RestaurantService restaurantService) {
-        this.mRestaurantDetailsActivity = restaurantDetailsActivity;
-        this.mRestaurantService = restaurantService;
+        this.restaurantDetailsActivity = restaurantDetailsActivity;
+        this.restaurantService = restaurantService;
     }
 
     public void loadRestaurantDetails(int restaurantId) {
-        mRestaurantService.getRestaurantApi()
+        restaurantService.getRestaurantApi()
                 .getRestaurantById(restaurantId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -31,13 +31,13 @@ public class RestaurantDetailsPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable error) {
 
                     }
 
                     @Override
                     public void onNext(Restaurant restaurant) {
-                        mRestaurantDetailsActivity.displayRestaurant(restaurant);
+                        restaurantDetailsActivity.displayRestaurant(restaurant);
                     }
                 });
     }
