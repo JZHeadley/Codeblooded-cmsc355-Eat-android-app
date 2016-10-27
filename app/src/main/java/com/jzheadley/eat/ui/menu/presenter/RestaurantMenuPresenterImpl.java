@@ -9,7 +9,8 @@ public class RestaurantMenuPresenterImpl implements RestaurantMenuPresenter {
     private RestaurantMenuView restaurantMenuActivity;
     private RestaurantService restaurantService;
 
-    public RestaurantMenuPresenterImpl(RestaurantMenuActivity restaurantMenuActivity, RestaurantService restaurantService) {
+    public RestaurantMenuPresenterImpl(RestaurantMenuActivity restaurantMenuActivity,
+                                       RestaurantService restaurantService) {
         this.restaurantMenuActivity = restaurantMenuActivity;
         this.restaurantService = restaurantService;
     }

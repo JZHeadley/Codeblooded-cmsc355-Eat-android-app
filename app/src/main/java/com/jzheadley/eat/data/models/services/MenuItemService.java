@@ -9,7 +9,8 @@ public class MenuItemService {
     private MenuItemApi menuItemApi;
 
     public MenuItemService() {
-        menuItemApi = ServiceFactory.createRetrofitDebugService(MenuItemApi.class, SERVICE_ENDPOINT);
+        menuItemApi = ServiceFactory
+                .createRetrofitDebugService(MenuItemApi.class, SERVICE_ENDPOINT);
     }
 
     public MenuItemApi getMenuItemApi() {

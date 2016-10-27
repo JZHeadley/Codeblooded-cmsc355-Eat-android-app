@@ -13,9 +13,6 @@ import rx.Observable;
 
 public interface RestaurantApi {
 
-    @GET("restaurants/")
-    Observable<ResponseEntity> getRestaurants();
-
     @GET("restaurants/{id}")
     Observable<Restaurant> getRestaurantById(@Path("id") int restaurantId);
 
@@ -23,8 +20,12 @@ public interface RestaurantApi {
     Observable<Void> createRestaurant(@Body Restaurant restaurant);
 
     @GET("restaurants/")
+    Observable<ResponseEntity> getRestaurants();
+
+    @GET("restaurants/")
     Observable<ResponseEntity> getRestaurants(@Query("size") int numberOfItems);
 
     @GET("restaurants/")
-    Observable<ResponseEntity> getRestaurantsByRestaurantOwner(@Query("restaurantOwner") User restaurantOwner);
+    Observable<ResponseEntity> getRestaurantsByRestaurantOwner(
+            @Query("restaurantOwner") User restaurantOwner);
 }

@@ -18,7 +18,8 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
     private RestaurantCreationActivity restaurantCreationActivity;
     private RestaurantService restaurantService;
 
-    public RestaurantCreationPresenter(RestaurantCreationActivity restaurantCreationActivity, RestaurantService restaurantService) {
+    public RestaurantCreationPresenter(RestaurantCreationActivity restaurantCreationActivity,
+                                       RestaurantService restaurantService) {
         this.restaurantCreationActivity = restaurantCreationActivity;
         this.restaurantService = restaurantService;
     }
@@ -52,18 +53,21 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
         Log.d(TAG, "success: Things worked! Heres the url to the image you just uploaded " + url);
         restaurantCreationActivity.setRestaurantUrl(url);
         if (Constants.DEBUG) {
-            Toast.makeText(restaurantCreationActivity.getApplicationContext(), url, Toast.LENGTH_LONG).show();
+            Toast.makeText(restaurantCreationActivity.getApplicationContext(), url,
+                    Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void fail(String message) {
         Log.d(TAG, "fail: Things didn't work out between us...");
-        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message,
+                Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void cancel(String message) {
-        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(restaurantCreationActivity.getApplicationContext(), message,
+                Toast.LENGTH_LONG).show();
     }
 }

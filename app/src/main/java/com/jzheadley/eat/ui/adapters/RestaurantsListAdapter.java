@@ -18,7 +18,8 @@ import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import java.util.List;
 
-public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
+public class RestaurantsListAdapter extends RecyclerView
+        .Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
     private List<Restaurant> restaurants;
@@ -60,10 +61,14 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick: " + restaurantViewHolder.getAdapterPosition());
-                Intent restaurantDetailsIntent = new Intent(view.getContext(), RestaurantDetailsActivity.class);
-                restaurantDetailsIntent.putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
-                // restaurantDetailsIntent.putExtra("restaurantId", restaurants.get(restaurantViewHolder.getAdapterPosition()));
+                Log.i(TAG, "onClick: " + restaurantViewHolder
+                        .getAdapterPosition());
+                Intent restaurantDetailsIntent =
+                        new Intent(view.getContext(), RestaurantDetailsActivity.class);
+                restaurantDetailsIntent
+                        .putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
+                // restaurantDetailsIntent.putExtra("restaurantId",
+                // restaurants.get(restaurantViewHolder.getAdapterPosition()));
                 view.getContext().startActivity(restaurantDetailsIntent);
             }
         });

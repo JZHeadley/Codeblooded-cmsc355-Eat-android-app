@@ -1,5 +1,9 @@
 package com.jzheadley.eat.ui.login.presenteres;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -12,11 +16,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import android.support.annotation.NonNull;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.jzheadley.eat.ui.base.presenter.BasePresenter;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 
@@ -25,7 +24,8 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
     private LoginActivity loginActivity;
     private FirebaseAuth auth;
 
-    public LoginPresenterImpl(LoginActivity loginActivity/*, FirebaseUserService firebaseUserService*/) {
+    public LoginPresenterImpl(LoginActivity loginActivity
+                              /*, FirebaseUserService firebaseUserService*/) {
         this.loginActivity = loginActivity;
         auth = FirebaseAuth.getInstance();
 
@@ -56,7 +56,8 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
 
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(loginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(loginActivity, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                         hideProgressDialog();
                     }

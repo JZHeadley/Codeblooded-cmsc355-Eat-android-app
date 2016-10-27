@@ -7,14 +7,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-public class ScrollAwareFabBehavior extends FloatingActionButton.Behavior {
-    public ScrollAwareFabBehavior(Context context, AttributeSet attrs) {
+public class ScrollAwareFloatingActionButtonBehavior extends FloatingActionButton.Behavior {
+    public ScrollAwareFloatingActionButtonBehavior(Context context, AttributeSet attrs) {
         super();
     }
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child,
-                               View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+                               View target, int dxConsumed, int dyConsumed,
+                               int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
                 dyUnconsumed);
 

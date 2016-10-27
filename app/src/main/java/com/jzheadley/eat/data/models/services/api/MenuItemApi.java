@@ -15,12 +15,12 @@ public interface MenuItemApi {
     @GET("menuItems/")
     Observable<ResponseEntity> getMenuItems();
 
+    @GET("menuItems/")
+    Observable<ResponseEntity> getMenuItems(@Query("size") int numberOfItems);
+
     @GET("menuItems/{id}")
     Observable<MenuItem> getMenuItemById(@Path("id") int menuItemId);
 
     @POST("menuItems/")
     Observable<Void> createMenuItem(@Body MenuItem menuItem);
-
-    @GET("menuItems/")
-    Observable<ResponseEntity> getMenuItems(@Query("size") int numberOfItems);
 }

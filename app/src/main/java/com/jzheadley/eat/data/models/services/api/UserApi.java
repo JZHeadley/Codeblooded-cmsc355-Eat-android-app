@@ -12,14 +12,14 @@ import rx.Observable;
 
 public interface UserApi {
 
-    @GET("users/")
-    Observable<ResponseEntity> getUsers();
-
     @GET("users/{id}")
     Observable<User> getUserById(@Path("id") int userId);
 
     @POST("users/")
     Observable<Void> createUser(@Body User user);
+
+    @GET("users/")
+    Observable<ResponseEntity> getUsers();
 
     @GET("users/")
     Observable<ResponseEntity> getUsers(@Query("size") int numberOfItems);

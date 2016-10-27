@@ -45,7 +45,8 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         setContentView(R.layout.activity_restaurants_owned_by_owner);
         restaurantService = new RestaurantService();
         userService = new EatUserService();
-        restaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this, restaurantService, userService);
+        restaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this,
+                restaurantService, userService);
         restaurantsOwnedByOwnerPresenter.loadUser(0);
         Log.d(TAG, "onCreate: " + user);
         restaurantsOwnedByOwnerPresenter.loadRestaurants(user);
@@ -54,7 +55,8 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addRestaurantIntent = new Intent(view.getContext(), RestaurantCreationActivity.class);
+                Intent addRestaurantIntent = new Intent(view.getContext(),
+                        RestaurantCreationActivity.class);
                 view.getContext().startActivity(addRestaurantIntent);
             }
         });
@@ -73,7 +75,8 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     }
 
     public void onAddRestaurantClick(View view) {
-        Intent addRestaurantIntent = new Intent(view.getContext(), RestaurantCreationActivity.class);
+        Intent addRestaurantIntent = new Intent(view.getContext(),
+                RestaurantCreationActivity.class);
         view.getContext().startActivity(addRestaurantIntent);
     }
 }

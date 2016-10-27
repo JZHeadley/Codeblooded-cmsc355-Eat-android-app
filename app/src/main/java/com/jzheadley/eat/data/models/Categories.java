@@ -1,14 +1,15 @@
 package com.jzheadley.eat.data.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Categories implements Parcelable {
 
-    public static final Parcelable.Creator<Categories> CREATOR = new Parcelable.Creator<Categories>() {
+    public static final Parcelable.Creator<Categories> CREATOR = new Parcelable
+            .Creator<Categories>() {
         @Override
         public Categories createFromParcel(Parcel source) {
             return new Categories(source);

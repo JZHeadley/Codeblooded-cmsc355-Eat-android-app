@@ -1,14 +1,15 @@
 package com.jzheadley.eat.data.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class ResponseEntity implements Parcelable {
 
-    public static final Parcelable.Creator<ResponseEntity> CREATOR = new Parcelable.Creator<ResponseEntity>() {
+    public static final Parcelable.Creator<ResponseEntity> CREATOR = new Parcelable
+            .Creator<ResponseEntity>() {
         @Override
         public ResponseEntity createFromParcel(Parcel source) {
             return new ResponseEntity(source);

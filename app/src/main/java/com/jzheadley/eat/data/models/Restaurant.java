@@ -1,10 +1,10 @@
 package com.jzheadley.eat.data.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Restaurant implements Parcelable {
 
@@ -52,7 +52,8 @@ public class Restaurant implements Parcelable {
     }
 
     public Restaurant(String name, String pictureurl, String location, String description,
-                      String zipcode, String address, String city, String country, Links links, User user) {
+                      String zipcode, String address, String city,
+                      String country, Links links, User user) {
         this.name = name;
         this.pictureurl = pictureurl;
         this.description = description;

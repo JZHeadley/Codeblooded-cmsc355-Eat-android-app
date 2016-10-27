@@ -69,4 +69,13 @@
         <item>Help</item>
         <item>Restaurant Owners</item>
     </string-array>
+    <string-array name="opening_hours_days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 </resources>

@@ -1,13 +1,14 @@
 package com.jzheadley.eat.data.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class MenuItems implements Parcelable {
-    public static final Parcelable.Creator<MenuItems> CREATOR = new Parcelable.Creator<MenuItems>() {
+    public static final Parcelable.Creator<MenuItems> CREATOR = new Parcelable
+            .Creator<MenuItems>() {
         @Override
         public MenuItems createFromParcel(Parcel source) {
             return new MenuItems(source);

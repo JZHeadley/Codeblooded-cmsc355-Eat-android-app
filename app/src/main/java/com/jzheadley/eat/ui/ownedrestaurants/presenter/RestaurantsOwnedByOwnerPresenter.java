@@ -20,8 +20,10 @@ public class RestaurantsOwnedByOwnerPresenter {
     private RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity;
     private RestaurantService restaurantService;
 
-    public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity,
-                                            RestaurantService restaurantService, EatUserService userService) {
+    public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity
+                                                    restaurantsOwnedByOwnerActivity,
+                                            RestaurantService restaurantService,
+                                            EatUserService userService) {
         this.restaurantsOwnedByOwnerActivity = restaurantsOwnedByOwnerActivity;
         this.restaurantService = restaurantService;
         this.userService = userService;
@@ -72,7 +74,8 @@ public class RestaurantsOwnedByOwnerPresenter {
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
-                        restaurantsOwnedByOwnerActivity.logUser(responseEntity.getEmbedded().getUsers().get(userId));
+                        restaurantsOwnedByOwnerActivity.logUser(responseEntity.getEmbedded()
+                                .getUsers().get(userId));
 
                     }
                 });
@@ -96,7 +99,8 @@ public class RestaurantsOwnedByOwnerPresenter {
 
                     @Override
                     public void onNext(ResponseEntity responseEntity) {
-                        restaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(responseEntity.getEmbedded().getRestaurants());
+                        restaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(
+                                responseEntity.getEmbedded().getRestaurants());
                     }
                 });
     }

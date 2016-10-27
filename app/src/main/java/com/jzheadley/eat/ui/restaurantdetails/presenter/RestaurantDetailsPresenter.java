@@ -14,7 +14,8 @@ public class RestaurantDetailsPresenter {
     private RestaurantDetailsActivity restaurantDetailsActivity;
     private RestaurantService restaurantService;
 
-    public RestaurantDetailsPresenter(RestaurantDetailsActivity restaurantDetailsActivity, RestaurantService restaurantService) {
+    public RestaurantDetailsPresenter(RestaurantDetailsActivity restaurantDetailsActivity,
+                                      RestaurantService restaurantService) {
         this.restaurantDetailsActivity = restaurantDetailsActivity;
         this.restaurantService = restaurantService;
     }

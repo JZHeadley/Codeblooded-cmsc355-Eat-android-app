@@ -1,14 +1,13 @@
 package com.jzheadley.eat.ui.base.presenter;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
@@ -39,7 +38,8 @@ public class BasePresenter {
     }
 
     public Drawer createDrawer(final Toolbar toolbar, final BaseActivity activity) {
-        String[] drawerItems = activity.getResources().getStringArray(R.array.navigation_drawer_options);
+        String[] drawerItems = activity.getResources()
+                .getStringArray(R.array.navigation_drawer_options);
         Drawer drawer = new DrawerBuilder()
                 .withActivity(activity)
                 // .withToolbar(toolbar)
@@ -49,8 +49,10 @@ public class BasePresenter {
                                 .withIcon(R.drawable.ic_home)
                                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                                     @Override
-                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                        Intent nearbyRestaurantsIntent = new Intent(toolbar.getContext(), NearbyRestaurantActivity.class);
+                                    public boolean onItemClick(
+                                            View view, int position, IDrawerItem drawerItem) {
+                                        Intent nearbyRestaurantsIntent = new Intent(toolbar
+                                                .getContext(), NearbyRestaurantActivity.class);
                                         toolbar.getContext().startActivity(nearbyRestaurantsIntent);
                                         return false;
                                     }
@@ -65,8 +67,10 @@ public class BasePresenter {
                                 .withIcon(R.drawable.ic_settings)
                                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                                     @Override
-                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                        Intent settingsIntent = new Intent(toolbar.getContext(), SettingsActivity.class);
+                                    public boolean onItemClick(View view, int position,
+                                                               IDrawerItem drawerItem) {
+                                        Intent settingsIntent = new Intent(toolbar.getContext(),
+                                                SettingsActivity.class);
                                         toolbar.getContext().startActivity(settingsIntent);
                                         return false;
                                     }
@@ -75,8 +79,10 @@ public class BasePresenter {
                                 .withIcon(R.drawable.ic_help)
                                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                                     @Override
-                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                        Intent helpIntent = new Intent(toolbar.getContext(), HelpActivity.class);
+                                    public boolean onItemClick(View view, int position,
+                                                               IDrawerItem drawerItem) {
+                                        Intent helpIntent = new Intent(toolbar.getContext(),
+                                                HelpActivity.class);
                                         toolbar.getContext().startActivity(helpIntent);
                                         return false;
                                     }
@@ -85,8 +91,11 @@ public class BasePresenter {
                                 .withIcon(R.drawable.ic_restaurant)
                                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                                     @Override
-                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                        Intent restaurantOwnerIntent = new Intent(toolbar.getContext(), RestaurantsOwnedByOwnerActivity.class);
+                                    public boolean onItemClick(View view, int position,
+                                                               IDrawerItem drawerItem) {
+                                        Intent restaurantOwnerIntent = new Intent(
+                                                toolbar.getContext(),
+                                                RestaurantsOwnedByOwnerActivity.class);
                                         toolbar.getContext().startActivity(restaurantOwnerIntent);
 
                                         return false;
@@ -101,9 +110,11 @@ public class BasePresenter {
                     .withName("Sign Out")
                     .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                         @Override
-                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        public boolean onItemClick(View view, int position,
+                                                   IDrawerItem drawerItem) {
                             FirebaseAuth.getInstance().signOut();
-                            // Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
+                            // Intent signInIntent = new Intent(toolbar.getContext(),
+                            // LoginActivity.class);
                             // toolbar.getContext().startActivity(signInIntent);
                             return false;
                         }
@@ -117,8 +128,10 @@ public class BasePresenter {
                     .withName("Sign In")
                     .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                         @Override
-                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                            Intent signInIntent = new Intent(toolbar.getContext(), LoginActivity.class);
+                        public boolean onItemClick(View view, int position,
+                                                   IDrawerItem drawerItem) {
+                            Intent signInIntent = new Intent(toolbar.getContext(),
+                                    LoginActivity.class);
                             toolbar.getContext().startActivity(signInIntent);
                             return false;
                         }
