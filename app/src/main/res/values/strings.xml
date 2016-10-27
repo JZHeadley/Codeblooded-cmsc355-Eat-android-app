@@ -57,10 +57,13 @@
     <string name="restaurant_owner_tv">Restaurants you manage:</string>
     <string name="add_restaurant_country_hint">Country</string>
     <string name="city_hint">City</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="sign_up">Sign Up</string>
     <string name="btn_sign_in">Sign In</string>
     <string name="btn_sign_out_txt">Sign Out</string>
+    <string name="e_mail_login">E-mail</string>
+    <string name="password_login">Password</string>
+    <string name="login_prompt">Login:</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>
