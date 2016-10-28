@@ -67,6 +67,9 @@
     <string name="forgot_password_login">forgot password</string>
     <string name="error_message_login">This is the error message.</string>
     <string name="checkout_button">Checkout</string>
+    <string name="meal_name_hint">Meal Name</string>
+    <string name="meal_description_hint">Meal Description</string>
+    <string name="meal_price_hint">Meal Price</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>

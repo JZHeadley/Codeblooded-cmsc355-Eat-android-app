@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,28 +27,46 @@
         android:layout_below="@id/activity_container"
         android:padding="15dp">
 
-        <EditText
-            android:id="@+id/meal_name_input"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/meal_input_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:hint="@string/meal_name_hint"/>
+            android:fontFamily="sans-serif"
+            android:text="@string/appetizers_headline"
+            android:textColor="#f4ad42"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/meal_description_input"
+        <TextView
+            android:id="@+id/first_meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/meal_name_input"
+            android:layout_below="@id/meal_input_title"
             android:layout_marginBottom="15dp"
-            android:hint="@string/meal_description_hint"
-            android:inputType="textMultiLine"/>
+            android:background="@drawable/menu_kind"
+            android:text="First Meal"/>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/meal_description_input"
-            android:hint="@string/meal_price_hint"
-            android:inputType="numberDecimal"/>
+            android:layout_below="@id/first_meal">
+
+            <Button
+                android:id="@+id/delete_btn_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/delete_meal"/>
+
+            <Button
+                android:id="@+id/add_btn_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/add_meal"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/confirm_description"
