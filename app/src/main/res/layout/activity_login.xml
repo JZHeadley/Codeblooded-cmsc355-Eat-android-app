@@ -10,19 +10,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/login_prompt"
         android:textColor="@color/md_black_1000"
         android:textSize="20sp"
         />
 
+    <TextView
+        android:id="@+id/error_message_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prompt_login"
+        android:background="@drawable/back"
+        android:text="@string/error_message_login"
+        android:textColor="@color/md_red_900"
+        android:textColorHighlight="@color/md_red_900"
+        />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/prompt_login"
+        android:layout_below="@id/error_message_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="@string/e_mail_login"
         android:inputType="textEmailAddress"
@@ -33,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="@string/password_login"
         android:inputType="textPassword"
@@ -49,10 +61,19 @@
         />
 
     <Button
-        android:id="@+id/sign_up_btn"
+        android:id="@+id/forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/sign_in_btn"
+        android:onClick="onClick"
+        android:text="@string/forgot_password_login"
+        />
+
+    <Button
+        android:id="@+id/sign_up_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/forgot_password"
         android:layout_marginTop="20dp"
         android:onClick="onClick"
         android:text="@string/sign_up"

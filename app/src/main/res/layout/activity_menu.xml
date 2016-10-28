@@ -1,12 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/activity_container"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            android:layout="@layout/toolbar_main"/>
+
+        <FrameLayout
+            android:id="@+id/activity_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_container"
+        android:padding="15dp">
     <TextView
-        android:id="@+id/restaurant_menu_title"
+        android:id="@+id/restaurant_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The current state of the menu is pretty shabby...\n lets not talk about it" />
-</LinearLayout>
+        android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif"
+        android:text="Restaurant Name"
+        android:textColor="#f4ad42"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/restaurant_name_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_below="@id/restaurant_name_title"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="Restaurant Name Photo"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food"/>
+
+        <TextView
+            android:id="@+id/first_meal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/restaurant_name_photo"
+            android:background="@drawable/menu_kind"
+            android:text="First Meal Category"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

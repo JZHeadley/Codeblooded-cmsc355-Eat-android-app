@@ -64,6 +64,9 @@
     <string name="e_mail_login">E-mail</string>
     <string name="password_login">Password</string>
     <string name="login_prompt">Login:</string>
+    <string name="forgot_password_login">forgot password</string>
+    <string name="error_message_login">This is the error message.</string>
+    <string name="checkout_button">Checkout</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>
