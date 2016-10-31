@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 import retrofit2.Retrofit;

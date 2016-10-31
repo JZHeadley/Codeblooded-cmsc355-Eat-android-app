@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.presenter.NearbyRestaurantsPresenter;

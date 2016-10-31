@@ -1,19 +1,29 @@
 package com.jzheadley.eat.ui.base.presenter;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
+import com.jzheadley.eat.ui.profile.view.ProfileActivity;
 import com.jzheadley.eat.ui.settings.view.SettingsActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener;
@@ -24,17 +34,25 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
-public class BasePresenter {
+public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener {
 
-    public ProgressDialog progressDialog;
+    private static final String TAG = "BasePresenter";
+    private ProgressDialog progressDialog;
+    private GoogleApiClient googleApiClient;
     private BaseActivity baseActivity;
-
 
     public BasePresenter(BaseActivity baseActivity) {
         this.baseActivity = baseActivity;
-    }
-
-    public BasePresenter() {
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(baseActivity.getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(baseActivity)
+                // .enableAutoManage(baseActivity, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        googleApiClient.connect();
     }
 
     public Drawer createDrawer(final Toolbar toolbar, final BaseActivity activity) {
@@ -57,9 +75,6 @@ public class BasePresenter {
                                         return false;
                                     }
                                 }),
-                        // TODO: 10/10/2016 Wire Profile Click Listener up
-                        new SecondaryDrawerItem().withName(drawerItems[1])
-                                .withIcon(R.drawable.ic_account),
                         // TODO: 10/10/2016 Wire Maps Click Listener up
                         new SecondaryDrawerItem().withName(drawerItems[2])
                                 .withIcon(R.drawable.ic_place),
@@ -113,16 +128,33 @@ public class BasePresenter {
                         public boolean onItemClick(View view, int position,
                                                    IDrawerItem drawerItem) {
                             FirebaseAuth.getInstance().signOut();
-                            // Intent signInIntent = new Intent(toolbar.getContext(),
-                            // LoginActivity.class);
-                            // toolbar.getContext().startActivity(signInIntent);
+                            baseActivity.updateDrawer();
+                            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                                    new ResultCallback<Status>() {
+                                        @Override
+                                        public void onResult(@NonNull Status status) {
+                                            Log.d(TAG, "onResult: " + status.getStatusMessage());
+                                        }
+                                    });
                             return false;
                         }
                     })
             );
             drawer.addItemAtPosition(new ProfileDrawerItem()
-                    .withEmail(currentUser.getEmail())
-                    .withName(currentUser.getDisplayName()), 0);
+                            .withIcon(currentUser.getPhotoUrl())
+                            .withName(currentUser.getDisplayName())
+                            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                                @Override
+                                public boolean onItemClick(View view, int position,
+                                                           IDrawerItem drawerItem) {
+                                    Intent profileIntent = new Intent(
+                                            toolbar.getContext(),
+                                            ProfileActivity.class);
+                                    toolbar.getContext().startActivity(profileIntent);
+                                    return false;
+                                }
+                            }),
+                    0);
         } else {
             drawer.addItem(new SecondaryDrawerItem()
                     .withName("Sign In")
@@ -138,10 +170,12 @@ public class BasePresenter {
                     })
             );
         }
+
         return drawer;
     }
 
-    public void showProgressDialog() {
+
+    protected void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(baseActivity);
             progressDialog.setMessage(baseActivity.getString(R.string.loading));
@@ -158,4 +192,8 @@ public class BasePresenter {
     }
 
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

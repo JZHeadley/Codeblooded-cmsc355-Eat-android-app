@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.menu.view.RestaurantMenuActivity;
 import com.jzheadley.eat.ui.restaurantdetails.presenter.RestaurantDetailsPresenter;

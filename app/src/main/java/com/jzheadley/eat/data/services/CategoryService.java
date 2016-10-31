@@ -1,7 +1,7 @@
-package com.jzheadley.eat.data.models.services;
+package com.jzheadley.eat.data.services;
 
 
-import com.jzheadley.eat.data.models.services.api.CategoryApi;
+import com.jzheadley.eat.data.services.api.CategoryApi;
 
 public class CategoryService {
     //    private static final String SERVICE_ENDPOINT = "http://192.241.167.209:9000/categories";

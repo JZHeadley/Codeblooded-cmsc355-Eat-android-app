@@ -1,7 +1,7 @@
-package com.jzheadley.eat.data.models.services;
+package com.jzheadley.eat.data.services;
 
 
-import com.jzheadley.eat.data.models.services.api.UserApi;
+import com.jzheadley.eat.data.services.api.UserApi;
 
 public class EatUserService {
     //    private static final String SERVICE_ENDPOINT = "http://192.241.167.209:9000/users";

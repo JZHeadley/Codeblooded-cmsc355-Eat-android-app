@@ -10,10 +10,6 @@
                   android:layout_height="wrap_content"
                   android:orientation="vertical">
 
-        <include
-            android:id="@+id/toolbar"
-            android:layout="@layout/toolbar_main"/>
-
         <FrameLayout
             android:id="@+id/activity_content"
             android:layout_width="match_parent"
@@ -32,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif"
-        android:text="Restaurant Name"
+        android:text="@string/restaurant_name"
         android:textColor="#f4ad42"
         android:textSize="30sp"
         android:textStyle="bold"/>
@@ -43,7 +39,6 @@
             android:layout_height="150dp"
             android:layout_below="@id/restaurant_name_title"
             android:layout_marginBottom="15dp"
-            android:contentDescription="Restaurant Name Photo"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             android:src="@drawable/food"/>

@@ -1,14 +1,5 @@
 package com.jzheadley.eat.ui.login.view;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,10 +14,23 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenter;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenterImpl;
+import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView,
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -87,21 +91,21 @@ public class LoginActivity extends BaseActivity implements LoginView,
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+        googleApiClient.disconnect();
+        googleApiClient.stopAutoManage(this);
     }
 
     @Override
     public void onClick(View view) {
         int viewId = view.getId();
         Log.d(TAG, "onClick: SomeButtonGotClicked");
-        if (viewId == R.id.sign_in_btn) {
+        if (viewId == R.id.btn_login) {
             signIn();
-        } else if (viewId == R.id.sign_up_btn) {
+        } else if (viewId == R.id.btn_signup) {
             signUp();
         } else if (viewId == R.id.google_sign_in_btn) {
             Log.d(TAG, "onClick: GoogleSignIn");
             googleSignIn();
-        } else if (viewId == R.id.btn_sign_out) {
-            signOut();
         }
     }
 
@@ -120,12 +124,52 @@ public class LoginActivity extends BaseActivity implements LoginView,
     }
 
     private void signIn() {
+        EditText inputEmail = ((EditText) findViewById(R.id.email));
+        String email = inputEmail.getText().toString();
+        final EditText inputPassword = ((EditText) findViewById(R.id.password));
+        final String password = inputPassword.getText().toString();
 
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Enter email address!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        //authenticate user
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        progressBar.setVisibility(View.GONE);
+                        if (!task.isSuccessful()) {
+                            // there was an error
+                            if (password.length() < 6) {
+                                inputPassword.setError(getString(R.string.minimum_password));
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(),
+                                    NearbyRestaurantActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "LoginActivity Connection Failed: " + connectionResult.getErrorMessage());
+
     }
 
 
@@ -142,7 +186,9 @@ public class LoginActivity extends BaseActivity implements LoginView,
             Log.d(TAG, "onActivityResult: " + result.isSuccess());
             Log.d(TAG, "onActivityResult: " + result.getSignInAccount());
             firebaseAuthWithGoogle(result.getSignInAccount());
+            startActivity(new Intent(getApplicationContext(), NearbyRestaurantActivity.class));
         }
+
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

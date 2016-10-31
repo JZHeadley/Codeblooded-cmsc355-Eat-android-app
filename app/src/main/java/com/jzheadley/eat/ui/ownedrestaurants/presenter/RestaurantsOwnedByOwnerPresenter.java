@@ -6,8 +6,8 @@ import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.models.User;
-import com.jzheadley.eat.data.models.services.EatUserService;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.EatUserService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 
 import rx.Observer;

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenter;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;

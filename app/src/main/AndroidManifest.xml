@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.jzheadley.eat">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.jzheadley.eat">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -20,46 +20,50 @@
             android:name=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.restaurantdetails.view.RestaurantDetailsActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
+
+        <activity
+            android:name=".ui.profile.view.ProfileActivity"
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
             android:name=".ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
             android:name=".ui.help.view.HelpActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
             android:name=".ui.settings.view.SettingsActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
             android:name=".ui.restaurantcreation.view.RestaurantCreationActivity"
-            android:parentActivityName=".ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity" />
+            android:parentActivityName=".ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity"/>
 
         <activity
             android:name=".ui.menu.view.RestaurantMenuActivity"
-            android:parentActivityName=".ui.restaurantdetails.view.RestaurantDetailsActivity" />
+            android:parentActivityName=".ui.restaurantdetails.view.RestaurantDetailsActivity"/>
 
         <activity
             android:name=".ui.restaurantcreation.view.OpeningHoursActivity"
-            android:parentActivityName=".ui.restaurantcreation.view.RestaurantCreationActivity" />
+            android:parentActivityName=".ui.restaurantcreation.view.RestaurantCreationActivity"/>
 
         <activity
             android:name=".ui.login.view.LoginActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />
+            android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a"/>
     </application>
 
 </manifest>

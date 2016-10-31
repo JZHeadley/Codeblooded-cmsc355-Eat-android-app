@@ -1,4 +1,4 @@
-package com.jzheadley.eat.data.models.services;
+package com.jzheadley.eat.data.services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

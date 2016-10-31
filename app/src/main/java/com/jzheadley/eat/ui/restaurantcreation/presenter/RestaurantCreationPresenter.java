@@ -4,7 +4,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.services.RestaurantService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
 import com.jzheadley.eat.utils.Constants;
 import com.sakebook.android.uploadhelper.UploadTaskCallback;

@@ -1,4 +1,4 @@
-package com.jzheadley.eat.data.models.services.api;
+package com.jzheadley.eat.data.services.api;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.models.User;

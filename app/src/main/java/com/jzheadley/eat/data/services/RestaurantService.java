@@ -1,6 +1,6 @@
-package com.jzheadley.eat.data.models.services;
+package com.jzheadley.eat.data.services;
 
-import com.jzheadley.eat.data.models.services.api.RestaurantApi;
+import com.jzheadley.eat.data.services.api.RestaurantApi;
 
 public class RestaurantService {
     //    private static final String SERVICE_ENDPOINT = "http://192.241.167.209:9000/";
