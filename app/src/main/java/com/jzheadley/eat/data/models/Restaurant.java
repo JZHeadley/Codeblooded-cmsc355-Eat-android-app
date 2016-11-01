@@ -144,10 +144,10 @@ public class Restaurant implements Parcelable {
     @Override
     public String toString() {
         return "Restaurant{"
-                + "name='" + name + '\''
-                + ", pictureurl='" + pictureurl + '\''
-                + ", links=" + links
-                + '}';
+            + "name='" + name + '\''
+            + ", pictureurl='" + pictureurl + '\''
+            + ", links=" + links
+            + '}';
     }
 
     public User getUser() {

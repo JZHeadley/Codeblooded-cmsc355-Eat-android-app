@@ -45,8 +45,8 @@ public class Profile implements Parcelable {
     @Override
     public String toString() {
         return "Profile{"
-                + "href='" + href + '\''
-                + '}';
+            + "href='" + href + '\''
+            + '}';
     }
 
     @Override

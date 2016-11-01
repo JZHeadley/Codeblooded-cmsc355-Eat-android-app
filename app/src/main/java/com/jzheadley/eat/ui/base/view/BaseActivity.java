@@ -72,7 +72,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
     public void setContentView(int layoutResId) {
         LinearLayout fullView =
-                (LinearLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
+            (LinearLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResId, activityContainer, true);
         super.setContentView(fullView);
@@ -103,7 +103,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     }
 
     public void updateDrawer() {
-
         drawer = basePresenter.createDrawer(toolbar, this);
     }
 

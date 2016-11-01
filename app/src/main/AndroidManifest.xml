@@ -61,6 +61,14 @@
             android:name=".ui.login.view.LoginActivity"
             android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
+        <activity
+            android:name=".ui.signup.view.SignupActivity"
+            android:parentActivityName=".ui.login.view.LoginActivity"/>
+
+        <activity
+            android:name=".ui.resetpassword.view.ResetPasswordActivity"
+            android:parentActivityName=".ui.login.view.LoginActivity"/>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a"/>

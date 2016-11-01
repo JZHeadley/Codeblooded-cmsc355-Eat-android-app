@@ -79,6 +79,9 @@
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="profile_placeholder_txt">You should be seeing some general information about your profile and should be able to edit some of it here.</string>
     <string name="restaurant_name">Restaurant Name</string>
+    <string name="btn_link_to_login">Not a member? Get registered Now!</string>
+    <string name="action_sign_in_short">Register</string>
+    <string name="email">Email</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>

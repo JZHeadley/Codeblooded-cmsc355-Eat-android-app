@@ -33,37 +33,37 @@ public class NearbyRestaurantsPresenter {
 
     public void loadRestaurants() {
         restaurantService.getRestaurantApi()
-                .getRestaurants()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseEntity>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: Restaurant Loading completed");
-                    }
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+                    Log.d(TAG, "onCompleted: Restaurant Loading completed");
+                }
 
-                    @Override
-                    public void onError(Throwable exception) {
-                        Log.e(TAG, "onError: loadRestaurants has Failed");
-                        Toast.makeText(nearbyRestaurantActivity,
-                                "Eat appears to be down.  Please try again later!",
-                                Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onError: " + exception.getLocalizedMessage());
-                    }
+                @Override
+                public void onError(Throwable exception) {
+                    Log.e(TAG, "onError: loadRestaurants has Failed");
+                    Toast.makeText(nearbyRestaurantActivity,
+                        "Eat appears to be down.  Please try again later!",
+                        Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onError: " + exception.getLocalizedMessage());
+                }
 
-                    @Override
-                    public void onNext(ResponseEntity responseEntity) {
-                        Log.d(TAG, "onNext: " + responseEntity);
-                        nearbyRestaurantActivity.displayRestaurants(
-                                responseEntity.getEmbedded().getRestaurants());
-                    }
-                });
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    Log.d(TAG, "onNext: " + responseEntity);
+                    nearbyRestaurantActivity.displayRestaurants(
+                        responseEntity.getEmbedded().getRestaurants());
+                }
+            });
     }
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) nearbyRestaurantActivity
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+            = (ConnectivityManager) nearbyRestaurantActivity
+            .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

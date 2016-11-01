@@ -10,7 +10,7 @@ public class RestaurantService {
 
     public RestaurantService() {
         restaurantApi = ServiceFactory
-                .createRetrofitDebugService(RestaurantApi.class, SERVICE_ENDPOINT);
+            .createRetrofitDebugService(RestaurantApi.class, SERVICE_ENDPOINT);
     }
 
     public RestaurantApi getRestaurantApi() {

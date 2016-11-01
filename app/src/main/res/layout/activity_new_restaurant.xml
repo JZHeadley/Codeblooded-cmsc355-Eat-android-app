@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:contentDescription="@string/card_image"
             android:onClick="onNewRestaurantImageClick"
             android:scaleType="centerCrop"
-            android:src="@drawable/restaurant_placeholder" />
+            android:src="@drawable/restaurant_placeholder"/>
 
         <EditText
             android:id="@+id/restaurant_creation_name"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/restaurant_creation_add_photo"
             android:hint="@string/name_hint"
-            android:inputType="text" />
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/restaurant_creation_address"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/restaurant_creation_name"
             android:hint="@string/address_hint"
-            android:inputType="text" />
+            android:inputType="text"/>
 
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="11dp"
                 android:layout_marginRight="11dp"
                 android:hint="@string/city_hint"
-                android:inputType="text" />
+                android:inputType="text"/>
 
             <EditText
                 android:id="@+id/restaurant_creation_state"
@@ -59,14 +59,14 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginStart="30dp"
                 android:hint="@string/state_hint"
-                android:inputType="text" />
+                android:inputType="text"/>
 
             <EditText
                 android:id="@+id/restaurant_creation_zipcode"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/zipcode_hint"
-                android:inputType="number" />
+                android:inputType="number"/>
 
 
         </LinearLayout>
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_line1"
-            android:hint="@string/add_restaurant_country_hint" />
+            android:hint="@string/add_restaurant_country_hint"/>
 
         <EditText
             android:id="@+id/restaurant_creation_description"
@@ -85,7 +85,7 @@
             android:layout_below="@+id/restaurant_creation_country_spinner"
             android:hint="@string/description_restaurant"
             android:lines="2"
-            android:maxLines="4" />
+            android:maxLines="4"/>
 
         <Button
             android:id="@+id/restaurant_creation_hours"
@@ -93,27 +93,27 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_creation_description"
             android:onClick="onMenuHoursButtonClick"
-            android:text="@string/hours_restaurant" />
+            android:text="@string/hours_restaurant"/>
 
         <com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView
-            android:id="@+id/restaurant_creation_type_of_food_check_group"
+            android:id="@+id/restaurant_food_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_creation_hours"
-            android:orientation="vertical" />
+            android:orientation="vertical"/>
 
         <Button
             android:id="@+id/submit_new_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@id/restaurant_creation_type_of_food_check_group"
+            android:layout_below="@id/restaurant_food_type"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
             android:onClick="onSubmitButton"
             android:text="@string/done_button"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
 
     </RelativeLayout>

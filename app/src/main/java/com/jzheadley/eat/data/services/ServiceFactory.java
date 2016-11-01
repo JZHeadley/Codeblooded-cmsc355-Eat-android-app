@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 class ServiceFactory {
     public static <T> T createRetrofitService(final Class<T> clazz, final String endPoint) {
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(endPoint)
-                .build();
+            .baseUrl(endPoint)
+            .build();
         return retrofit.create(clazz);
     }
 
@@ -25,15 +25,15 @@ class ServiceFactory {
         builder.networkInterceptors().add(httpLoggingInterceptor);
         builder.build();
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .create();
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+            .create();
         OkHttpClient okHttpClient = builder.build();
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(endPoint)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(okHttpClient)
-                .build();
+            .baseUrl(endPoint)
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build();
         return retrofit.create(clazz);
     }
 }

@@ -6,10 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
-
 public class User implements Parcelable {
-    public static final Creator<User> CREATOR = new Creator<User>() {
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);
@@ -23,70 +22,62 @@ public class User implements Parcelable {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("firebaseId")
+    @Expose
+    private String firebaseId;
     @SerializedName("_links")
     @Expose
     private Links links;
-    @SerializedName("href")
-    @Expose
-    private String href;
-    @SerializedName("restaurants")
-    @Expose
-    private List<Restaurant> restaurants;
 
-    public User(String name, Links links) {
-
-        this.name = name;
-        this.links = links;
+    public User() {
     }
 
-    public User(String name) {
-
-        this.name = name;
-    }
-
-    public User(String name, Links links, String href) {
-        this.name = name;
-        this.links = links;
-        this.href = href;
-    }
-
-    private User(Parcel in) {
+    protected User(Parcel in) {
         this.name = in.readString();
+        this.firebaseId = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
-        this.href = in.readString();
     }
 
+    /**
+     * @return The name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name The name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return The firebaseId
+     */
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    /**
+     * @param firebaseId The firebaseId
+     */
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
+    }
+
+    /**
+     * @return The links
+     */
     public Links getLinks() {
         return links;
     }
 
+    /**
+     * @param links The _links
+     */
     public void setLinks(Links links) {
         this.links = links;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
-
-    @Override
-    public String toString() {
-        return "User{"
-                + "name='" + name + '\''
-                + ", links=" + links
-                + ", href='" + href + '\''
-                + '}';
     }
 
     @Override
@@ -97,15 +88,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
+        dest.writeString(this.firebaseId);
         dest.writeParcelable(this.links, flags);
-        dest.writeString(this.href);
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
     }
 }

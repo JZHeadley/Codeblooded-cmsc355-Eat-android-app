@@ -22,24 +22,24 @@ public class RestaurantDetailsPresenter {
 
     public void loadRestaurantDetails(int restaurantId) {
         restaurantService.getRestaurantApi()
-                .getRestaurantById(restaurantId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Restaurant>() {
-                    @Override
-                    public void onCompleted() {
+            .getRestaurantById(restaurantId)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Restaurant>() {
+                @Override
+                public void onCompleted() {
 
-                    }
+                }
 
-                    @Override
-                    public void onError(Throwable error) {
+                @Override
+                public void onError(Throwable error) {
 
-                    }
+                }
 
-                    @Override
-                    public void onNext(Restaurant restaurant) {
-                        restaurantDetailsActivity.displayRestaurant(restaurant);
-                    }
-                });
+                @Override
+                public void onNext(Restaurant restaurant) {
+                    restaurantDetailsActivity.displayRestaurant(restaurant);
+                }
+            });
     }
 }

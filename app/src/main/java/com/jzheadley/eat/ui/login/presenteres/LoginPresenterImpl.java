@@ -50,19 +50,19 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+            .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(loginActivity, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        hideProgressDialog();
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "signInWithCredential", task.getException());
+                        Toast.makeText(loginActivity, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
                     }
-                });
+                    hideProgressDialog();
+                }
+            });
     }
 
     @Override
@@ -73,11 +73,11 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
     @Override
     public void signOut(GoogleApiClient googleApiClient) {
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        Log.d(TAG, "onResult: " + status.getStatusMessage());
-                    }
-                });
+            new ResultCallback<Status>() {
+                @Override
+                public void onResult(Status status) {
+                    Log.d(TAG, "onResult: " + status.getStatusMessage());
+                }
+            });
     }
 }

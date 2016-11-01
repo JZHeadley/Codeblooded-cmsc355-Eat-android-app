@@ -1,5 +1,7 @@
 package com.jzheadley.eat.ui.restaurantcreation.view;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -18,7 +20,9 @@ import android.widget.Spinner;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
+import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView;
 import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPresenter;
@@ -38,6 +42,7 @@ public class RestaurantCreationActivity extends BaseActivity {
     private RestaurantService restaurantService;
     private Restaurant restaurant;
     private String imgurPhotoUrl = "";
+    private UserService userService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +50,9 @@ public class RestaurantCreationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_restaurant);
         restaurantService = new RestaurantService();
-        restaurantCreationPresenter = new RestaurantCreationPresenter(this, restaurantService);
+        userService = new UserService();
+        restaurantCreationPresenter = new RestaurantCreationPresenter(this,
+            restaurantService, userService);
         createFoodTypeCheckBoxes();
         setupCountrySpinner();
         restaurant = new Restaurant();
@@ -65,14 +72,14 @@ public class RestaurantCreationActivity extends BaseActivity {
         Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
         Spinner countrySpinner = (Spinner) findViewById(R.id.restaurant_creation_country_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, countries);
+            android.R.layout.simple_spinner_item, countries);
         countrySpinner.setAdapter(adapter);
         countrySpinner.setSelection(adapter.getPosition("United States"));
     }
 
     private void createFoodTypeCheckBoxes() {
         CheckBoxGroupView checkBoxGroup = (CheckBoxGroupView)
-                findViewById(R.id.restaurant_creation_type_of_food_check_group);
+            findViewById(R.id.restaurant_food_type);
         for (String str : getResources().getStringArray(R.array.types_of_food)) {
             CheckBox checkbox = new CheckBox(getApplicationContext());
             checkbox.setText(str);
@@ -87,7 +94,7 @@ public class RestaurantCreationActivity extends BaseActivity {
         imageGalleryChooserIntent.setType("image/*");
         imageGalleryChooserIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(imageGalleryChooserIntent, "Select Picture"),
-                PICK_IMAGE_REQUEST);
+            PICK_IMAGE_REQUEST);
     }
 
     @Override
@@ -107,9 +114,9 @@ public class RestaurantCreationActivity extends BaseActivity {
                     Log.d(TAG, "onActivityResult: I think it uploaded?");
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
-                                pathToFile);
+                            pathToFile);
                         ImageView imageView = (ImageView)
-                                findViewById(R.id.restaurant_creation_add_photo);
+                            findViewById(R.id.restaurant_creation_add_photo);
                         imageView.setImageBitmap(bitmap);
                     } catch (IOException error) {
                         error.printStackTrace();
@@ -128,25 +135,32 @@ public class RestaurantCreationActivity extends BaseActivity {
         imgurPhotoUrl = url;
     }
 
+    public void setRestaurantUser(User restaurantUser) {
+        restaurant.setUser(restaurantUser);
+    }
 
     public void onSubmitButton(View view) {
         // TODO: 10/11/2016 Figure out how to represent menuHours in the database and add them
         Log.d(TAG, "onSubmitButton: " + ((EditText)
-                findViewById(R.id.restaurant_creation_address)).getText().toString());
+            findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setAddress(((EditText)
-                findViewById(R.id.restaurant_creation_address)).getText().toString());
+            findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setCity(((EditText)
-                findViewById(R.id.restaurant_creation_city)).getText().toString());
+            findViewById(R.id.restaurant_creation_city)).getText().toString());
         restaurant.setCountry(((Spinner)
-                findViewById(R.id.restaurant_creation_country_spinner))
-                .getSelectedItem().toString());
+            findViewById(R.id.restaurant_creation_country_spinner))
+            .getSelectedItem().toString());
         restaurant.setDescription(((EditText)
-                findViewById(R.id.restaurant_creation_description)).getText().toString());
+            findViewById(R.id.restaurant_creation_description)).getText().toString());
         restaurant.setName(((EditText)
-                findViewById(R.id.restaurant_creation_name)).getText().toString());
+            findViewById(R.id.restaurant_creation_name)).getText().toString());
         restaurant.setZipcode(((EditText)
-                findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
+            findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
         restaurant.setPictureurl(imgurPhotoUrl);
+        restaurantCreationPresenter.getUserByFirebaseId(FirebaseAuth.getInstance()
+            .getCurrentUser().getUid());
+
+
         restaurantCreationPresenter.postRestaurant(restaurant);
         finish();
     }

@@ -31,9 +31,10 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenter;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenterImpl;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
+import com.jzheadley.eat.ui.signup.view.SignupActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView,
-        GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_SIGN_GOOGLE = 9001;
     private static final String TAG = "LoginActivity";
     private SignInButton signInButton;
@@ -55,15 +56,15 @@ public class LoginActivity extends BaseActivity implements LoginView,
         auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build();
         googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */,
-                        this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+            .enableAutoManage(this /* FragmentActivity */,
+                this /* OnConnectionFailedListener */)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .build();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -102,16 +103,13 @@ public class LoginActivity extends BaseActivity implements LoginView,
         if (viewId == R.id.btn_login) {
             signIn();
         } else if (viewId == R.id.btn_signup) {
-            signUp();
+            startActivity(new Intent(getApplicationContext(), SignupActivity.class));
         } else if (viewId == R.id.google_sign_in_btn) {
             Log.d(TAG, "onClick: GoogleSignIn");
             googleSignIn();
         }
     }
 
-    private void signUp() {
-
-    }
 
     private void googleSignIn() {
         Log.d(TAG, "googleSignIn: Made it to the sign in method");
@@ -131,7 +129,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!",
-                    Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {
@@ -141,29 +139,28 @@ public class LoginActivity extends BaseActivity implements LoginView,
         progressBar.setVisibility(View.VISIBLE);
         //authenticate user
         auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        progressBar.setVisibility(View.GONE);
-                        if (!task.isSuccessful()) {
-                            // there was an error
-                            if (password.length() < 6) {
-                                inputPassword.setError(getString(R.string.minimum_password));
-                            } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
-                                        Toast.LENGTH_LONG).show();
-                            }
+            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    progressBar.setVisibility(View.GONE);
+                    if (!task.isSuccessful()) {
+                        if (password.length() < 6) {
+                            inputPassword.setError(getString(R.string.minimum_password));
                         } else {
-                            Intent intent = new Intent(getApplicationContext(),
-                                    NearbyRestaurantActivity.class);
-                            startActivity(intent);
-                            finish();
+                            Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
+                                Toast.LENGTH_LONG).show();
                         }
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(),
+                            NearbyRestaurantActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
-                });
+                }
+            });
     }
 
     @Override
@@ -180,6 +177,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         // google
         if (requestCode == REQUEST_SIGN_GOOGLE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -193,29 +191,25 @@ public class LoginActivity extends BaseActivity implements LoginView,
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
         showLoading(true);
-        // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        // [START_EXCLUDE]
-                        showLoading(false);
-                        // [END_EXCLUDE]
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "signInWithCredential", task.getException());
+                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
                     }
-                });
+                    showLoading(false);
+                }
+            });
     }
 }
