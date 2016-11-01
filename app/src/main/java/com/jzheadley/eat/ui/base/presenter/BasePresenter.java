@@ -33,6 +33,9 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -60,7 +63,6 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
             .getStringArray(R.array.navigation_drawer_options);
         Drawer drawer = new DrawerBuilder()
             .withActivity(activity)
-            // .withToolbar(toolbar)
             .withDisplayBelowStatusBar(true)
             .addDrawerItems(
                 new PrimaryDrawerItem().withName(drawerItems[0])
@@ -197,5 +199,123 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
 
     }
 
+    public List<IDrawerItem> getDrawerItems(final Toolbar toolbar, BaseActivity activity) {
+        String[] drawerItemsTextFields = activity.getResources()
+            .getStringArray(R.array.navigation_drawer_options);
+
+        List<IDrawerItem> drawerItems = new ArrayList<>();
+
+        drawerItems.add(new PrimaryDrawerItem().withName(drawerItemsTextFields[0])
+            .withIcon(R.drawable.ic_home)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(
+                    View view, int position, IDrawerItem drawerItem) {
+                    Intent nearbyRestaurantsIntent = new Intent(toolbar
+                        .getContext(), NearbyRestaurantActivity.class);
+                    toolbar.getContext().startActivity(nearbyRestaurantsIntent);
+                    return false;
+                }
+            }));
+
+        // TODO: 10/10/2016 Wire Maps Click Listener up
+        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[2])
+            .withIcon(R.drawable.ic_place));
+
+        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[3])
+            .withIcon(R.drawable.ic_settings)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position,
+                                           IDrawerItem drawerItem) {
+                    Intent settingsIntent = new Intent(toolbar.getContext(),
+                        SettingsActivity.class);
+                    toolbar.getContext().startActivity(settingsIntent);
+                    return false;
+                }
+            }));
+
+        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[4])
+            .withIcon(R.drawable.ic_help)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position,
+                                           IDrawerItem drawerItem) {
+                    Intent helpIntent = new Intent(toolbar.getContext(),
+                        HelpActivity.class);
+                    toolbar.getContext().startActivity(helpIntent);
+                    return false;
+                }
+            }));
+
+        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
+            .withIcon(R.drawable.ic_restaurant)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position,
+                                           IDrawerItem drawerItem) {
+                    Intent restaurantOwnerIntent = new Intent(
+                        toolbar.getContext(),
+                        RestaurantsOwnedByOwnerActivity.class);
+                    toolbar.getContext().startActivity(restaurantOwnerIntent);
+
+                    return false;
+                }
+            }));
+
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            drawerItems.add(new SecondaryDrawerItem()
+                .withName("Sign Out")
+                .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position,
+                                               IDrawerItem drawerItem) {
+                        FirebaseAuth.getInstance().signOut();
+                        baseActivity.updateDrawer();
+                        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                            new ResultCallback<Status>() {
+                                @Override
+                                public void onResult(@NonNull Status status) {
+                                    Log.d(TAG, "onResult: " + status.getStatusMessage());
+                                }
+                            });
+                        return false;
+                    }
+                })
+            );
+            drawerItems.add(0, new ProfileDrawerItem()
+                .withIcon(currentUser.getPhotoUrl())
+                .withName(currentUser.getDisplayName())
+                .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position,
+                                               IDrawerItem drawerItem) {
+                        Intent profileIntent = new Intent(
+                            toolbar.getContext(),
+                            ProfileActivity.class);
+                        toolbar.getContext().startActivity(profileIntent);
+                        return false;
+                    }
+                }));
+        } else {
+            drawerItems.add(new SecondaryDrawerItem()
+                .withName("Sign In")
+                .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position,
+                                               IDrawerItem drawerItem) {
+                        Intent signInIntent = new Intent(toolbar.getContext(),
+                            LoginActivity.class);
+                        toolbar.getContext().startActivity(signInIntent);
+                        return false;
+                    }
+                })
+            );
+        }
+
+        return drawerItems;
+    }
 
 }

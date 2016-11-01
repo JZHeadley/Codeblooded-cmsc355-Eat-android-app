@@ -103,7 +103,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     }
 
     public void updateDrawer() {
-        drawer = basePresenter.createDrawer(toolbar, this);
+        drawer.setItems(basePresenter.getDrawerItems(toolbar, this));
     }
 
 }
