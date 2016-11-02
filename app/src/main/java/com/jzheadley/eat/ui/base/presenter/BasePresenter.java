@@ -9,13 +9,13 @@ import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
@@ -40,7 +40,7 @@ import java.util.List;
 public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "BasePresenter";
-    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
     private GoogleApiClient googleApiClient;
     private BaseActivity baseActivity;
 
@@ -103,7 +103,13 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
                             toolbar.getContext().startActivity(helpIntent);
                             return false;
                         }
-                    }),
+                    })
+            )
+            .withDrawerGravity(Gravity.END)
+            .build();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            drawer.addItem(
                 new SecondaryDrawerItem().withName(drawerItems[5])
                     .withIcon(R.drawable.ic_restaurant)
                     .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
@@ -117,12 +123,7 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
 
                             return false;
                         }
-                    })
-            )
-            .withDrawerGravity(Gravity.END)
-            .build();
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
+                    }));
             drawer.addItem(new SecondaryDrawerItem()
                 .withName("Sign Out")
                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
@@ -142,6 +143,7 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
                     }
                 })
             );
+
             drawer.addItemAtPosition(new ProfileDrawerItem()
                     .withIcon(currentUser.getPhotoUrl())
                     .withName(currentUser.getDisplayName())
@@ -177,19 +179,19 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
     }
 
 
-    protected void showProgressDialog() {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(baseActivity);
-            progressDialog.setMessage(baseActivity.getString(R.string.loading));
-            progressDialog.setIndeterminate(true);
+    public void showProgress() {
+        if (progressBar == null) {
+            progressBar = new ProgressBar(baseActivity);
+            // progressDialog.setMessage(baseActivity.getString(R.string.loading));
+            progressBar.setIndeterminate(true);
         }
 
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+    public void hideProgress() {
+        if (progressBar != null && progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -248,24 +250,23 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
                 }
             }));
 
-        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
-            .withIcon(R.drawable.ic_restaurant)
-            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
-                @Override
-                public boolean onItemClick(View view, int position,
-                                           IDrawerItem drawerItem) {
-                    Intent restaurantOwnerIntent = new Intent(
-                        toolbar.getContext(),
-                        RestaurantsOwnedByOwnerActivity.class);
-                    toolbar.getContext().startActivity(restaurantOwnerIntent);
-
-                    return false;
-                }
-            }));
-
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
+            drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
+                .withIcon(R.drawable.ic_restaurant)
+                .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position,
+                                               IDrawerItem drawerItem) {
+                        Intent restaurantOwnerIntent = new Intent(
+                            toolbar.getContext(),
+                            RestaurantsOwnedByOwnerActivity.class);
+                        toolbar.getContext().startActivity(restaurantOwnerIntent);
+
+                        return false;
+                    }
+                }));
             drawerItems.add(new SecondaryDrawerItem()
                 .withName("Sign Out")
                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
@@ -299,6 +300,7 @@ public class BasePresenter implements GoogleApiClient.OnConnectionFailedListener
                         return false;
                     }
                 }));
+
         } else {
             drawerItems.add(new SecondaryDrawerItem()
                 .withName("Sign In")
