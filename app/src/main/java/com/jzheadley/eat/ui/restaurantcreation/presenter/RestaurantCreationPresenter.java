@@ -3,7 +3,6 @@ package com.jzheadley.eat.ui.restaurantcreation.presenter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
@@ -31,6 +30,7 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
     }
 
     public void postRestaurant(Restaurant restaurant) {
+        Log.d(TAG, "postRestaurant: " + restaurant);
         restaurantService.getRestaurantApi()
             .createRestaurant(restaurant)
             .subscribeOn(Schedulers.newThread())
@@ -38,7 +38,7 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
             .subscribe(new Observer<Void>() {
                 @Override
                 public void onCompleted() {
-
+                    Log.d(TAG, "onCompleted: Restaurant Post Completed");
                 }
 
                 @Override
@@ -77,28 +77,28 @@ public class RestaurantCreationPresenter implements UploadTaskCallback {
             Toast.LENGTH_LONG).show();
     }
 
-    public void getUserByFirebaseId(String firebaseId) {
+    public void getUserByFirebaseId(String firebaseId, final Restaurant restaurant) {
         userService.getUserApi()
             .getUserByFirebaseId(firebaseId)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<ResponseEntity>() {
+            .subscribe(new Observer<User>() {
                 @Override
                 public void onCompleted() {
-
+                    Log.i(TAG, "onCompleted: User Found");
                 }
 
                 @Override
                 public void onError(Throwable exception) {
-
+                    Log.e(TAG, "onError: User Not Found", exception);
                 }
 
                 @Override
-                public void onNext(ResponseEntity responseEntity) {
-                    User user =
-                        responseEntity.getEmbedded().getUsers().get(0);
-                    Log.d(TAG, "onNext: " + user);
-                    restaurantCreationActivity.setRestaurantUser(user);
+                public void onNext(User user) {
+                    // restaurant.setUser(user);
+                    int userId = Integer.parseInt(user.getLinks().getSelf().getHref().replace("http://192.99.0.20:9000/users/", ""));
+                    restaurant.setOwnerId(userId);
+                    postRestaurant(restaurant);
                 }
             });
 

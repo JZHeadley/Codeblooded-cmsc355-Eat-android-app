@@ -28,6 +28,8 @@ class ServiceFactory {
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create();
         OkHttpClient okHttpClient = builder.build();
+
+
         final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(endPoint)
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

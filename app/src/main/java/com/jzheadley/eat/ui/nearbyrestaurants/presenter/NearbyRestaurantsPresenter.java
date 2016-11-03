@@ -8,26 +8,24 @@ import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.services.RestaurantService;
+import com.jzheadley.eat.ui.base.presenter.BasePresenter;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
-import retrofit2.Retrofit;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class NearbyRestaurantsPresenter {
+public class NearbyRestaurantsPresenter extends BasePresenter {
     private static final String TAG = "NearbyRestaurantsPrsntr";
-
 
     private NearbyRestaurantActivity nearbyRestaurantActivity;
     private RestaurantService restaurantService;
-    private Retrofit retrofit;
 
     public NearbyRestaurantsPresenter(NearbyRestaurantActivity nearbyRestaurantActivity,
                                       RestaurantService restaurantService) {
+        super(nearbyRestaurantActivity);
         this.nearbyRestaurantActivity = nearbyRestaurantActivity;
         this.restaurantService = restaurantService;
-        // retrofit = retrofit;
     }
 
 
@@ -53,7 +51,6 @@ public class NearbyRestaurantsPresenter {
 
                 @Override
                 public void onNext(ResponseEntity responseEntity) {
-                    Log.d(TAG, "onNext: " + responseEntity);
                     nearbyRestaurantActivity.displayRestaurants(
                         responseEntity.getEmbedded().getRestaurants());
                 }
@@ -67,4 +64,6 @@ public class NearbyRestaurantsPresenter {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+
 }

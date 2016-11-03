@@ -2,7 +2,6 @@ package com.jzheadley.eat.data.services.api;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.User;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -25,11 +24,7 @@ public interface RestaurantApi {
     @GET("restaurants/")
     Observable<ResponseEntity> getRestaurants(@Query("size") int numberOfItems);
 
-    @GET("restaurants/search/findByRestaurantOwner/")
-    Observable<ResponseEntity> getRestaurantsByRestaurantOwner(
-        @Body User restaurantOwner);
-
-    @GET("restaurants/search/findByRestaurantOwnerId")
+    @GET("restaurants/search/findByOwnerId")
     Observable<ResponseEntity> getRestaurantsByOwnerId(
         @Query("restaurantOwnerId") int restaurantOwnerId);
 }

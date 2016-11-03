@@ -20,6 +20,9 @@ public class Restaurant implements Parcelable {
             return new Restaurant[size];
         }
     };
+    @SerializedName("ownerId")
+    @Expose
+    private Integer ownerId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -44,25 +47,26 @@ public class Restaurant implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
-    @SerializedName("restaurantOwner")
-    @Expose
-    private User user;
+    // @SerializedName("restaurantOwner")
+    // @Expose
+    // private User user;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String pictureurl, String location, String description,
-                      String zipcode, String address, String city,
-                      String country, Links links, User user) {
+    public Restaurant(String name, String pictureurl, String location, Integer ownerId,
+                      String description, String zipcode, String address, String city,
+                      String country, Links links) {
         this.name = name;
         this.pictureurl = pictureurl;
+        this.ownerId = ownerId;
         this.description = description;
         this.zipcode = zipcode;
         this.address = address;
         this.city = city;
         this.country = country;
         this.links = links;
-        this.user = user;
+        // this.user = user;
     }
 
     protected Restaurant(Parcel in) {
@@ -74,7 +78,6 @@ public class Restaurant implements Parcelable {
         this.country = in.readString();
         this.pictureurl = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
-        this.user = in.readParcelable(User.class.getClassLoader());
     }
 
     public String getName() {
@@ -150,14 +153,6 @@ public class Restaurant implements Parcelable {
             + '}';
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -173,7 +168,14 @@ public class Restaurant implements Parcelable {
         dest.writeString(this.country);
         dest.writeString(this.pictureurl);
         dest.writeParcelable(this.links, flags);
-        dest.writeParcelable(this.user, flags);
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 }
 

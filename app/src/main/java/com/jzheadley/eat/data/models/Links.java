@@ -8,7 +8,7 @@ import android.os.Parcelable;
 
 public class Links implements Parcelable {
 
-    public static final Parcelable.Creator<Links> CREATOR = new Parcelable.Creator<Links>() {
+    public static final Creator<Links> CREATOR = new Creator<Links>() {
         @Override
         public Links createFromParcel(Parcel source) {
             return new Links(source);
@@ -43,7 +43,7 @@ public class Links implements Parcelable {
     @SerializedName("menus")
     @Expose
     private Menus menus;
-    @SerializedName("user")
+    @SerializedName(value = "user")
     @Expose
     private User user;
     @SerializedName("restaurants")
@@ -64,7 +64,7 @@ public class Links implements Parcelable {
         this.menuItems = menuItems;
     }
 
-    private Links(Parcel in) {
+    protected Links(Parcel in) {
         this.self = in.readParcelable(Self.class.getClassLoader());
         this.menuItem = in.readParcelable(MenuItem.class.getClassLoader());
         this.category = in.readParcelable(Category.class.getClassLoader());
@@ -73,6 +73,8 @@ public class Links implements Parcelable {
         this.categories = in.readParcelable(Categories.class.getClassLoader());
         this.restaurant = in.readParcelable(Restaurant.class.getClassLoader());
         this.menus = in.readParcelable(Menus.class.getClassLoader());
+        this.user = in.readParcelable(User.class.getClassLoader());
+        this.restaurants = in.readParcelable(Restaurants.class.getClassLoader());
     }
 
     public Self getSelf() {
@@ -153,6 +155,22 @@ public class Links implements Parcelable {
             + '}';
     }
 
+    public Restaurants getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Restaurants restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -168,21 +186,7 @@ public class Links implements Parcelable {
         dest.writeParcelable(this.categories, flags);
         dest.writeParcelable(this.restaurant, flags);
         dest.writeParcelable(this.menus, flags);
-    }
-
-    public Restaurants getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(Restaurants restaurants) {
-        this.restaurants = restaurants;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        dest.writeParcelable(this.user, flags);
+        dest.writeParcelable(this.restaurants, flags);
     }
 }

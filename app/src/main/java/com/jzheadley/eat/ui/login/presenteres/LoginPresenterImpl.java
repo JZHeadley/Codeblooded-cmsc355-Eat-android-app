@@ -46,7 +46,7 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
     @Override
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        this.showProgressDialog();
+        this.showProgress();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
@@ -60,7 +60,7 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
                         Toast.makeText(loginActivity, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                     }
-                    hideProgressDialog();
+                    hideProgress();
                 }
             });
     }
@@ -75,7 +75,7 @@ public class LoginPresenterImpl extends BasePresenter implements LoginPresenter 
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
             new ResultCallback<Status>() {
                 @Override
-                public void onResult(Status status) {
+                public void onResult(@NonNull Status status) {
                     Log.d(TAG, "onResult: " + status.getStatusMessage());
                 }
             });

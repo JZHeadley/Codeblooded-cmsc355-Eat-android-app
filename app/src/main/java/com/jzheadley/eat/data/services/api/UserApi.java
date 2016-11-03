@@ -27,6 +27,6 @@ public interface UserApi {
     @GET("users/{id}/restaurants")
     Observable<ResponseEntity> getRestaurantsOfUser(@Path("id") int userId);
 
-    @GET("users/search/findByFirebaseId")
-    Observable<ResponseEntity> getUserByFirebaseId(@Query("firebaseId") String firebaseId);
+    @GET("users/search/findByFirebaseId/")
+    Observable<User> getUserByFirebaseId(@Query("firebaseId") String firebaseId);
 }

@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
+import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.adapters.RestaurantsListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.presenter.NearbyRestaurantsPresenter;
@@ -22,14 +24,18 @@ public class NearbyRestaurantActivity extends BaseActivity {
     private RestaurantsListAdapter restaurantsListAdapter;
     private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
     private RestaurantService restaurantService;
+    private UserService userService;
+    private User user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
         restaurantService = new RestaurantService();
-        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
-
+        userService = new UserService();
+        nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this,
+            restaurantService, userService);
+        nearbyRestaurantsPresenter.showProgress();
         if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
             nearbyRestaurantsPresenter.loadRestaurants();
         } else {
@@ -53,6 +59,9 @@ public class NearbyRestaurantActivity extends BaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
         recyclerView.setAdapter(restaurantsListAdapter);
+
+        nearbyRestaurantsPresenter.hideProgress();
+
     }
 
 

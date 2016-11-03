@@ -20,7 +20,6 @@ import android.widget.Spinner;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
@@ -104,6 +103,7 @@ public class RestaurantCreationActivity extends BaseActivity {
         Log.d(TAG, "onActivityResult: " + requestCode + " " + resultCode);
         switch (requestCode) {
             case PICK_IMAGE_REQUEST:
+                // TODO: 11/2/2016 MVP This
                 Log.d(TAG, "onActivityResult: It got here at least?");
                 if (resultCode == RESULT_OK) {
                     UploadHelper helper = new UploadHelper(this, restaurantCreationPresenter);
@@ -125,7 +125,7 @@ public class RestaurantCreationActivity extends BaseActivity {
                 break;
             case OPENING_HOURS_RESULT:
                 break;
-            //added by Tomas for checkstyle compliance TODO approve
+
             default:
                 break;
         }
@@ -135,14 +135,12 @@ public class RestaurantCreationActivity extends BaseActivity {
         imgurPhotoUrl = url;
     }
 
-    public void setRestaurantUser(User restaurantUser) {
-        restaurant.setUser(restaurantUser);
-    }
 
     public void onSubmitButton(View view) {
         // TODO: 10/11/2016 Figure out how to represent menuHours in the database and add them
         Log.d(TAG, "onSubmitButton: " + ((EditText)
             findViewById(R.id.restaurant_creation_address)).getText().toString());
+
         restaurant.setAddress(((EditText)
             findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setCity(((EditText)
@@ -157,11 +155,14 @@ public class RestaurantCreationActivity extends BaseActivity {
         restaurant.setZipcode(((EditText)
             findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
         restaurant.setPictureurl(imgurPhotoUrl);
-        restaurantCreationPresenter.getUserByFirebaseId(FirebaseAuth.getInstance()
-            .getCurrentUser().getUid());
+
+        Log.d(TAG, "onSubmitButton: " + restaurant);
 
 
-        restaurantCreationPresenter.postRestaurant(restaurant);
+        restaurantCreationPresenter.getUserByFirebaseId(
+            FirebaseAuth.getInstance().getCurrentUser().getUid(), restaurant);
+
+        // restaurantCreationPresenter.postRestaurant(restaurant);
         finish();
     }
 
