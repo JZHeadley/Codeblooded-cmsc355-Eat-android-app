@@ -10,10 +10,6 @@
                   android:layout_height="wrap_content"
                   android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
@@ -22,16 +18,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
         android:padding="15dp">
-    <TextView
-        android:id="@+id/restaurant_name_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/restaurant_name"
-        android:textColor="#f4ad42"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/restaurant_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/restaurant_name"
+            android:textColor="#f4ad42"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/restaurant_name_photo"

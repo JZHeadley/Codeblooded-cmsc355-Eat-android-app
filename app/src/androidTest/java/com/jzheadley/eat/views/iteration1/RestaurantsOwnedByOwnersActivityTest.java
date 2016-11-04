@@ -1,10 +1,11 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.views.iteration1;
 
 import android.support.test.rule.ActivityTestRule;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -27,6 +28,7 @@ public class RestaurantsOwnedByOwnersActivityTest {
 
 
     @Test
+    @Before
     // Given [I am a restaurant Owner on the RestaurantOwners side of the app] when [I am on the main screen of the owner side] then [I want to see a list of the restaurants I own]
     public void restaurantOwnersRecyclerView() {
 //        onView(withId(R.id.owned_restaurant_card_list)).perform(scrollTo());
@@ -54,11 +56,11 @@ public class RestaurantsOwnedByOwnersActivityTest {
         onView(withId(R.id.restaurant_creation_description)).perform(scrollTo(), replaceText("Espresso is an ok Test Suite"), closeSoftKeyboard());
 
         // Check the checkboxes
-        onView(allOf(withText("Chinese Cuisine"), withParent(withId(R.id.restaurant_creation_type_of_food_check_group)))).perform(scrollTo(), click());
+        onView(allOf(withText("Chinese Cuisine"), withParent(withId(R.id.restaurant_food_type)))).perform(scrollTo(), click());
 
-        onView(allOf(withText("Fast Food"), withParent(withId(R.id.restaurant_creation_type_of_food_check_group)))).perform(scrollTo(), click());
+        onView(allOf(withText("Fast Food"), withParent(withId(R.id.restaurant_food_type)))).perform(scrollTo(), click());
 
-        onView(allOf(withText("Affordable"), withParent(withId(R.id.restaurant_creation_type_of_food_check_group)))).perform(scrollTo(), click());
+        onView(allOf(withText("Affordable"), withParent(withId(R.id.restaurant_food_type)))).perform(scrollTo(), click());
 
         // Submit the restaurant
         onView(allOf(withId(R.id.submit_new_restaurant), withText("Done"))).perform(scrollTo(), click());

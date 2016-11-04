@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views;
+package com.jzheadley.eat.views.iteration1;
 
 
 import android.support.test.espresso.contrib.RecyclerViewActions;
