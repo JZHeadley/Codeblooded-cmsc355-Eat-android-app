@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.crashlytics.android.Crashlytics;
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.ui.base.presenter.BasePresenter;
+import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.mikepenz.materialdrawer.Drawer;
 
 import io.fabric.sdk.android.Fabric;
@@ -26,14 +26,14 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     // Anything that will be used by all activities should be put here.
     private Toolbar toolbar;
     private Drawer drawer;
-    private BasePresenter basePresenter;
+    private BasePresenterImpl basePresenter;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        basePresenter = new BasePresenter(this);
+        basePresenter = new BasePresenterImpl(this);
         Fabric.with(this, new Crashlytics());
         auth = FirebaseAuth.getInstance();
         authListener = new FirebaseAuth.AuthStateListener() {

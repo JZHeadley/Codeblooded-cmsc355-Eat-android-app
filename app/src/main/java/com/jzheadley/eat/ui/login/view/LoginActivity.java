@@ -31,6 +31,7 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenter;
 import com.jzheadley.eat.ui.login.presenteres.LoginPresenterImpl;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
+import com.jzheadley.eat.ui.resetpassword.view.ResetPasswordActivity;
 import com.jzheadley.eat.ui.signup.view.SignupActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView,
@@ -100,13 +101,23 @@ public class LoginActivity extends BaseActivity implements LoginView,
     public void onClick(View view) {
         int viewId = view.getId();
         Log.d(TAG, "onClick: SomeButtonGotClicked");
-        if (viewId == R.id.btn_login) {
-            signIn();
-        } else if (viewId == R.id.btn_signup) {
-            startActivity(new Intent(getApplicationContext(), SignupActivity.class));
-        } else if (viewId == R.id.google_sign_in_btn) {
-            Log.d(TAG, "onClick: GoogleSignIn");
-            googleSignIn();
+
+        switch (viewId) {
+            case R.id.btn_login:
+                signIn();
+                break;
+            case R.id.btn_signup:
+                startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+                break;
+            case R.id.google_sign_in_btn:
+                Log.d(TAG, "onClick: GoogleSignIn");
+                googleSignIn();
+                break;
+            case R.id.btn_reset_password:
+                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
+                break;
+            default:
+                break;
         }
     }
 
@@ -138,40 +149,13 @@ public class LoginActivity extends BaseActivity implements LoginView,
         }
         progressBar.setVisibility(View.VISIBLE);
         //authenticate user
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
-                    progressBar.setVisibility(View.GONE);
-                    if (!task.isSuccessful()) {
-                        if (password.length() < 6) {
-                            inputPassword.setError(getString(R.string.minimum_password));
-                        } else {
-                            Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
-                                Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(),
-                            NearbyRestaurantActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            });
+        loginPresenter.signInWithEmailPassword(email, password);
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "LoginActivity Connection Failed: " + connectionResult.getErrorMessage());
 
-    }
-
-
-    public void showLoading(boolean loading) {
-        progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -191,8 +175,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        showLoading(true);
-
+        loginPresenter.showProgress();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -208,7 +191,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
                         Toast.makeText(LoginActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                     }
-                    showLoading(false);
+                    loginPresenter.hideProgress();
                 }
             });
     }

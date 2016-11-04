@@ -2,11 +2,11 @@ package com.jzheadley.eat.ui.signup.presenter;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import com.jzheadley.eat.ui.base.presenter.BasePresenter;
+import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.signup.view.SignupActivity;
 
 
-public class SignupPresenter extends BasePresenter {
+public class SignupPresenter extends BasePresenterImpl {
     private FirebaseAuth auth;
     private SignupActivity signupActivity;
 

@@ -8,14 +8,14 @@ import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.services.RestaurantService;
-import com.jzheadley.eat.ui.base.presenter.BasePresenter;
+import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class NearbyRestaurantsPresenter extends BasePresenter {
+public class NearbyRestaurantsPresenter extends BasePresenterImpl {
     private static final String TAG = "NearbyRestaurantsPrsntr";
 
     private NearbyRestaurantActivity nearbyRestaurantActivity;

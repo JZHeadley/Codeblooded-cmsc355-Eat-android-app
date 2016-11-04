@@ -7,14 +7,14 @@ import com.jzheadley.eat.data.models.ResponseEntity;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.data.services.UserService;
-import com.jzheadley.eat.ui.base.presenter.BasePresenter;
+import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class RestaurantsOwnedByOwnerPresenter extends BasePresenter {
+public class RestaurantsOwnedByOwnerPresenter extends BasePresenterImpl {
     private static final String TAG = "RestaurantsOwnedByOwner";
     private final RestaurantService restaurantService;
     private UserService userService;
@@ -30,7 +30,7 @@ public class RestaurantsOwnedByOwnerPresenter extends BasePresenter {
         this.restaurantService = restaurantService;
     }
 
-    public void loadRestaurants(User restaurantOwner) {
+    private void loadRestaurants(User restaurantOwner) {
         Log.d(TAG, "loadRestaurants: " + restaurantOwner);
         int userId = Integer.parseInt(restaurantOwner.getLinks().getSelf().getHref()
             .replace("http://192.99.0.20:9000/users/", ""));
