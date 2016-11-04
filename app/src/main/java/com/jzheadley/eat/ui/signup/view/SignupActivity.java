@@ -3,6 +3,7 @@ package com.jzheadley.eat.ui.signup.view;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,6 +78,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         progressBar.setVisibility(View.VISIBLE);
 
         signupPresenter.createUser(email, password);
+        signupPresenter.sendVerificationEmail(FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override

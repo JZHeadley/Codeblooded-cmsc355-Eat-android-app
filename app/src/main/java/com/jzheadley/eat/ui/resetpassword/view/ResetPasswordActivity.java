@@ -1,5 +1,6 @@
 package com.jzheadley.eat.ui.resetpassword.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.resetpassword.presenter.ResetPasswordPresenter;
 
 
@@ -26,7 +28,8 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.btn_reset_password:
                 resetPasswordPresenter.resetPassword(
-                    ((EditText) findViewById(R.id.btn_reset_password)).getText().toString().trim());
+                    ((EditText) findViewById(R.id.reset_email)).getText().toString().trim());
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.btn_back:
                 finish();
@@ -36,4 +39,6 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
         }
     }
+
+
 }
