@@ -20,11 +20,12 @@ import android.widget.ProgressBar;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
+import com.jzheadley.eat.ui.layoutobjects.animations.ProgressBarAnimation;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
-import com.jzheadley.eat.ui.profile.view.ProfileActivity;
 import com.jzheadley.eat.ui.settings.view.SettingsActivity;
+import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -60,6 +61,7 @@ public class BasePresenterImpl implements BasePresenter,
     }
 
     public Drawer createDrawer(final Toolbar toolbar, final BaseActivity activity) {
+        showProgress();
         String[] drawerItems = activity.getResources()
             .getStringArray(R.array.navigation_drawer_options);
         Drawer drawer = new DrawerBuilder()
@@ -154,7 +156,7 @@ public class BasePresenterImpl implements BasePresenter,
                                                    IDrawerItem drawerItem) {
                             Intent profileIntent = new Intent(
                                 toolbar.getContext(),
-                                ProfileActivity.class);
+                                UserProfileActivity.class);
                             toolbar.getContext().startActivity(profileIntent);
                             return false;
                         }
@@ -175,15 +177,17 @@ public class BasePresenterImpl implements BasePresenter,
                 })
             );
         }
-
+        hideProgress();
         return drawer;
     }
 
 
     public void showProgress() {
+        ProgressBarAnimation anim = new ProgressBarAnimation(progressBar, 0, 1000);
+        anim.setDuration(1000);
         if (progressBar == null) {
             progressBar = new ProgressBar(baseActivity);
-            // progressDialog.setMessage(baseActivity.getString(R.string.loading));
+            progressBar.startAnimation(anim);
             progressBar.setIndeterminate(true);
         }
 
@@ -299,7 +303,7 @@ public class BasePresenterImpl implements BasePresenter,
                                                IDrawerItem drawerItem) {
                         Intent profileIntent = new Intent(
                             toolbar.getContext(),
-                            ProfileActivity.class);
+                            UserProfileActivity.class);
                         toolbar.getContext().startActivity(profileIntent);
                         return false;
                     }

@@ -30,7 +30,7 @@
             android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
-            android:name=".ui.profile.view.ProfileActivity"
+            android:name=".ui.userprofile.view.UserProfileActivity"
             android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"/>
 
         <activity
