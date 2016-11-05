@@ -1,43 +1,39 @@
 package com.jzheadley.eat.ui.signup.view;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.resetpassword.view.ResetPasswordActivity;
 import com.jzheadley.eat.ui.signup.presenter.SignupPresenter;
 
 
-public class SignupActivity extends BaseActivity implements View.OnClickListener,
-    OnCompleteListener<AuthResult> {
-
+public class SignupActivity extends BaseActivity implements View.OnClickListener {
     private EditText inputEmail;
     private EditText inputPassword;
-    private ProgressBar progressBar;
+    private EditText inputUsername;
     private SignupPresenter signupPresenter;
+    private UserService userService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        userService = new UserService();
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        signupPresenter = new SignupPresenter(this);
+        inputUsername = (EditText) findViewById(R.id.username_signup);
+        signupPresenter = new SignupPresenter(this, userService);
     }
 
     @Override
@@ -60,6 +56,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private void signUp() {
         String email = inputEmail.getText().toString().trim();
         String password = inputPassword.getText().toString().trim();
+        String username = inputUsername.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(),
                 "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -70,31 +67,20 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                 "Enter password!", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(getApplicationContext(),
+                "Enter username!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (password.length() < 6) {
             Toast.makeText(getApplicationContext(),
                 "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
-
-        signupPresenter.createUser(email, password);
+        signupPresenter.showProgress();
+        signupPresenter.createUser(email, password, username);
         signupPresenter.sendVerificationEmail(FirebaseAuth.getInstance().getCurrentUser());
     }
 
-    @Override
-    public void onComplete(@NonNull Task<AuthResult> task) {
-        Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:"
-            + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-        progressBar.setVisibility(View.GONE);
-        // If sign in fails, display a message to the user. If sign in succeeds
-        // the auth state listener will be notified and logic to handle the
-        // signed in user can be handled in the listener.
-        if (!task.isSuccessful()) {
-            Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
-                Toast.LENGTH_SHORT).show();
-        } else {
-            startActivity(new Intent(this, SignupActivity.class));
-            finish();
-        }
-    }
+
 }

@@ -86,6 +86,7 @@
     <string name="btn_back"><![CDATA[<< Back]]></string>
     <string name="forgot_password_msg">We just need your email to send you password reset information</string>
     <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="username_hint_signup">Username</string>
     <string-array name="navigation_drawer_options">
         <item>Home</item>
         <item>Profile</item>

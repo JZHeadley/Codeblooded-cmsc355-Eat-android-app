@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,6 +42,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         restaurantService = new RestaurantService();
         restaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this,
             restaurantService, userService);
+
         restaurantsOwnedByOwnerPresenter.showProgress();
 
         restaurantsOwnedByOwnerPresenter.getOwnedRestaurants(
@@ -69,6 +71,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         Log.d(TAG, "onNext: " + restaurants);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.owned_restaurant_card_list);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);

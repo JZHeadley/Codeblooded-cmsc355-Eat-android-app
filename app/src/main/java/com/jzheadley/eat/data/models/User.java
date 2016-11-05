@@ -55,6 +55,11 @@ public class User implements Parcelable {
         this.links = in.readParcelable(Links.class.getClassLoader());
     }
 
+    public User(String username, String firebaseId) {
+        this.username = username;
+        this.firebaseId = firebaseId;
+    }
+
     public String getHref() {
         return href;
     }

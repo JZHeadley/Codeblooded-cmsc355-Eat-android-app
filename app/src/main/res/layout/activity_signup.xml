@@ -30,6 +30,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <EditText
+                android:id="@+id/username_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username_hint_signup"
+                android:maxLines="1"
+                android:textColor="@android:color/black"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
 
             <EditText
                 android:id="@+id/email"
@@ -38,7 +52,6 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true"
                 android:textColor="@android:color/black"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -57,7 +70,6 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true"
                 android:textColor="@android:color/black"/>
 
         </android.support.design.widget.TextInputLayout>
