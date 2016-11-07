@@ -131,7 +131,7 @@ dependencies {
         *     Google Play Services
         */
 
-    compile 'com.google.android.gms:play-services:9.6.1'
+//    compile 'com.google.android.gms:play-services:9.6.1'
     compile 'com.google.android.gms:play-services-location:9.6.1'
 }
 apply plugin: 'com.google.gms.google-services'

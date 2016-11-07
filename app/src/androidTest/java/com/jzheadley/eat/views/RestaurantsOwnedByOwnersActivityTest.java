@@ -33,8 +33,8 @@ public class RestaurantsOwnedByOwnersActivityTest {
     @Before
     // Given [I am a restaurant Owner on the RestaurantOwners side of the app] when [I am on the main screen of the owner side] then [I want to see a list of the restaurants I own]
     public void restaurantOwnersRecyclerView() {
-//        onView(withId(R.id.owned_restaurant_card_list)).perform(scrollTo());
-        onView(withId(R.id.owned_restaurant_card_list)).check(matches(isDisplayed()));
+        onView(withText("Restaurants you manage:")).check(matches(isDisplayed()));
+//         onView(withId(R.id.owned_restaurant_card_list)).check(matches(isDisplayed()));
     }
 
     @Test
