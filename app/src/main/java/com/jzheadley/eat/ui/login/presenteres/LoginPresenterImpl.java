@@ -1,11 +1,6 @@
 package com.jzheadley.eat.ui.login.presenteres;
 
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -13,7 +8,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.EditText;
@@ -22,7 +16,6 @@ import android.widget.Toast;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
-import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresenter {
     private static final String TAG = "LoginPresenterImpl";
@@ -33,17 +26,6 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
         super(loginActivity);
         this.loginActivity = loginActivity;
         auth = FirebaseAuth.getInstance();
-
-    }
-
-
-    @Override
-    public void attemptToLogInWithEmail(String email, String password) {
-
-    }
-
-    @Override
-    public void attemptToLogInWithGoogle() {
 
     }
 
@@ -67,22 +49,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
                     hideProgress();
                 }
             });
-    }
 
-    @Override
-    public void getAuthWithGoogle(GoogleSignInResult result) {
-
-    }
-
-    @Override
-    public void signOut(GoogleApiClient googleApiClient) {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-            new ResultCallback<Status>() {
-                @Override
-                public void onResult(@NonNull Status status) {
-                    Log.d(TAG, "onResult: " + status.getStatusMessage());
-                }
-            });
     }
 
     @Override
@@ -105,9 +72,9 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
                                 Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        Intent intent = new Intent(loginActivity.getApplicationContext(),
-                            NearbyRestaurantActivity.class);
-                        loginActivity.startActivity(intent);
+                        // Intent intent = new Intent(loginActivity.getApplicationContext(),
+                        //     NearbyRestaurantActivity.class);
+                        // loginActivity.startActivity(intent);
                         loginActivity.finish();
                     }
                 }

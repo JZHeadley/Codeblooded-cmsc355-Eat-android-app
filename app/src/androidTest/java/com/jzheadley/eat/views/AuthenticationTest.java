@@ -24,6 +24,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -31,6 +32,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class AuthenticationTest {
+
     private static final String TAG = "AuthenticationTest";
     @Rule
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
@@ -78,6 +80,21 @@ public class AuthenticationTest {
                         });
                 }
             });
+    }
+
+
+    /*
+        Given [I am a User]
+        When [I click "Register"]
+        Then [I should be brought to a screen asking for a username, email, and password]
+     */
+    @Test
+    public void onRegistrationTest() {
+        onView(withId(R.id.btn_signup)).perform(click());
+
+        onView(withId(R.id.username_signup)).check(matches(isDisplayed()));
+        onView(withId(R.id.email)).check(matches(isDisplayed()));
+        onView(withId(R.id.password)).check(matches(isDisplayed()));
     }
 
     @Test

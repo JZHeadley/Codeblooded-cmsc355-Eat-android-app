@@ -1,19 +1,13 @@
 package com.jzheadley.eat.ui.login.view;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -128,10 +122,6 @@ public class LoginActivity extends BaseActivity implements LoginView,
         startActivityForResult(intent, REQUEST_SIGN_GOOGLE);
     }
 
-    private void signOut() {
-        loginPresenter.signOut(googleApiClient);
-    }
-
     private void signIn() {
         EditText inputEmail = ((EditText) findViewById(R.id.email));
         String email = inputEmail.getText().toString();
@@ -167,32 +157,11 @@ public class LoginActivity extends BaseActivity implements LoginView,
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             Log.d(TAG, "onActivityResult: " + result.isSuccess());
             Log.d(TAG, "onActivityResult: " + result.getSignInAccount());
-            firebaseAuthWithGoogle(result.getSignInAccount());
+            loginPresenter.firebaseAuthWithGoogle(result.getSignInAccount());
             startActivity(new Intent(getApplicationContext(), NearbyRestaurantActivity.class));
         }
 
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        loginPresenter.showProgress();
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "signInWithCredential", task.getException());
-                        Toast.makeText(LoginActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                    }
-                    loginPresenter.hideProgress();
-                }
-            });
-    }
 }
