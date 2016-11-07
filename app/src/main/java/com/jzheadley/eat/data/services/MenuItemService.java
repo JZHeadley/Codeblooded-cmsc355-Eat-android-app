@@ -1,16 +1,16 @@
 package com.jzheadley.eat.data.services;
 
 import com.jzheadley.eat.data.services.api.MenuItemApi;
+import com.jzheadley.eat.utils.Constants;
+
 
 public class MenuItemService {
-    //    private static final String SERVICE_ENDPOINT = "http://192.241.167.209:9000/menuItems";
-    private static final String SERVICE_ENDPOINT = "http://192.99.0.20:9000/";
 
     private MenuItemApi menuItemApi;
 
     public MenuItemService() {
         menuItemApi = ServiceFactory
-            .createRetrofitDebugService(MenuItemApi.class, SERVICE_ENDPOINT);
+            .createRetrofitDebugService(MenuItemApi.class, Constants.SERVICE_ENDPOINT);
     }
 
     public MenuItemApi getMenuItemApi() {

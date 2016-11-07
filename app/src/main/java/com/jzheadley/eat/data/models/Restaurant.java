@@ -47,9 +47,8 @@ public class Restaurant implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
-    // @SerializedName("restaurantOwner")
-    // @Expose
-    // private User user;
+
+    private double distance;
 
     public Restaurant() {
     }
@@ -176,6 +175,14 @@ public class Restaurant implements Parcelable {
 
     public void setOwnerId(Integer ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }
 

@@ -39,6 +39,7 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
         this.username = username;
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(signupActivity, this);
+        Log.d(TAG, "createUser: User has been added to FireBase");
     }
 
     public void sendVerificationEmail(FirebaseUser currentUser) {
@@ -61,6 +62,7 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
         // If sign in fails, display a message to the user. If sign in succeeds
         // the auth state listener will be notified and logic to handle the
         // signed in user can be handled in the listener.
+        Log.d(TAG, "onComplete: " + task.toString());
         if (!task.isSuccessful()) {
             Toast.makeText(signupActivity, "Authentication failed." + task.getException(),
                 Toast.LENGTH_SHORT).show();
@@ -72,7 +74,7 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
                 .subscribe(new Observer<Void>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.d(TAG, "onCompleted: ");
                     }
 
                     @Override

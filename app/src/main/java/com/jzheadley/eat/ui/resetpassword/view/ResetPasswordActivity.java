@@ -26,7 +26,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_reset_password:
+            case R.id.btn_forgot_password:
                 resetPasswordPresenter.resetPassword(
                     ((EditText) findViewById(R.id.reset_email)).getText().toString().trim());
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));

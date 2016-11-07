@@ -7,9 +7,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jzheadley.eat.data.models.ResponseEntity;
+import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
+
+import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -51,8 +54,9 @@ public class NearbyRestaurantsPresenter extends BasePresenterImpl {
 
                 @Override
                 public void onNext(ResponseEntity responseEntity) {
-                    nearbyRestaurantActivity.displayRestaurants(
-                        responseEntity.getEmbedded().getRestaurants());
+                    List<Restaurant> restaurants =
+                        responseEntity.getEmbedded().getRestaurants();
+                    nearbyRestaurantActivity.displayRestaurants(restaurants);
                 }
             });
     }

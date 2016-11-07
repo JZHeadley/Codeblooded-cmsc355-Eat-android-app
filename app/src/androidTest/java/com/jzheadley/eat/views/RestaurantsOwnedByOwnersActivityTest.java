@@ -1,4 +1,4 @@
-package com.jzheadley.eat.views.iteration1;
+package com.jzheadley.eat.views;
 
 import android.support.test.rule.ActivityTestRule;
 
@@ -8,6 +8,8 @@ import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivit
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import io.fabric.sdk.android.services.concurrency.DependsOn;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -21,7 +23,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-
+@DependsOn(AuthenticationTest.class)
 public class RestaurantsOwnedByOwnersActivityTest {
     @Rule
     public ActivityTestRule<RestaurantsOwnedByOwnerActivity> mActivityTestRule = new ActivityTestRule<>(RestaurantsOwnedByOwnerActivity.class, false, true);

@@ -1,7 +1,5 @@
 package com.jzheadley.eat.ui.signup.view;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -45,7 +43,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
             case R.id.sign_up_button:
                 signUp();
                 break;
-            case R.id.btn_reset_password:
+            case R.id.btn_forgot_password:
                 startActivity(new Intent(this, ResetPasswordActivity.class));
                 break;
             default:
@@ -79,7 +77,8 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         }
         signupPresenter.showProgress();
         signupPresenter.createUser(email, password, username);
-        signupPresenter.sendVerificationEmail(FirebaseAuth.getInstance().getCurrentUser());
+        // signupPresenter.sendVerificationEmail(FirebaseAuth.getInstance().getCurrentUser());
+        finish();
     }
 
 

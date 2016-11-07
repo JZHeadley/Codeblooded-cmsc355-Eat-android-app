@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
                 Log.d(TAG, "onClick: GoogleSignIn");
                 googleSignIn();
                 break;
-            case R.id.btn_reset_password:
+            case R.id.btn_forgot_password:
                 startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
                 break;
             default:
