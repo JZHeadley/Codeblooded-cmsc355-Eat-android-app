@@ -104,4 +104,14 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+    <string name="new_pass">New Password</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="hint_username">Username</string>
 </resources>
