@@ -29,7 +29,7 @@ import com.jzheadley.eat.ui.resetpassword.view.ResetPasswordActivity;
 import com.jzheadley.eat.ui.signup.view.SignupActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView,
-    GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+        GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_SIGN_GOOGLE = 9001;
     private static final String TAG = "LoginActivity";
     private SignInButton signInButton;
@@ -51,15 +51,15 @@ public class LoginActivity extends BaseActivity implements LoginView,
         auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
-            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build();
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
         googleApiClient = new GoogleApiClient.Builder(this)
-            .enableAutoManage(this /* FragmentActivity */,
-                this /* OnConnectionFailedListener */)
-            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-            .build();
+                .enableAutoManage(this /* FragmentActivity */,
+                        this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -130,7 +130,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!",
-                Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {

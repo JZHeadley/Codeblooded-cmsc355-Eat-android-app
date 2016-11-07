@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+
 import rx.Observable;
 
 public interface EatApi {
@@ -62,7 +63,7 @@ public interface EatApi {
 
     @GET("restaurants/")
     Observable<ResponseEntity> getRestaurantsByRestaurantOwner(
-        @Query("restaurantOwner") User restaurantOwner);
+            @Query("restaurantOwner") User restaurantOwner);
 
     @POST("restaurants/")
     Observable<Void> createRestaurant(@Body Restaurant restaurant);

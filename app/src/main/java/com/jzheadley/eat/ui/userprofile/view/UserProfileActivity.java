@@ -23,13 +23,13 @@ public class UserProfileActivity extends BaseActivity {
 
     public void displayUsername(User user) {
         ((EditText) findViewById(R.id.user_profile_et))
-            .setHint(user.getUsername());
+                .setHint(user.getUsername());
         this.user = user;
     }
 
     public void displayEmail() {
         ((EditText) findViewById(R.id.email_profile_et))
-            .setHint(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                .setHint(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
     @Override
@@ -50,39 +50,55 @@ public class UserProfileActivity extends BaseActivity {
             case R.id.remove_user_button:
                 promptUserRemoval();
                 break;
-            case R.id.sign_out:
+            case R.id.user_profile_update_submit_btn:
+                promptUserUpdate();
+                finish();
                 break;
             default:
                 break;
         }
     }
 
+    private void promptUserUpdate() {
+        AlertDialog alertDialog;
+        alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Save Changes?")
+                .setCancelable(true)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        userProfilePresenter.modifyUser(user,
+                                ((EditText) findViewById(R.id.user_profile_et))
+                                        .getText().toString(),
+                                ((EditText) findViewById(R.id.email_profile_et))
+                                        .getText().toString());
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .create();
+        alertDialog.show();
+
+    }
+
     private void promptUserRemoval() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-            this);
-
-
-        // set dialog message
-        alertDialogBuilder
-            .setMessage("Are you sure you want to delete your account?")
-            .setCancelable(true)
-            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    userProfilePresenter.deleteUser(user);
-                }
-            })
-            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // if this button is clicked, just close
-                    // the dialog box and do nothing
-                    dialog.cancel();
-                }
-            });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
+        AlertDialog alertDialog;
+        alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to delete your account?")
+                .setCancelable(true)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        userProfilePresenter.deleteUser(user);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .create();
         alertDialog.show();
     }
 

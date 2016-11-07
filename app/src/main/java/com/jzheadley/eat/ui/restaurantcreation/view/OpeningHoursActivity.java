@@ -33,23 +33,23 @@ public class OpeningHoursActivity extends BaseActivity {
         int minute = mcurrentTime.get(Calendar.MINUTE);
         TimePickerDialog timePicker;
         timePicker = new TimePickerDialog(view.getContext(),
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    String strTimeToShow;
-                    String strHrsToShow = (hourOfDay == 0) ? "00" : hourOfDay + "";
-                    if (minute == 0) {
-                        String zeroMinute = "00";
-                        strTimeToShow = strHrsToShow + ":" + zeroMinute;
-                    } else if (minute < 10 && minute > 0) {
-                        strTimeToShow = strHrsToShow + ":0" + minute;
-                    } else {
-                        strTimeToShow = strHrsToShow + ":" + minute;
-                    }
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        String strTimeToShow;
+                        String strHrsToShow = (hourOfDay == 0) ? "00" : hourOfDay + "";
+                        if (minute == 0) {
+                            String zeroMinute = "00";
+                            strTimeToShow = strHrsToShow + ":" + zeroMinute;
+                        } else if (minute < 10 && minute > 0) {
+                            strTimeToShow = strHrsToShow + ":0" + minute;
+                        } else {
+                            strTimeToShow = strHrsToShow + ":" + minute;
+                        }
 
-                    ((TextView) findViewById(view.getId())).setText(strTimeToShow);
-                }
-            }, hour, minute, true); //Yes 24 hour time
+                        ((TextView) findViewById(view.getId())).setText(strTimeToShow);
+                    }
+                }, hour, minute, true); //Yes 24 hour time
         timePicker.setTitle("Select Time");
         timePicker.show();
 

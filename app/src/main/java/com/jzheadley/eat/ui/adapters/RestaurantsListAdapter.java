@@ -19,7 +19,7 @@ import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 import java.util.List;
 
 public class RestaurantsListAdapter extends RecyclerView
-    .Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
+        .Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
     private List<Restaurant> restaurants;
@@ -32,8 +32,8 @@ public class RestaurantsListAdapter extends RecyclerView
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater
-            .from(parent.getContext())
-            .inflate(R.layout.layout_restaurant_item, parent, false);
+                .from(parent.getContext())
+                .inflate(R.layout.layout_restaurant_item, parent, false);
         return new RestaurantViewHolder(itemView);
 
     }
@@ -47,13 +47,13 @@ public class RestaurantsListAdapter extends RecyclerView
 
         // Load image after text so it has something in the view if image doesn't immediately load
         Glide.with(restaurantViewHolder.itemView.getContext())
-            .load(restaurant.getPictureurl())
-            .crossFade()
-            .fitCenter()
-            .centerCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.drawable.restaurant_placeholder)
-            .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
+                .load(restaurant.getPictureurl())
+                .crossFade()
+                .fitCenter()
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.restaurant_placeholder)
+                .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
         Log.d(TAG, "onBindViewHolder: Position is " + position);
         restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
         restaurantViewHolder.restaurantDescription.setText(restaurant.getDescription());
@@ -62,11 +62,11 @@ public class RestaurantsListAdapter extends RecyclerView
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick: " + restaurantViewHolder
-                    .getAdapterPosition());
+                        .getAdapterPosition());
                 Intent restaurantDetailsIntent =
-                    new Intent(view.getContext(), RestaurantDetailsActivity.class);
+                        new Intent(view.getContext(), RestaurantDetailsActivity.class);
                 restaurantDetailsIntent
-                    .putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
+                        .putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
                 // restaurantDetailsIntent.putExtra("restaurantId",
                 // restaurants.get(restaurantViewHolder.getAdapterPosition()));
                 view.getContext().startActivity(restaurantDetailsIntent);

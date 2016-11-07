@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:layout_width="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/activity_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+        android:id="@+id/activity_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
-            android:layout="@layout/toolbar_main"/>
+            android:layout="@layout/toolbar_main" />
 
         <FrameLayout
             android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:padding="15dp">
 
         <EditText
+            android:hint="@string/meal_name_hint"
             android:id="@+id/meal_name_input"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:hint="@string/meal_name_hint"/>
+            android:layout_width="match_parent" />
 
         <EditText
-            android:id="@+id/meal_description_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/meal_name_input"
-            android:layout_marginBottom="15dp"
             android:hint="@string/meal_description_hint"
-            android:inputType="textMultiLine"/>
+            android:id="@+id/meal_description_input"
+            android:inputType="textMultiLine"
+            android:layout_below="@id/meal_name_input"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/meal_description_input"
             android:hint="@string/meal_price_hint"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_below="@id/meal_description_input"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
         <Button
             android:id="@+id/confirm_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
             android:text="@string/done_button"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </RelativeLayout>
 </RelativeLayout>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:padding="15dp">
 
     <TextView
-        android:id="@+id/description_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:id="@+id/description_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:text="@string/decription_title"
         android:textColor="#f4ad42"
         android:textSize="30sp"
@@ -16,12 +16,12 @@
 
     <Button
         android:id="@+id/confirm_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
         android:paddingBottom="25dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
@@ -30,15 +30,15 @@
         android:textSize="16sp" />
 
     <EditText
+        android:hint="@string/enter_your_description"
         android:id="@+id/edit_description"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:inputType="textMultiLine"
         android:layout_above="@+id/confirm_description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/description_title"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:hint="@string/enter_your_description"
-        android:inputType="textMultiLine" />
+        android:layout_width="match_parent" />
 
 </RelativeLayout>

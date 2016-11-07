@@ -36,8 +36,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
             nearbyRestaurantsPresenter.loadRestaurants();
         } else {
             Snackbar.make(findViewById(R.id.toolbar), "You are disconnected from the network. "
-                    + "Please resolve your connection issues and try again.",
-                Snackbar.LENGTH_LONG).show();
+                            + "Please resolve your connection issues and try again.",
+                    Snackbar.LENGTH_LONG).show();
         }
     }
 

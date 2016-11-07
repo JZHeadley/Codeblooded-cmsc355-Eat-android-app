@@ -71,10 +71,10 @@ public class User implements Parcelable {
     @Override
     public String toString() {
         return "User{"
-            + "name='" + username + '\''
-            + ", firebaseId='" + firebaseId + '\''
-            + ", links=" + links
-            + '}';
+                + "name='" + username + '\''
+                + ", firebaseId='" + firebaseId + '\''
+                + ", links=" + links
+                + '}';
     }
 
     /**

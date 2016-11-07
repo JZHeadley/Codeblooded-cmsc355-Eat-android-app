@@ -9,7 +9,7 @@ import android.os.Parcelable;
 public class Categories implements Parcelable {
 
     public static final Parcelable.Creator<Categories> CREATOR = new Parcelable
-        .Creator<Categories>() {
+            .Creator<Categories>() {
         @Override
         public Categories createFromParcel(Parcel source) {
             return new Categories(source);
@@ -46,8 +46,8 @@ public class Categories implements Parcelable {
     @Override
     public String toString() {
         return "Categories{"
-            + "href='" + href + '\''
-            + '}';
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

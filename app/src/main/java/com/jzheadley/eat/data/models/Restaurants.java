@@ -52,8 +52,8 @@ public class Restaurants implements Parcelable {
     @Override
     public String toString() {
         return "Restaurants{"
-            + "href='" + href + '\''
-            + '}';
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

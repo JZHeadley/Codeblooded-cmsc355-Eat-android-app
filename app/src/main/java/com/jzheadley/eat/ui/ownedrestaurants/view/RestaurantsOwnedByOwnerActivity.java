@@ -41,19 +41,19 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         userService = new UserService();
         restaurantService = new RestaurantService();
         restaurantsOwnedByOwnerPresenter = new RestaurantsOwnedByOwnerPresenter(this,
-            restaurantService, userService);
+                restaurantService, userService);
 
         restaurantsOwnedByOwnerPresenter.showProgress();
 
         restaurantsOwnedByOwnerPresenter.getOwnedRestaurants(
-            FirebaseAuth.getInstance().getCurrentUser().getUid());
+                FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_restaurant);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addRestaurantIntent = new Intent(view.getContext(),
-                    RestaurantCreationActivity.class);
+                        RestaurantCreationActivity.class);
                 view.getContext().startActivity(addRestaurantIntent);
             }
         });
@@ -64,7 +64,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         restaurantsOwnedByOwnerPresenter.getOwnedRestaurants(
-            FirebaseAuth.getInstance().getCurrentUser().getUid());
+                FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
     public void displayRestaurantsOfOwner(List<Restaurant> restaurants) {
@@ -81,7 +81,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
 
     public void onAddRestaurantClick(View view) {
         Intent addRestaurantIntent = new Intent(view.getContext(),
-            RestaurantCreationActivity.class);
+                RestaurantCreationActivity.class);
         view.getContext().startActivity(addRestaurantIntent);
     }
 }

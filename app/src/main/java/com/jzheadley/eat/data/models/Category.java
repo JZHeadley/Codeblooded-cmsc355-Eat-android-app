@@ -35,7 +35,7 @@ public class Category implements Parcelable {
     }
 
     public Category(String testCategory) {
-        this.categoryName = categoryName;
+        this.categoryName = testCategory;
     }
 
     protected Category(Parcel in) {
@@ -62,9 +62,9 @@ public class Category implements Parcelable {
     @Override
     public String toString() {
         return "Category{"
-            + "categoryName='" + categoryName + '\''
-            + ", links=" + links
-            + '}';
+                + "categoryName='" + categoryName + '\''
+                + ", links=" + links
+                + '}';
     }
 
     @Override

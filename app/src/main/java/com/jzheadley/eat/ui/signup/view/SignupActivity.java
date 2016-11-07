@@ -57,22 +57,22 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         String username = inputUsername.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(),
-                "Enter email address!", Toast.LENGTH_SHORT).show();
+                    "Enter email address!", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(),
-                "Enter password!", Toast.LENGTH_SHORT).show();
+                    "Enter password!", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(getApplicationContext(),
-                "Enter username!", Toast.LENGTH_SHORT).show();
+                    "Enter username!", Toast.LENGTH_SHORT).show();
             return;
         }
         if (password.length() < 6) {
             Toast.makeText(getApplicationContext(),
-                "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
         signupPresenter.showProgress();
