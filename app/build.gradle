@@ -3,6 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'io.fabric'
 
+
 def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 0
@@ -58,11 +59,9 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
     androidTestCompile 'com.android.support:support-annotations:24.2.1'
-
     /*
-    *       Quality of Life
-    */
-
+        *       Quality of Life
+        */
     // RxJava and RxAndroid Dependencies
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -71,11 +70,9 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.+@aar') {
         transitive = true;
     }
-
     /*
-    *       Networking
-    */
-
+        *       Networking
+        */
     // Glide image loader dependency
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.android.support:support-v4:24.2.1'
@@ -92,11 +89,9 @@ dependencies {
     compile 'com.google.firebase:firebase-core:9.6.1'
     compile 'com.google.firebase:firebase-auth:9.6.1'
     compile 'com.google.android.gms:play-services-auth:9.6.1'
-
     /*
-    *         User Interface Libraries
-    */
-
+        *         User Interface Libraries
+        */
     // Clock
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     // MaterialDrawer library for the navigation drawer
@@ -107,11 +102,9 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     // Gimmme my FAB!
     compile 'com.android.support:design:24.2.1'
-
     /*
-    *       Testing Libraries
-    */
-
+        *       Testing Libraries
+        */
     testCompile 'junit:junit:4.12'
     // Espresso Dependencies
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
@@ -127,7 +120,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
-
-
+    /*
+        *     Google Play Services
+        */
+    compile 'com.google.android.gms:play-services:9.8.0'
 }
-apply plugin: 'com.google.gms.google-services'
+

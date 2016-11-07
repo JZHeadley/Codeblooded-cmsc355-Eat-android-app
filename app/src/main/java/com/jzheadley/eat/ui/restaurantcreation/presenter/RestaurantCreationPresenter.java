@@ -15,6 +15,7 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+
 public class RestaurantCreationPresenter implements UploadTaskCallback {
     private static final String TAG = "RestaurantCreationPrese";
     private RestaurantCreationActivity restaurantCreationActivity;

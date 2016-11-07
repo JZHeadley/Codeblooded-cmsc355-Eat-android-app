@@ -50,7 +50,7 @@ public class BasePresenterImpl implements BasePresenter,
         this.baseActivity = baseActivity;
         GoogleSignInOptions gso = new GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(baseActivity.getString(R.string.default_web_client_id))
+           // .requestIdToken(baseActivity.getString(R.string.default_web_client_id))
             .requestEmail()
             .build();
         googleApiClient = new GoogleApiClient.Builder(baseActivity)
