@@ -6,8 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.services.RestaurantService;
@@ -33,16 +31,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         nearbyRestaurantsPresenter.showProgress();
 
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .build();
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
-        }
-    }
+
         if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
             nearbyRestaurantsPresenter.loadRestaurants();
         } else {

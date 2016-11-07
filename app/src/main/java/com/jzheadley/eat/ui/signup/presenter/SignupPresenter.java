@@ -38,7 +38,7 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
     public void createUser(String email, String password, String username) {
         this.username = username;
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(signupActivity, this);
+            .addOnCompleteListener(this);
         Log.d(TAG, "createUser: User has been added to FireBase");
     }
 
@@ -66,6 +66,10 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
         if (!task.isSuccessful()) {
             Toast.makeText(signupActivity, "Authentication failed." + task.getException(),
                 Toast.LENGTH_SHORT).show();
+
+        } else {
+            signupActivity.startActivity(new Intent(signupActivity.getApplicationContext(),
+                SignupActivity.class));
             User user = new User(username, task.getResult().getUser().getUid());
             userService.getUserApi()
                 .createUser(user)
@@ -87,9 +91,6 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
 
                     }
                 });
-        } else {
-            signupActivity.startActivity(new Intent(signupActivity.getApplicationContext(),
-                SignupActivity.class));
             signupActivity.finish();
         }
     }
