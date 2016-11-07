@@ -1,5 +1,7 @@
 package com.jzheadley.eat.ui.userprofile.presenter;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
@@ -40,9 +42,17 @@ public class UserProfilePresenter extends BasePresenterImpl {
 
                     @Override
                     public void onNext(User user) {
+                        Log.d(TAG, "onNext: logged in user is" + user);
                         userProfileActivity.displayUsername(user);
                     }
                 });
     }
 
+    public void sendPasswordReset() {
+
+    }
+
+    public void deleteUser(User user) {
+
+    }
 }

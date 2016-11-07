@@ -1,6 +1,8 @@
 package com.jzheadley.eat.ui.userprofile.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -21,10 +23,12 @@ public class UserProfileActivity extends BaseActivity {
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    private User user;
 
     public void displayUsername(User user) {
         ((EditText) findViewById(R.id.user_profile_et))
                 .setHint(user.getUsername());
+        this.user = user;
     }
 
     public void displayEmail() {
@@ -42,25 +46,49 @@ public class UserProfileActivity extends BaseActivity {
         displayEmail();
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        progressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (authListener != null) {
-            auth.removeAuthStateListener(authListener);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.sending_pass_reset_button:
+                userProfilePresenter.sendPasswordReset();
+                break;
+            case R.id.remove_user_button:
+                promptUserRemoval();
+                break;
+            case R.id.sign_out:
+                break;
         }
     }
+
+    private void promptUserRemoval() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                getApplicationContext());
+
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Are you sure you want to delete your account?")
+                .setCancelable(true)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        userProfilePresenter.deleteUser(user);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+
+
 }
 
