@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
         String email = inputEmail.getText().toString();
         final EditText inputPassword = ((EditText) findViewById(R.id.password));
         final String password = inputPassword.getText().toString();
-
+        boolean present = false;
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!",
                     Toast.LENGTH_SHORT).show();
