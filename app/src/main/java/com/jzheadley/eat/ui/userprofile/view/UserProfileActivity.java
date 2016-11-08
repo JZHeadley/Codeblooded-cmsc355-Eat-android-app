@@ -76,6 +76,7 @@ public class UserProfileActivity extends BaseActivity {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
+                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
                     }
                 })
                 .create();
