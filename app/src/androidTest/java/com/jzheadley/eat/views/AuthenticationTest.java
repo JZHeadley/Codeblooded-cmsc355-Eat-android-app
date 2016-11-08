@@ -100,6 +100,11 @@ public class AuthenticationTest {
         onView(withId(R.id.password)).check(matches(isDisplayed()));
     }
 
+    /*
+           Given [I am a User]
+           When [I have created an account]
+           Then [I should be able to login in with that new account]
+     */
     @Test
     public void aSignUpTest() {
         onView(withId(R.id.btn_signup)).perform(click());
@@ -138,6 +143,11 @@ public class AuthenticationTest {
         onView(withId(R.id.password)).check(matches(not(hasErrorText(Matchers.isEmptyOrNullString()))));
     }
 
+    /*
+        Given [I am a User]
+        when [I try to login ]
+        then [I am to be granted access to all of my preferences and favorite restaurants.]
+     */
     @Test
     public void loginTest() {
         onView(withId(R.id.email)).perform(replaceText("EspresoTestUser@gmail.com"), closeSoftKeyboard());
@@ -146,4 +156,13 @@ public class AuthenticationTest {
 
     }
 
+    /*
+        Given [I am a User]
+        When [I click "sign in"]
+        Then [I should see and option to Register as a member]
+     */
+    @Test
+    public void onSignInClickSeeRegister() {
+        onView(withId(R.id.btn_signup)).check(matches(isDisplayed()));
+    }
 }

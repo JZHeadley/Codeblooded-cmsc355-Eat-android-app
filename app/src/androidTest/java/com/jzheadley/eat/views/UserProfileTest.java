@@ -1,13 +1,5 @@
 package com.jzheadley.eat.views;
 
-import android.support.test.rule.ActivityTestRule;
-
-import com.jzheadley.eat.R;
-import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
-
-import org.junit.Rule;
-import org.junit.Test;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -17,6 +9,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+import android.support.test.rule.ActivityTestRule;
+
+import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
+
+import org.junit.Rule;
+import org.junit.Test;
+
 
 public class UserProfileTest {
     @Rule
@@ -24,9 +24,9 @@ public class UserProfileTest {
 
 
     /*
-    Given [ I am a user ]
-    when [ I submit changes to my username and password]
-    then [ I can cancel and leave things the same ]
+        Given [ I am a user ]
+        when [ I submit changes to my username and password]
+        then [ I can cancel and leave things the same ]
     */
     @Test
     public void cancelUpdateTest() {
@@ -40,9 +40,9 @@ public class UserProfileTest {
     }
 
     /*
-    Given [I am a user]
-    when [I see an error in my user profile]
-    then [I should be able to modify it to be accurate]
+        Given [I am a user]
+        when [I see an error in my user profile]
+        then [I should be able to modify it to be accurate]
      */
     @Test
     public void updateEmailUsernameTest() {

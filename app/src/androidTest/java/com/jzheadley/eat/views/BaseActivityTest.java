@@ -1,5 +1,12 @@
 package com.jzheadley.eat.views;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 
@@ -8,13 +15,6 @@ import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
 public class BaseActivityTest {
@@ -29,9 +29,9 @@ public class BaseActivityTest {
 
 
     /*
-    Given [ I am a customer ]
-    when [ I open the navigation menu ]
-    then [ I want to choose my username and be brought to my profile ]
+        Given [ I am a customer ]
+        when [ I open the navigation menu ]
+        then [ I want to choose my username and be brought to my profile ]
      */
     @Test
     public void displayUserProfileTest() {
@@ -39,8 +39,4 @@ public class BaseActivityTest {
         onView(withId(R.id.material_drawer_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.user_profile_et)).check(matches(isDisplayed()));
     }
-
-
-
-
 }

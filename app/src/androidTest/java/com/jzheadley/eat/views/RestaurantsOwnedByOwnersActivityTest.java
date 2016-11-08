@@ -73,7 +73,8 @@ public class RestaurantsOwnedByOwnersActivityTest {
     public void opensHourSelectionScreen() {
 //        onView(withId(R.id.add_new_restaurant_btn)).perform(scrollTo());
         onView(withId(R.id.submit_new_restaurant)).perform(click());
-        onView(withId(R.id.restaurant_creation_hours)).perform(click());
+//        onView(withId(R.id.restaurant_creation_hours)).perform(click());
+        onView(withText("Hours?")).perform(click());
         onView(withId(R.id.opening_hours_title)).check(matches(isDisplayed()));
     }
 
