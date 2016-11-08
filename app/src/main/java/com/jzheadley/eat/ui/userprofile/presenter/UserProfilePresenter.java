@@ -1,13 +1,14 @@
 package com.jzheadley.eat.ui.userprofile.presenter;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
@@ -89,14 +90,10 @@ public class UserProfilePresenter extends BasePresenterImpl {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "onComplete: " + newUsername);
-                            Log.d(TAG, "onComplete: " + newEmail);
-                            Log.i(TAG, "onComplete: user's email has been changed");
                             ((EditText) userProfileActivity.findViewById(R.id.email_profile_et))
                                     .setHint(newEmail);
                             int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
                                     .replace("http://192.99.0.20:9000/users/", ""));
-                            Log.d(TAG, "loadRestaurants: " + userId);
                             user.setUsername(newUsername);
                             userService.getUserApi()
                                     .updateUser(user, userId)
@@ -106,7 +103,6 @@ public class UserProfilePresenter extends BasePresenterImpl {
                                         @Override
                                         public void onCompleted() {
                                             Log.d(TAG, "onCompleted: User has been updated");
-//                                            userProfileActivity.startActivity(new );
                                             userProfileActivity.startActivity(
                                                     new Intent(userProfileActivity
                                                             .getApplicationContext(),

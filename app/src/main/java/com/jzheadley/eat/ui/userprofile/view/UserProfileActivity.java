@@ -1,18 +1,19 @@
 package com.jzheadley.eat.ui.userprofile.view;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import com.jzheadley.eat.ui.userprofile.presenter.UserProfilePresenter;
 
 public class UserProfileActivity extends BaseActivity {
@@ -39,7 +40,21 @@ public class UserProfileActivity extends BaseActivity {
         userService = new UserService();
         userProfilePresenter = new UserProfilePresenter(this, userService);
         userProfilePresenter.getUser();
-        displayEmail();
+        String newEmail;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                newEmail = null;
+            } else {
+                newEmail = extras.getString("newEmail");
+                ((EditText) findViewById(R.id.email_profile_et))
+                        .setHint(newEmail);
+            }
+        } else {
+            displayEmail();
+
+        }
+
     }
 
     public void onClick(View view) {
@@ -67,12 +82,10 @@ public class UserProfileActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         EditText usernameEditText = ((EditText) findViewById(R.id.user_profile_et));
                         EditText emailEditText = ((EditText) findViewById(R.id.email_profile_et));
-                        Log.d(TAG, "onClick: " + emailEditText.getText().toString());
-                        Log.d(TAG, "onClick: " + usernameEditText.getText().toString());
-                        userProfilePresenter.modifyUser(user,
-                                usernameEditText.getText().toString(),
+                        userProfilePresenter.modifyUser(user, usernameEditText.getText().toString(),
                                 emailEditText.getText().toString());
-                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+                        Intent intent = new Intent(getApplicationContext(), NearbyRestaurantActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

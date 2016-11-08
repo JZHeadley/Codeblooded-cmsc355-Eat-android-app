@@ -12,27 +12,18 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNot.not;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import android.widget.EditText;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.data.models.User;
-import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 
 import org.hamcrest.Matchers;
-import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @RunWith(AndroidJUnit4.class)
 public class AuthenticationTest {
@@ -41,50 +32,7 @@ public class AuthenticationTest {
     @Rule
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
-    @AfterClass
-    // @Ignore
-    public static void removeUser() {
-        final UserService userService = new UserService();
-        userService.getUserApi()
-                .getUserByFirebaseId(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<User>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: Well we at least got the current user");
-                    }
 
-                    @Override
-                    public void onError(Throwable exception) {
-                        Log.e(TAG, "onError: Something wen't wrong with getting the user", exception);
-                    }
-
-                    @Override
-                    public void onNext(User user) {
-                        userService.getUserApi().deleteUser(user)
-                                .subscribeOn(Schedulers.newThread())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Observer<Void>() {
-                                    @Override
-                                    public void onCompleted() {
-                                        Log.d(TAG, "onCompleted: User has been deleted");
-                                    }
-
-                                    @Override
-                                    public void onError(Throwable error) {
-                                        Log.e(TAG, "onError: User could not be deleted", error);
-                                    }
-
-                                    @Override
-                                    public void onNext(Void aVoid) {
-                                        Log.d(TAG, "onNext: Firebase user being deleted");
-                                        FirebaseAuth.getInstance().getCurrentUser().delete();
-                                    }
-                                });
-                    }
-                });
-    }
 
     /*
         Given [I am a User]
