@@ -25,4 +25,8 @@ public class BaseActivityTest {
         onView(withId(R.id.slide_in_menu_icon)).perform(click());
         onView(withText("Home")).check(matches(isDisplayed()));
     }
+
+
+
+
 }
