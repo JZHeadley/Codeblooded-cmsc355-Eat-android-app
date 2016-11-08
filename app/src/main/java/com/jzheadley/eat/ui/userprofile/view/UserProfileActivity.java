@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -15,10 +16,9 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.userprofile.presenter.UserProfilePresenter;
 
 public class UserProfileActivity extends BaseActivity {
+    private static final String TAG = "UserProfileActivity";
     private UserProfilePresenter userProfilePresenter;
     private UserService userService;
-
-
     private User user;
 
     public void displayUsername(User user) {
@@ -65,11 +65,13 @@ public class UserProfileActivity extends BaseActivity {
                 .setCancelable(true)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        EditText usernameEditText = ((EditText) findViewById(R.id.user_profile_et));
+                        EditText emailEditText = ((EditText) findViewById(R.id.email_profile_et));
+                        Log.d(TAG, "onClick: " + emailEditText.getText().toString());
+                        Log.d(TAG, "onClick: " + usernameEditText.getText().toString());
                         userProfilePresenter.modifyUser(user,
-                                ((EditText) findViewById(R.id.user_profile_et))
-                                        .getText().toString(),
-                                ((EditText) findViewById(R.id.email_profile_et))
-                                        .getText().toString());
+                                usernameEditText.getText().toString(),
+                                emailEditText.getText().toString());
                         startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
                     }
                 })

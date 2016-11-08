@@ -1,6 +1,7 @@
 package com.jzheadley.eat.views;
 
 import android.support.test.rule.ActivityTestRule;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.R;
@@ -17,18 +18,20 @@ import rx.schedulers.Schedulers;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.is;
 
 
 public class UserProfileTest {
+    private static final String TAG = "UserProfileTest";
     @Rule
     public ActivityTestRule<UserProfileActivity> mActivityTestRule = new ActivityTestRule<>(UserProfileActivity.class, false, true);
-
 
     /*
         Given [ I am a user ]
@@ -65,20 +68,23 @@ public class UserProfileTest {
 
     }
 
+
     /*
         Given [I am a user]
         when [I see an error in my user profile]
         then [I should be able to modify it to be accurate]
      */
+
     @Test
     public void updateEmailUsernameTest() {
         onView(withId(R.id.user_profile_et)).check(matches(isDisplayed()));
-        onView(withId(R.id.user_profile_et)).perform(typeText("newUsername"));
-        onView(withId(R.id.email_profile_et)).perform(typeText("newemail@gmail.com"));
+        onView(withId(R.id.user_profile_et)).perform(typeText("newUsername"), closeSoftKeyboard());
+        onView(withId(R.id.email_profile_et)).perform(typeText("newemail@gmail.com"), closeSoftKeyboard());
         onView(withId(R.id.user_profile_update_submit_btn)).perform(click());
         onView(withText("Yes")).perform(click());
-        onView(withId(R.id.user_profile_et)).check(matches(withHint("newUsername")));
-        onView(withId(R.id.email_profile_et)).check(matches(withHint("newemail@gmail.com")));
+        Log.d(TAG, "updateEmailUsernameTest: Just clicked the thingy");
+        onView(withId(R.id.user_profile_et)).check(matches(withHint(is("newUsername"))));
+        onView(withId(R.id.email_profile_et)).check(matches(withHint(is("newemail@gmail.com"))));
     }
 
 }
