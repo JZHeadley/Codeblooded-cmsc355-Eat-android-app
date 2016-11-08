@@ -36,6 +36,6 @@ public interface UserApi {
     @DELETE("users/")
     Observable<Void> deleteUser(@Body User user);
 
-    @PUT("users/")
-    Observable<Void> updateUser(User user);
+    @PUT("users/{id}/")
+    Observable<Void> updateUser(@Body User user, @Path("id") int userId);
 }
