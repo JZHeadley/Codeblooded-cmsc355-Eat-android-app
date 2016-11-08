@@ -19,8 +19,8 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:name=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:name=".ui.nearbyrestaurants.view.NearbyRestaurantActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,10 +70,6 @@
         <activity
             android:name=".ui.resetpassword.view.ResetPasswordActivity"
             android:parentActivityName=".ui.login.view.LoginActivity" />
-
-        <activity
-            android:name=".ui.favoriterestaurants.view.favoriteRestaurantActivity"
-            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

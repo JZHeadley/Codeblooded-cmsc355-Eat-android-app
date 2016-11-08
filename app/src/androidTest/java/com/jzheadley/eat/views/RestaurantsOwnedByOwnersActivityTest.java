@@ -1,16 +1,5 @@
 package com.jzheadley.eat.views;
 
-import android.support.test.rule.ActivityTestRule;
-
-import com.jzheadley.eat.R;
-import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-
-import io.fabric.sdk.android.services.concurrency.DependsOn;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -22,6 +11,17 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+
+import android.support.test.rule.ActivityTestRule;
+
+import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+
+import io.fabric.sdk.android.services.concurrency.DependsOn;
 
 @DependsOn(AuthenticationTest.class)
 public class RestaurantsOwnedByOwnersActivityTest {

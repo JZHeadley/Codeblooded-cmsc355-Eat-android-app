@@ -1,6 +1,14 @@
 package com.jzheadley.eat.views;
 
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
@@ -14,14 +22,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-
 
 @RunWith(AndroidJUnit4.class)
 public class RestaurantDetailsTest {
@@ -29,16 +29,16 @@ public class RestaurantDetailsTest {
 
     @Rule
     public ActivityTestRule<RestaurantDetailsActivity> mActivityRule =
-        new ActivityTestRule<RestaurantDetailsActivity>(RestaurantDetailsActivity.class, false, true) {
-            @Override
-            protected Intent getActivityIntent() {
-                Context targetContext = InstrumentationRegistry.getInstrumentation()
-                    .getTargetContext();
-                Intent result = new Intent(targetContext, RestaurantDetailsActivity.class);
-                result.putExtra("restaurantId", 0);
-                return result;
-            }
-        };
+            new ActivityTestRule<RestaurantDetailsActivity>(RestaurantDetailsActivity.class, false, true) {
+                @Override
+                protected Intent getActivityIntent() {
+                    Context targetContext = InstrumentationRegistry.getInstrumentation()
+                            .getTargetContext();
+                    Intent result = new Intent(targetContext, RestaurantDetailsActivity.class);
+                    result.putExtra("restaurantId", 0);
+                    return result;
+                }
+            };
 
 
     // Given [I am a customer]when [I click on a specific restaurant from my home screen]then [I want to see a picture or pictures of the restaurant interior]

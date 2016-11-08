@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:padding="15dp">
 
     <TextView
+        android:fontFamily="sans-serif"
         android:id="@+id/opening_hours_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:fontFamily="sans-serif"
+        android:layout_width="wrap_content"
         android:text="@string/opening_hours_title"
         android:textColor="#f4ad42"
         android:textSize="30sp"
@@ -17,25 +17,24 @@
 
     <Button
         android:id="@+id/confirm_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
         android:text="@string/done_button"
         android:textSize="16sp" />
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:columnCount="3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/opening_hours_title"
-        android:columnCount="3"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:rowCount="7"
-        >
+        android:rowCount="7">
 
         <TextView
             android:id="@+id/opening_hours_sunday"
@@ -45,22 +44,22 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/sun_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_row="0"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/sun_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_row="0"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
@@ -73,24 +72,24 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/mon_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="1"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/mon_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="1"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
@@ -103,24 +102,24 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/tue_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="2"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/tue_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="2"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
@@ -133,24 +132,24 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/wed_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="3"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/wed_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="3"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
@@ -163,26 +162,26 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/thu_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="4"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/thu_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="4"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/opening_hours_friday"
@@ -193,24 +192,24 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/fri_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="5"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/fri_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="5"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
@@ -223,24 +222,24 @@
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_start"
             android:id="@+id/sat_opening"
             android:layout_column="1"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="15dp"
             android:layout_row="6"
-            android:hint="@string/placeholder_string_opening_hours_start"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 
         <TextView
+            android:hint="@string/placeholder_string_opening_hours_end"
             android:id="@+id/sat_closing"
             android:layout_column="2"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_row="6"
-            android:hint="@string/placeholder_string_opening_hours_end"
             android:onClick="onHoursClick"
             android:textSize="20sp" />
 

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:padding="15dp">
 
     <TextView
-        android:id="@+id/restaurant_name_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"
+        android:id="@+id/restaurant_name_detail"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:text="@string/defaultRestaurantName"
         android:textColor="#000000"
         android:textSize="30sp"
@@ -17,41 +17,41 @@
 
 
     <ImageView
-        android:id="@+id/restaurant_photo_detail"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_below="@id/restaurant_name_detail"
         android:contentDescription="@string/card_image"
+        android:id="@+id/restaurant_photo_detail"
+        android:layout_below="@id/restaurant_name_detail"
+        android:layout_height="180dp"
+        android:layout_width="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/restaurant_placeholder" />
 
     <TextView
-        android:id="@+id/address_restaurant_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/restaurant_photo_detail"
         android:fontFamily="sans-serif"
+        android:id="@+id/address_restaurant_detail"
+        android:layout_below="@id/restaurant_photo_detail"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:text="@string/address_hint"
         android:textColor="#727272"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/description_restaurant_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/address_restaurant_detail"
-        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif"
+        android:id="@+id/description_restaurant_detail"
+        android:layout_below="@id/address_restaurant_detail"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:text="@string/description_restaurant"
         android:textColor="#000000"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/menu_restaurant_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/description_restaurant_detail"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:onClick="onMenuClick"
         android:text="@string/menu_detail" />
 

@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/activity_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+        android:id="@+id/activity_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:padding="15dp">
 
         <TextView
+            android:fontFamily="sans-serif"
             android:id="@+id/restaurant_name_title"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
             android:text="Category Name"
             android:textColor="#f4ad42"
             android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/first_meal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/restaurant_name_title"
-            android:layout_marginBottom="15dp"
             android:background="@drawable/menu_kind"
-            android:text="First Meal"/>
+            android:id="@+id/first_meal"
+            android:layout_below="@id/restaurant_name_title"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:text="First Meal" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_below="@id/first_meal"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="-46dp"
-            android:gravity="end"
-            android:text="$15.90"/>
+            android:layout_width="match_parent"
+            android:text="$15.90" />
 
         <ImageView
             android:id="@+id/checkmark"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/first_meal"
+            android:layout_height="30dp"
             android:layout_marginTop="-76dp"
-            android:src="@drawable/ic_check"/>
+            android:layout_width="30dp"
+            android:src="@drawable/checkmark" />
 
         <TextView
-            android:id="@+id/second_meal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first_meal"
-            android:layout_marginBottom="15dp"
             android:background="@drawable/menu_kind"
-            android:text="Second Meal"/>
+            android:id="@+id/second_meal"
+            android:layout_below="@id/first_meal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:text="Second Meal" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_below="@id/second_meal"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="-46dp"
-            android:gravity="end"
-            android:text="$24.90"/>
+            android:layout_width="match_parent"
+            android:text="$24.90" />
 
         <Button
-            android:id="@+id/checkout_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:gravity="center"
+            android:id="@+id/checkout_button"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:text="@string/checkout_button"
             android:textAlignment="center"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
     </RelativeLayout>
 

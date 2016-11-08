@@ -21,7 +21,7 @@ public class RestaurantsOwnedByOwnerPresenter extends BasePresenterImpl {
     private RestaurantsOwnedByOwnerActivity restaurantsOwnedByOwnerActivity;
 
     public RestaurantsOwnedByOwnerPresenter(RestaurantsOwnedByOwnerActivity
-                                                restaurantsOwnedByOwnerActivity,
+                                                    restaurantsOwnedByOwnerActivity,
                                             RestaurantService restaurantService,
                                             UserService userService) {
         super(restaurantsOwnedByOwnerActivity);
@@ -33,54 +33,54 @@ public class RestaurantsOwnedByOwnerPresenter extends BasePresenterImpl {
     private void loadRestaurants(User restaurantOwner) {
         Log.d(TAG, "loadRestaurants: " + restaurantOwner);
         int userId = Integer.parseInt(restaurantOwner.getLinks().getSelf().getHref()
-            .replace("http://192.99.0.20:9000/users/", ""));
+                .replace("http://192.99.0.20:9000/users/", ""));
         Log.d(TAG, "loadRestaurants: " + userId);
         restaurantService.getRestaurantApi()
-            .getRestaurantsByOwnerId(userId)
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<ResponseEntity>() {
-                @Override
-                public void onCompleted() {
+                .getRestaurantsByOwnerId(userId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseEntity>() {
+                    @Override
+                    public void onCompleted() {
 
-                }
+                    }
 
-                @Override
-                public void onError(Throwable exception) {
+                    @Override
+                    public void onError(Throwable exception) {
 
-                }
+                    }
 
-                @Override
-                public void onNext(ResponseEntity responseEntity) {
+                    @Override
+                    public void onNext(ResponseEntity responseEntity) {
 
-                    restaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(
-                        responseEntity.getEmbedded().getRestaurants());
-                }
-            });
+                        restaurantsOwnedByOwnerActivity.displayRestaurantsOfOwner(
+                                responseEntity.getEmbedded().getRestaurants());
+                    }
+                });
     }
 
     public void getOwnedRestaurants(String firebaseId) {
         Log.d(TAG, "getOwnedRestaurants: " + firebaseId);
         userService.getUserApi()
-            .getUserByFirebaseId(firebaseId)
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<User>() {
-                @Override
-                public void onCompleted() {
-                    Log.i(TAG, "onCompleted: Current User Request was completed");
-                }
+                .getUserByFirebaseId(firebaseId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i(TAG, "onCompleted: Current User Request was completed");
+                    }
 
-                @Override
-                public void onError(Throwable exception) {
-                    Log.e(TAG, "onError: ", exception);
-                }
+                    @Override
+                    public void onError(Throwable exception) {
+                        Log.e(TAG, "onError: ", exception);
+                    }
 
-                @Override
-                public void onNext(User user) {
-                    loadRestaurants(user);
-                }
-            });
+                    @Override
+                    public void onNext(User user) {
+                        loadRestaurants(user);
+                    }
+                });
         Log.d(TAG, "getOwnedRestaurants: End of getOwnedRestaurants");
     }
 

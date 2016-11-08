@@ -14,5 +14,6 @@ public interface BasePresenter {
     Drawer createDrawer(final Toolbar toolbar, final BaseActivity activity);
 
     List<IDrawerItem> getDrawerItems(final Toolbar toolbar, BaseActivity activity);
+
     void hideProgress();
 }

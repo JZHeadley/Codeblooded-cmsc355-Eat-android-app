@@ -38,26 +38,26 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
     public void createUser(String email, String password, String username) {
         this.username = username;
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this);
+                .addOnCompleteListener(this);
         Log.d(TAG, "createUser: User has been added to FireBase");
     }
 
     public void sendVerificationEmail(FirebaseUser currentUser) {
         currentUser.sendEmailVerification()
-            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "onComplete: Verification Email sent");
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "onComplete: Verification Email sent");
+                        }
                     }
-                }
-            });
+                });
     }
 
     @Override
     public void onComplete(@NonNull Task<AuthResult> task) {
         Toast.makeText(signupActivity, "createUserWithEmail:onComplete:"
-            + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                + task.isSuccessful(), Toast.LENGTH_SHORT).show();
         hideProgress();
         // If sign in fails, display a message to the user. If sign in succeeds
         // the auth state listener will be notified and logic to handle the
@@ -65,32 +65,32 @@ public class SignupPresenter extends BasePresenterImpl implements OnCompleteList
         Log.d(TAG, "onComplete: " + task.toString());
         if (!task.isSuccessful()) {
             Toast.makeText(signupActivity, "Authentication failed." + task.getException(),
-                Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();
 
         } else {
             signupActivity.startActivity(new Intent(signupActivity.getApplicationContext(),
-                SignupActivity.class));
+                    SignupActivity.class));
             User user = new User(username, task.getResult().getUser().getUid());
             userService.getUserApi()
-                .createUser(user)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Void>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: ");
-                    }
+                    .createUser(user)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Void>() {
+                        @Override
+                        public void onCompleted() {
+                            Log.d(TAG, "onCompleted: ");
+                        }
 
-                    @Override
-                    public void onError(Throwable exception) {
+                        @Override
+                        public void onError(Throwable exception) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onNext(Void avoid) {
+                        @Override
+                        public void onNext(Void avoid) {
 
-                    }
-                });
+                        }
+                    });
             signupActivity.finish();
         }
     }

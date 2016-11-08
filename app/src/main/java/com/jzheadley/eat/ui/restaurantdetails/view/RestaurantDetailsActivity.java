@@ -54,15 +54,15 @@ public class RestaurantDetailsActivity extends BaseActivity {
 
         restaurantName.setText(restaurant.getName());
         restaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity()
-            + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
+                + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
         restaurantDescription.setText(restaurant.getDescription());
         Glide.with(this)
-            .load(restaurant.getPictureurl())
-            .crossFade()
-            .fitCenter()
-            .centerCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(new GlideDrawableImageViewTarget(restaurantPhoto));
+                .load(restaurant.getPictureurl())
+                .crossFade()
+                .fitCenter()
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(new GlideDrawableImageViewTarget(restaurantPhoto));
     }
 
     public void onMenuClick(View view) {

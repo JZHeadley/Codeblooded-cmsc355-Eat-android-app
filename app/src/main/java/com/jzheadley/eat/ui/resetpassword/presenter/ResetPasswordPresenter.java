@@ -23,19 +23,19 @@ public class ResetPasswordPresenter extends BasePresenterImpl {
     public void resetPassword(String email) {
         this.showProgress();
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-            .addOnCompleteListener(resetPasswordActivity, new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(resetPasswordActivity,
-                            "We have sent you instructions to reset your password!",
-                            Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(resetPasswordActivity, "Failed to send reset email!",
-                            Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(resetPasswordActivity, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(resetPasswordActivity,
+                                    "We have sent you instructions to reset your password!",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(resetPasswordActivity, "Failed to send reset email!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        hideProgress();
                     }
-                    hideProgress();
-                }
-            });
+                });
     }
 }

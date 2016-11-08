@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/activity_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+        android:id="@+id/activity_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:padding="15dp">
 
         <TextView
+            android:fontFamily="sans-serif"
             android:id="@+id/restaurant_name_title"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
             android:text="@string/restaurant_name"
             android:textColor="#f4ad42"
             android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/restaurant_name_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_below="@id/restaurant_name_title"
-            android:layout_marginBottom="15dp"
             android:cropToPadding="true"
+            android:id="@+id/restaurant_name_photo"
+            android:layout_below="@id/restaurant_name_title"
+            android:layout_height="150dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="wrap_content"
             android:scaleType="centerCrop"
-            android:src="@drawable/food"/>
+            android:src="@drawable/food" />
 
         <TextView
-            android:id="@+id/first_meal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/restaurant_name_photo"
             android:background="@drawable/menu_kind"
-            android:text="First Meal Category"/>
+            android:id="@+id/first_meal"
+            android:layout_below="@id/restaurant_name_photo"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="First Meal Category" />
 
     </RelativeLayout>
 

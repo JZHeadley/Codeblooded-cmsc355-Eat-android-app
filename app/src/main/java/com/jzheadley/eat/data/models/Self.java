@@ -45,8 +45,8 @@ public class Self implements Parcelable {
     @Override
     public String toString() {
         return "Self{"
-            + "href='" + href + '\''
-            + '}';
+                + "href='" + href + '\''
+                + '}';
     }
 
     @Override

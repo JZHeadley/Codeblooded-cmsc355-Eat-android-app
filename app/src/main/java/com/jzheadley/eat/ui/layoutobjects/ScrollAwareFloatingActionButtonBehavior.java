@@ -17,7 +17,7 @@ public class ScrollAwareFloatingActionButtonBehavior extends FloatingActionButto
                                View target, int dxConsumed, int dyConsumed,
                                int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
-            dyUnconsumed);
+                dyUnconsumed);
 
         if (dyConsumed > 0 && child.getVisibility() == View.VISIBLE) {
             child.hide();

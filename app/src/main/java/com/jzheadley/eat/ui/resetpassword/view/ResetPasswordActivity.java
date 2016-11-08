@@ -28,7 +28,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.btn_forgot_password:
                 resetPasswordPresenter.resetPassword(
-                    ((EditText) findViewById(R.id.reset_email)).getText().toString().trim());
+                        ((EditText) findViewById(R.id.reset_email)).getText().toString().trim());
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.btn_back:

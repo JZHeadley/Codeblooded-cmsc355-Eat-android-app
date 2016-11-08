@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:layout_width="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/activity_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+        android:id="@+id/activity_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
-            android:layout="@layout/toolbar_main"/>
+            android:layout="@layout/toolbar_main" />
 
         <FrameLayout
             android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:padding="15dp">
-    <TextView
-        android:id="@+id/menu_input_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/menu_title"
-        android:textColor="#f4ad42"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/first_meal"
-            android:layout_width="match_parent"
+            android:fontFamily="sans-serif"
+            android:id="@+id/menu_input_title"
             android:layout_height="wrap_content"
-            android:layout_below="@id/menu_input_title"
             android:layout_marginBottom="15dp"
+            android:layout_width="wrap_content"
+            android:text="@string/menu_title"
+            android:textColor="#f4ad42"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:background="@drawable/menu_kind"
-            android:text="First Meal Category"/>
+            android:id="@+id/first_meal"
+            android:layout_below="@id/menu_input_title"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:text="First Meal Category" />
 
-    <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/first_meal"
-        android:text="@string/delete_category" />
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/first_meal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/delete_category" />
 
 
-    <Button
-        android:id="@+id/Add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/first_meal"
-        android:text="@string/add_category" />
+        <Button
+            android:id="@+id/Add_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/first_meal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/add_category" />
 
-    <Button
-        android:id="@+id/confirm_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/done_button"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/confirm_menu"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:text="@string/done_button"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
