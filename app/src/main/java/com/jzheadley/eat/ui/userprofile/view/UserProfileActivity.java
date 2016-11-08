@@ -1,13 +1,13 @@
 package com.jzheadley.eat.ui.userprofile.view;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
@@ -52,7 +52,6 @@ public class UserProfileActivity extends BaseActivity {
                 break;
             case R.id.user_profile_update_submit_btn:
                 promptUserUpdate();
-                finish();
                 break;
             default:
                 break;
@@ -71,6 +70,7 @@ public class UserProfileActivity extends BaseActivity {
                                         .getText().toString(),
                                 ((EditText) findViewById(R.id.email_profile_et))
                                         .getText().toString());
+                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -96,6 +96,7 @@ public class UserProfileActivity extends BaseActivity {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
+                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
                     }
                 })
                 .create();

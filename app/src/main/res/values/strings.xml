@@ -60,7 +60,7 @@
     <string name="loading">Loading…</string>
     <string name="sign_up">Sign Up</string>
     <string name="btn_sign_in">Sign In</string>
-    <string name="btn_sign_out_txt">Sign Out</string>
+    <string name="btn_submit">Submit</string>
     <string name="e_mail_login">E-mail</string>
     <string name="password_login">Password</string>
     <string name="login_prompt">Login:</string>
