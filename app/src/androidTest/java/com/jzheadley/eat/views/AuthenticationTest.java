@@ -1,17 +1,30 @@
 package com.jzheadley.eat.views;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.core.IsNot.not;
+
 import com.google.firebase.auth.FirebaseAuth;
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 
+import org.hamcrest.Matchers;
 import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,25 +34,9 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-
 @RunWith(AndroidJUnit4.class)
 public class AuthenticationTest {
+
     private static final String TAG = "AuthenticationTest";
     @Rule
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
@@ -49,44 +46,58 @@ public class AuthenticationTest {
     public static void removeUser() {
         final UserService userService = new UserService();
         userService.getUserApi()
-            .getUserByFirebaseId(FirebaseAuth.getInstance().getCurrentUser().getUid())
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<User>() {
-                @Override
-                public void onCompleted() {
-                    Log.d(TAG, "onCompleted: Well we at least got the current user");
-                }
+                .getUserByFirebaseId(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted: Well we at least got the current user");
+                    }
 
-                @Override
-                public void onError(Throwable exception) {
-                    Log.e(TAG, "onError: Something wen't wrong with getting the user", exception);
-                }
+                    @Override
+                    public void onError(Throwable exception) {
+                        Log.e(TAG, "onError: Something wen't wrong with getting the user", exception);
+                    }
 
-                @Override
-                public void onNext(User user) {
-                    userService.getUserApi().deleteUser(user)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<Void>() {
-                            @Override
-                            public void onCompleted() {
-                                Log.d(TAG, "onCompleted: User has been deleted");
-                            }
+                    @Override
+                    public void onNext(User user) {
+                        userService.getUserApi().deleteUser(user)
+                                .subscribeOn(Schedulers.newThread())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<Void>() {
+                                    @Override
+                                    public void onCompleted() {
+                                        Log.d(TAG, "onCompleted: User has been deleted");
+                                    }
 
-                            @Override
-                            public void onError(Throwable error) {
-                                Log.e(TAG, "onError: User could not be deleted", error);
-                            }
+                                    @Override
+                                    public void onError(Throwable error) {
+                                        Log.e(TAG, "onError: User could not be deleted", error);
+                                    }
 
-                            @Override
-                            public void onNext(Void aVoid) {
-                                Log.d(TAG, "onNext: Firebase user being deleted");
-                                FirebaseAuth.getInstance().getCurrentUser().delete();
-                            }
-                        });
-                }
-            });
+                                    @Override
+                                    public void onNext(Void aVoid) {
+                                        Log.d(TAG, "onNext: Firebase user being deleted");
+                                        FirebaseAuth.getInstance().getCurrentUser().delete();
+                                    }
+                                });
+                    }
+                });
+    }
+
+    /*
+        Given [I am a User]
+        When [I click "Register"]
+        Then [I should be brought to a screen asking for a username, email, and password]
+     */
+    @Test
+    public void onRegistrationTest() {
+        onView(withId(R.id.btn_signup)).perform(click());
+
+        onView(withId(R.id.username_signup)).check(matches(isDisplayed()));
+        onView(withId(R.id.email)).check(matches(isDisplayed()));
+        onView(withId(R.id.password)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -119,18 +130,20 @@ public class AuthenticationTest {
        then [I am sent back to the login activity and informed that my credentials were wrong]
     */
     @Test
+    public void loginWrongCredsTest() {
+        onView(withId(R.id.email)).perform(replaceText("EspressoTestUser@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(replaceText("kjb"), closeSoftKeyboard());
+        onView(withId(R.id.btn_login)).perform(click());
+        Log.d(TAG, "loginWrongCredsTest: " + ((EditText) mActivityTestRule.getActivity().findViewById(R.id.password)).getError());
+        onView(withId(R.id.password)).check(matches(not(hasErrorText(Matchers.isEmptyOrNullString()))));
+    }
+
+    @Test
     public void loginTest() {
         onView(withId(R.id.email)).perform(replaceText("EspresoTestUser@gmail.com"), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(replaceText("Welcome123!"), closeSoftKeyboard());
         onView(allOf(withId(R.id.btn_login), isDisplayed())).perform(click());
-    }
-    /*
-        Given [I am a User]
-        When [I try to login and mistype my password ]
-        Then [I am sent back to the login activity and informed that my credentials were wrong]
-    */
-
-    public void wrongPasswordTest() {
 
     }
+
 }

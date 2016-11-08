@@ -82,7 +82,7 @@ public class UserProfilePresenter extends BasePresenterImpl {
                 });
     }
 
-    public void modifyUser(final User user, String newUsername, String newEmail) {
+    public void modifyUser(final User user, final String newUsername, String newEmail) {
         FirebaseAuth.getInstance().getCurrentUser().updateEmail(newEmail)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -92,6 +92,7 @@ public class UserProfilePresenter extends BasePresenterImpl {
                             int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
                                     .replace("http://192.99.0.20:9000/users/", ""));
                             Log.d(TAG, "loadRestaurants: " + userId);
+                            user.setUsername(newUsername);
                             userService.getUserApi()
                                     .updateUser(user, userId)
                                     .subscribeOn(Schedulers.newThread())

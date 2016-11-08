@@ -47,7 +47,6 @@ public class LoginActivity extends BaseActivity implements LoginView,
         loginPresenter = new LoginPresenterImpl(this);
         signInButton = (SignInButton) findViewById(R.id.google_sign_in_btn);
         signInButton.setOnClickListener(this);
-        progressBar = (ProgressBar) findViewById(R.id.progress);
         auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
@@ -132,14 +131,17 @@ public class LoginActivity extends BaseActivity implements LoginView,
             Toast.makeText(getApplicationContext(), "Enter email address!",
                     Toast.LENGTH_SHORT).show();
             return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(password)) {
+            ((EditText) findViewById(R.id.password)).setError("You must enter a password");
             return;
+        } else if (password.length() < 6) {
+            ((EditText) findViewById(R.id.password))
+                    .setError(getString(R.string.minimum_password));
+            return;
+        } else {
+            //authenticate user
+            loginPresenter.signInWithEmailPassword(email, password);
         }
-        progressBar.setVisibility(View.VISIBLE);
-        //authenticate user
-        loginPresenter.signInWithEmailPassword(email, password);
     }
 
     @Override
