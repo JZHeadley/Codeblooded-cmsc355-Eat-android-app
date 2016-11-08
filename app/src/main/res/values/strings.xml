@@ -94,6 +94,7 @@
         <item>Settings</item>
         <item>Help</item>
         <item>Restaurant Owners</item>
+        <item>Favorite Restaurants</item>
     </string-array>
     <string-array name="opening_hours_days">
         <item>Sunday</item>

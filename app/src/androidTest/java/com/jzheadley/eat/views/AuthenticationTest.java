@@ -116,4 +116,8 @@ public class AuthenticationTest {
         onView(allOf(withId(R.id.btn_login), isDisplayed())).perform(click());
     }
 
+    public void accessTest() {
+
+    }
+
 }

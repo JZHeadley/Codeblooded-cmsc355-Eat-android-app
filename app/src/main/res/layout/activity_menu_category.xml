@@ -61,7 +61,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/first_meal"
             android:layout_marginTop="-76dp"
-            android:src="@drawable/checkmark"/>
+            android:src="@drawable/ic_check"/>
 
         <TextView
             android:id="@+id/second_meal"
