@@ -89,8 +89,11 @@ public class UserProfilePresenter extends BasePresenterImpl {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.i(TAG, "onComplete: user's email has been changed");
+                            int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
+                                    .replace("http://192.99.0.20:9000/users/", ""));
+                            Log.d(TAG, "loadRestaurants: " + userId);
                             userService.getUserApi()
-                                    .updateUser(user)
+                                    .updateUser(user, userId)
                                     .subscribeOn(Schedulers.newThread())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(new Observer<Void>() {
