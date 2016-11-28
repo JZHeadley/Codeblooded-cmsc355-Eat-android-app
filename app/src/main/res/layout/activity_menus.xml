@@ -21,24 +21,6 @@
         android:layout_below="@+id/restaurant_name_title"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
-    <!--
-    <ImageView
-        android:cropToPadding="true"
-        android:id="@+id/restaurant_name_photo"
-        android:layout_below="@id/restaurant_name_title"
-        android:layout_height="150dp"
-        android:layout_marginBottom="15dp"
-        android:layout_width="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/food" />
-
-    <TextView
-        android:background="@drawable/menu_kind"
-        android:id="@+id/first_meal"
-        android:layout_below="@id/restaurant_name_photo"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="First Meal Category" />-->
 
 
 </RelativeLayout>

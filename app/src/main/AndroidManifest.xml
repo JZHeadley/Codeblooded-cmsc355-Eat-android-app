@@ -71,6 +71,10 @@
             android:name=".ui.resetpassword.view.ResetPasswordActivity"
             android:parentActivityName=".ui.login.view.LoginActivity" />
 
+        <activity
+            android:name=".ui.menucategories.view.MenuCategoriesActivity"
+            android:parentActivityName=".ui.menu.view.RestaurantMenuActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />

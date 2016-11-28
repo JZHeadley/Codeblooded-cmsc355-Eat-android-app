@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.data.models.Category;
+import com.jzheadley.eat.data.models.Menu;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.services.MenuService;
-import com.jzheadley.eat.ui.adapters.CategoriesListAdapter;
+import com.jzheadley.eat.data.services.RestaurantService;
+import com.jzheadley.eat.ui.adapters.MenusListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenter;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;
@@ -18,31 +20,37 @@ import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;
 import java.util.List;
 
 public class RestaurantMenuActivity extends BaseActivity implements RestaurantMenuView {
+    private static final String TAG = "RestaurantMenuActivity";
     private RestaurantMenuPresenter restaurantMenuPresenter;
     private MenuService menuService;
-    private CategoriesListAdapter categoriesListAdapter;
-    private RecyclerView categoriesRecyclerView;
+    private MenusListAdapter menusListAdapter;
+    private RecyclerView menusRecyclerView;
     private Restaurant restaurant;
+    private RestaurantService restaurantService;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_menus);
         menuService = new MenuService();
-        restaurantMenuPresenter = new RestaurantMenuPresenterImpl(this, menuService);
+        restaurantService = new RestaurantService();
+        restaurantMenuPresenter = new RestaurantMenuPresenterImpl(this, menuService, restaurantService);
         restaurant = getIntent().getExtras().getParcelable("restaurant");
+        ((TextView) findViewById(R.id.restaurant_name_title)).setText(restaurant.getName());
 
-        categoriesRecyclerView = (RecyclerView) findViewById(R.id.menu_recyclerview);
-        categoriesRecyclerView.setHasFixedSize(true);
+        menusRecyclerView = (RecyclerView) findViewById(R.id.menu_recyclerview);
+        menusRecyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        categoriesRecyclerView.setLayoutManager(linearLayoutManager);
-
-        // restaurantMenuPresenter.loadMenuCategories(restaurant);
+        menusRecyclerView.setLayoutManager(linearLayoutManager);
+        restaurantMenuPresenter.loadRestaurantMenus(restaurant);
     }
 
-    public void displayCategories(List<Category> categories) {
-        categoriesListAdapter = new CategoriesListAdapter(categories);
-        categoriesRecyclerView.setAdapter(categoriesListAdapter);
+    @Override
+    public void displayMenus(List<Menu> menus) {
+
+        menusListAdapter = new MenusListAdapter(menus);
+        menusRecyclerView.setAdapter(menusListAdapter);
     }
 }

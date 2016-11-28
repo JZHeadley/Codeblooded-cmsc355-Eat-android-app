@@ -25,6 +25,9 @@ public interface RestaurantApi {
     @GET("restaurants/")
     Observable<ResponseEntity> getRestaurants(@Query("size") int numberOfItems);
 
+    @GET("restaurants/{id}/menus/")
+    Observable<ResponseEntity> getMenusOfRestaurant(@Path("id") int restaurantId);
+
     @GET("restaurants/search/findByOwnerId")
     Observable<ResponseEntity> getRestaurantsByOwnerId(
         @Query("restaurantOwnerId") int restaurantOwnerId);
