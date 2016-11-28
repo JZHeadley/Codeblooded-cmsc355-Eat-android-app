@@ -24,4 +24,7 @@ public interface MenuApi {
 
     @POST("menus/")
     Observable<Void> createMenu(@Body Menu menu);
+
+    @GET("menus/{menuId}/categories")
+    Observable<ResponseEntity> getMenuCategories(@Path("menuId") int menuId);
 }
