@@ -36,19 +36,19 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         auth.signInWithCredential(credential)
-                .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+            .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(loginActivity, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        hideProgress();
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "signInWithCredential", task.getException());
+                        Toast.makeText(loginActivity, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
                     }
-                });
+                    hideProgress();
+                }
+            });
 
     }
 
@@ -56,30 +56,30 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
     public void signInWithEmailPassword(String email, final String password) {
         showProgress();
         auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            if (password.length() < 6) {
-                                ((EditText) loginActivity.findViewById(R.id.password))
-                                        .setError(loginActivity
-                                                .getString(R.string.minimum_password));
-                            } else {
-                                Toast.makeText(loginActivity,
-                                        loginActivity.getString(R.string.auth_failed),
-                                        Toast.LENGTH_LONG).show();
-                            }
+            .addOnCompleteListener(loginActivity, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    if (!task.isSuccessful()) {
+                        if (password.length() < 6) {
+                            ((EditText) loginActivity.findViewById(R.id.password))
+                                .setError(loginActivity
+                                    .getString(R.string.minimum_password));
                         } else {
-                            // Intent intent = new Intent(loginActivity.getApplicationContext(),
-                            //     NearbyRestaurantActivity.class);
-                            // loginActivity.startActivity(intent);
-                            loginActivity.finish();
+                            Toast.makeText(loginActivity,
+                                loginActivity.getString(R.string.auth_failed),
+                                Toast.LENGTH_LONG).show();
                         }
+                    } else {
+                        // Intent intent = new Intent(loginActivity.getApplicationContext(),
+                        //     NearbyRestaurantActivity.class);
+                        // loginActivity.startActivity(intent);
+                        loginActivity.finish();
                     }
-                });
+                }
+            });
         hideProgress();
     }
 }

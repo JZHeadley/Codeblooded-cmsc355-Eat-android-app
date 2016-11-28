@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:fontFamily="sans-serif"
+        android:id="@+id/menu_creation_title"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:text="@string/menu_title"
+        android:textColor="#f4ad42"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_add_category"
+        android:layout_below="@+id/menu_creation_title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/btn_add_category_text" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_creation_recyclerview"
+        android:layout_below="@+id/btn_add_category"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+
+    <Button
+        android:id="@+id/confirm_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:text="@string/done_button"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

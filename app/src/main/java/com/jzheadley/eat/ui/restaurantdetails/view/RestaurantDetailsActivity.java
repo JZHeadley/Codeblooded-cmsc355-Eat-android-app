@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,12 +24,10 @@ public class RestaurantDetailsActivity extends BaseActivity {
     private ImageView restaurantPhoto;
     private TextView restaurantAddress;
     private TextView restaurantDescription;
-    private Button showMenuBtn;
     private TextView restaurantName;
     private Restaurant restaurant;
     private RestaurantDetailsPresenter restaurantDetailsPresenter;
     private RestaurantService restaurantService;
-    private int restaurantId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,9 +36,6 @@ public class RestaurantDetailsActivity extends BaseActivity {
         restaurantService = new RestaurantService();
         restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
         restaurant = getIntent().getExtras().getParcelable("restaurant");
-        // restaurantId = getIntent().getExtras().getInt("restaurantId");
-        Log.i(TAG, "onCreate: " + restaurantId);
-        // restaurantDetailsPresenter.loadRestaurantDetails(restaurantId + 1);
         displayRestaurant(restaurant);
     }
 
@@ -68,6 +62,7 @@ public class RestaurantDetailsActivity extends BaseActivity {
 
     public void onMenuClick(View view) {
         Intent menuIntent = new Intent(view.getContext(), RestaurantMenuActivity.class);
+        menuIntent.putExtra("restaurant", restaurant);
         view.getContext().startActivity(menuIntent);
     }
 }

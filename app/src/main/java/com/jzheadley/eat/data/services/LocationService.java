@@ -10,8 +10,8 @@ public class LocationService {
 
     public LocationService(AppCompatActivity activity) {
         googleApiClient = new GoogleApiClient.Builder(activity)
-                .addApi(LocationServices.API)
-                .build();
+            .addApi(LocationServices.API)
+            .build();
         // LocationManager service = (LocationManager)
         //     activity.getSystemService(Context.LOCATION_SERVICE);
         // boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);

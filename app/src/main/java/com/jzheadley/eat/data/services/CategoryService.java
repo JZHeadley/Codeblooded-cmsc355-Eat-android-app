@@ -10,7 +10,7 @@ public class CategoryService {
 
     public CategoryService() {
         categoryApi = ServiceFactory
-                .createRetrofitDebugService(CategoryApi.class, Constants.SERVICE_ENDPOINT);
+            .createRetrofitDebugService(CategoryApi.class, Constants.SERVICE_ENDPOINT);
     }
 
     public CategoryApi getCategoryApi() {

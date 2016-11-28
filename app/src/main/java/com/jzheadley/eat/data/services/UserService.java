@@ -10,7 +10,7 @@ public class UserService {
 
     public UserService() {
         userApi = ServiceFactory.createRetrofitDebugService(UserApi.class,
-                Constants.SERVICE_ENDPOINT);
+            Constants.SERVICE_ENDPOINT);
     }
 
     public UserApi getUserApi() {

@@ -24,6 +24,7 @@ import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.data.services.UserService;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.layoutobjects.CheckBoxGroupView;
+import com.jzheadley.eat.ui.menucreation.view.MenuCreationActivity;
 import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPresenter;
 import com.jzheadley.eat.utils.Constants;
 import com.sakebook.android.uploadhelper.UploadHelper;
@@ -37,6 +38,7 @@ public class RestaurantCreationActivity extends BaseActivity {
     private static final String TAG = "RestaurantCreationActiv";
     private static final int OPENING_HOURS_RESULT = 2;
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int MENU_CREATION_RESULT = 3;
     private RestaurantCreationPresenter restaurantCreationPresenter;
     private RestaurantService restaurantService;
     private Restaurant restaurant;
@@ -51,7 +53,7 @@ public class RestaurantCreationActivity extends BaseActivity {
         restaurantService = new RestaurantService();
         userService = new UserService();
         restaurantCreationPresenter = new RestaurantCreationPresenter(this,
-                restaurantService, userService);
+            restaurantService, userService);
         createFoodTypeCheckBoxes();
         setupCountrySpinner();
         restaurant = new Restaurant();
@@ -71,14 +73,14 @@ public class RestaurantCreationActivity extends BaseActivity {
         Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
         Spinner countrySpinner = (Spinner) findViewById(R.id.restaurant_creation_country_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, countries);
+            android.R.layout.simple_spinner_item, countries);
         countrySpinner.setAdapter(adapter);
         countrySpinner.setSelection(adapter.getPosition("United States"));
     }
 
     private void createFoodTypeCheckBoxes() {
         CheckBoxGroupView checkBoxGroup = (CheckBoxGroupView)
-                findViewById(R.id.restaurant_food_type);
+            findViewById(R.id.restaurant_food_type);
         for (String str : getResources().getStringArray(R.array.types_of_food)) {
             CheckBox checkbox = new CheckBox(getApplicationContext());
             checkbox.setText(str);
@@ -93,30 +95,26 @@ public class RestaurantCreationActivity extends BaseActivity {
         imageGalleryChooserIntent.setType("image/*");
         imageGalleryChooserIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(imageGalleryChooserIntent, "Select Picture"),
-                PICK_IMAGE_REQUEST);
+            PICK_IMAGE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult: We made it in the method at least...");
-        Log.d(TAG, "onActivityResult: " + requestCode + " " + resultCode);
         switch (requestCode) {
             case PICK_IMAGE_REQUEST:
                 // TODO: 11/2/2016 MVP This
-                Log.d(TAG, "onActivityResult: It got here at least?");
                 if (resultCode == RESULT_OK) {
                     UploadHelper helper = new UploadHelper(this, restaurantCreationPresenter);
                     helper.setClientId(Constants.IMGUR_CLIENT_ID);
                     helper.setSecretId(Constants.IMGUR_SECRET);
                     Uri pathToFile = data.getData();
                     helper.uploadData(data.getData());
-                    Log.d(TAG, "onActivityResult: I think it uploaded?");
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
-                                pathToFile);
+                            pathToFile);
                         ImageView imageView = (ImageView)
-                                findViewById(R.id.restaurant_creation_add_photo);
+                            findViewById(R.id.restaurant_creation_add_photo);
                         imageView.setImageBitmap(bitmap);
                     } catch (IOException error) {
                         error.printStackTrace();
@@ -139,36 +137,48 @@ public class RestaurantCreationActivity extends BaseActivity {
     public void onSubmitButton(View view) {
         // TODO: 10/11/2016 Figure out how to represent menuHours in the database and add them
         Log.d(TAG, "onSubmitButton: " + ((EditText)
-                findViewById(R.id.restaurant_creation_address)).getText().toString());
+            findViewById(R.id.restaurant_creation_address)).getText().toString());
 
         restaurant.setAddress(((EditText)
-                findViewById(R.id.restaurant_creation_address)).getText().toString());
+            findViewById(R.id.restaurant_creation_address)).getText().toString());
         restaurant.setCity(((EditText)
-                findViewById(R.id.restaurant_creation_city)).getText().toString());
+            findViewById(R.id.restaurant_creation_city)).getText().toString());
         restaurant.setCountry(((Spinner)
-                findViewById(R.id.restaurant_creation_country_spinner))
-                .getSelectedItem().toString());
+            findViewById(R.id.restaurant_creation_country_spinner))
+            .getSelectedItem().toString());
         restaurant.setDescription(((EditText)
-                findViewById(R.id.restaurant_creation_description)).getText().toString());
+            findViewById(R.id.restaurant_creation_description)).getText().toString());
         restaurant.setName(((EditText)
-                findViewById(R.id.restaurant_creation_name)).getText().toString());
+            findViewById(R.id.restaurant_creation_name)).getText().toString());
         restaurant.setZipcode(((EditText)
-                findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
+            findViewById(R.id.restaurant_creation_zipcode)).getText().toString());
         restaurant.setPictureurl(imgurPhotoUrl);
 
         Log.d(TAG, "onSubmitButton: " + restaurant);
 
 
         restaurantCreationPresenter.getUserByFirebaseId(
-                FirebaseAuth.getInstance().getCurrentUser().getUid(), restaurant);
+            FirebaseAuth.getInstance().getCurrentUser().getUid(), restaurant);
 
-        // restaurantCreationPresenter.postRestaurant(restaurant);
+        restaurantCreationPresenter.postRestaurant(restaurant);
         finish();
     }
 
-    public void onMenuHoursButtonClick(View view) {
-        Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
-        menuHoursIntent.putExtra("restaurant", restaurant);
-        startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_restaurant_creation_hours:
+                Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
+                menuHoursIntent.putExtra("restaurant", restaurant);
+                startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
+                break;
+
+            case R.id.btn_menu_creation:
+                Intent menuCreationIntent = new Intent(view.getContext(), MenuCreationActivity.class);
+                startActivityForResult(menuCreationIntent, MENU_CREATION_RESULT);
+                break;
+
+            default:
+                break;
+        }
     }
 }

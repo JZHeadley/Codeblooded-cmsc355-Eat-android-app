@@ -24,13 +24,13 @@ public class UserProfileActivity extends BaseActivity {
 
     public void displayUsername(User user) {
         ((EditText) findViewById(R.id.user_profile_et))
-                .setHint(user.getUsername());
+            .setHint(user.getUsername());
         this.user = user;
     }
 
     public void displayEmail() {
         ((EditText) findViewById(R.id.email_profile_et))
-                .setHint(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            .setHint(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserProfileActivity extends BaseActivity {
             } else {
                 newEmail = extras.getString("newEmail");
                 ((EditText) findViewById(R.id.email_profile_et))
-                        .setHint(newEmail);
+                    .setHint(newEmail);
             }
         } else {
             displayEmail();
@@ -76,25 +76,25 @@ public class UserProfileActivity extends BaseActivity {
     private void promptUserUpdate() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this)
-                .setMessage("Save Changes?")
-                .setCancelable(true)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        EditText usernameEditText = ((EditText) findViewById(R.id.user_profile_et));
-                        EditText emailEditText = ((EditText) findViewById(R.id.email_profile_et));
-                        userProfilePresenter.modifyUser(user, usernameEditText.getText().toString(),
-                                emailEditText.getText().toString());
-                        Intent intent = new Intent(getApplicationContext(), NearbyRestaurantActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
-                    }
-                })
-                .create();
+            .setMessage("Save Changes?")
+            .setCancelable(true)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    EditText usernameEditText = ((EditText) findViewById(R.id.user_profile_et));
+                    EditText emailEditText = ((EditText) findViewById(R.id.email_profile_et));
+                    userProfilePresenter.modifyUser(user, usernameEditText.getText().toString(),
+                        emailEditText.getText().toString());
+                    Intent intent = new Intent(getApplicationContext(), NearbyRestaurantActivity.class);
+                    startActivity(intent);
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                    startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+                }
+            })
+            .create();
         alertDialog.show();
 
     }
@@ -102,20 +102,20 @@ public class UserProfileActivity extends BaseActivity {
     private void promptUserRemoval() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to delete your account?")
-                .setCancelable(true)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        userProfilePresenter.deleteUser(user);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
-                    }
-                })
-                .create();
+            .setMessage("Are you sure you want to delete your account?")
+            .setCancelable(true)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    userProfilePresenter.deleteUser(user);
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                    startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+                }
+            })
+            .create();
         alertDialog.show();
     }
 

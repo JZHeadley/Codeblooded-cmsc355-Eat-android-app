@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jzheadley.eat.R;
@@ -29,7 +28,7 @@ import com.jzheadley.eat.ui.resetpassword.view.ResetPasswordActivity;
 import com.jzheadley.eat.ui.signup.view.SignupActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView,
-        GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_SIGN_GOOGLE = 9001;
     private static final String TAG = "LoginActivity";
     private SignInButton signInButton;
@@ -37,7 +36,6 @@ public class LoginActivity extends BaseActivity implements LoginView,
     private LoginPresenter loginPresenter;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
-    private ProgressBar progressBar;
 
 
     @Override
@@ -50,15 +48,15 @@ public class LoginActivity extends BaseActivity implements LoginView,
         auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build();
         googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */,
-                        this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+            .enableAutoManage(this /* FragmentActivity */,
+                this /* OnConnectionFailedListener */)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .build();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -129,14 +127,14 @@ public class LoginActivity extends BaseActivity implements LoginView,
         boolean present = false;
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!",
-                    Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
             return;
         } else if (TextUtils.isEmpty(password)) {
             ((EditText) findViewById(R.id.password)).setError("You must enter a password");
             return;
         } else if (password.length() < 6) {
             ((EditText) findViewById(R.id.password))
-                    .setError(getString(R.string.minimum_password));
+                .setError(getString(R.string.minimum_password));
             return;
         } else {
             //authenticate user

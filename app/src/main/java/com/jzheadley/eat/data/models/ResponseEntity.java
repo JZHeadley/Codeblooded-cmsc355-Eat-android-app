@@ -9,7 +9,7 @@ import android.os.Parcelable;
 public class ResponseEntity implements Parcelable {
 
     public static final Parcelable.Creator<ResponseEntity> CREATOR = new Parcelable
-            .Creator<ResponseEntity>() {
+        .Creator<ResponseEntity>() {
         @Override
         public ResponseEntity createFromParcel(Parcel source) {
             return new ResponseEntity(source);
@@ -59,9 +59,9 @@ public class ResponseEntity implements Parcelable {
     @Override
     public String toString() {
         return "ResponseEntity{"
-                + "embedded=" + embedded
-                + ", links=" + links
-                + '}';
+            + "embedded=" + embedded
+            + ", links=" + links
+            + '}';
     }
 
     @Override

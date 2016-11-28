@@ -18,8 +18,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.jzheadley.eat.R;
-import com.jzheadley.eat.ui.favoriterestaurants.view.favoriteRestaurantActivity;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
+import com.jzheadley.eat.ui.favoriterestaurants.view.FavoriteRestaurantActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
 import com.jzheadley.eat.ui.layoutobjects.animations.ProgressBarAnimation;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
@@ -116,30 +116,30 @@ public class BasePresenterImpl implements BasePresenter,
         if (currentUser != null) {
 
             drawer.addItem(
-                    new SecondaryDrawerItem().withName(drawerItems[5])
-                            .withIcon(R.drawable.ic_restaurant)
-                            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
-                                @Override
-                                public boolean onItemClick(View view, int position,
-                                                           IDrawerItem drawerItem) {
-                                    Intent restaurantOwnerIntent = new Intent(
-                                            toolbar.getContext(),
-                                            RestaurantsOwnedByOwnerActivity.class);
-                                    toolbar.getContext().startActivity(restaurantOwnerIntent);
+                new SecondaryDrawerItem().withName(drawerItems[5])
+                    .withIcon(R.drawable.ic_restaurant)
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position,
+                                                   IDrawerItem drawerItem) {
+                            Intent restaurantOwnerIntent = new Intent(
+                                toolbar.getContext(),
+                                RestaurantsOwnedByOwnerActivity.class);
+                            toolbar.getContext().startActivity(restaurantOwnerIntent);
 
-                                    return false;
-                                }
+                            return false;
+                        }
 
-                            }));
+                    }));
 
             drawer.addItem(
-                    new SecondaryDrawerItem().withName(drawerItems[6])
-                        .withIcon(R.drawable.ic_star)
-                        .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                new SecondaryDrawerItem().withName(drawerItems[6])
+                    .withIcon(R.drawable.ic_star)
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                             Intent favoriteIntent = new Intent(toolbar.getContext(),
-                                    favoriteRestaurantActivity.class);
+                                FavoriteRestaurantActivity.class);
                             toolbar.getContext().startActivity(favoriteIntent);
                             return false;
                         }
@@ -279,16 +279,16 @@ public class BasePresenterImpl implements BasePresenter,
         if (currentUser != null) {
 
             drawerItems.add(new SecondaryDrawerItem().withName("Favorite Restaurant")
-                    .withIcon(R.drawable.ic_star)
-                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
-                        @Override
-                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                            Intent favoriteIntent = new Intent(toolbar.getContext(),
-                                    favoriteRestaurantActivity.class);
-                            toolbar.getContext().startActivity(favoriteIntent);
-                            return false;
-                        }
-                    }));
+                .withIcon(R.drawable.ic_star)
+                .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent favoriteIntent = new Intent(toolbar.getContext(),
+                            FavoriteRestaurantActivity.class);
+                        toolbar.getContext().startActivity(favoriteIntent);
+                        return false;
+                    }
+                }));
 
             drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
                 .withIcon(R.drawable.ic_restaurant)

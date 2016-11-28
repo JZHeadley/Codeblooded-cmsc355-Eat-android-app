@@ -6,11 +6,7 @@ import android.support.annotation.Nullable;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 
-/**
- * Created by Mit on 11/7/16.
- */
-
-public class favoriteRestaurantActivity extends BaseActivity {
+public class FavoriteRestaurantActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

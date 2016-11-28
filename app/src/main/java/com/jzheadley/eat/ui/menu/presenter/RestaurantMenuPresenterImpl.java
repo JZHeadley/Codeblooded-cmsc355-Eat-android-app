@@ -1,18 +1,23 @@
 package com.jzheadley.eat.ui.menu.presenter;
 
-import com.jzheadley.eat.data.services.RestaurantService;
+import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.services.MenuService;
 import com.jzheadley.eat.ui.menu.view.RestaurantMenuActivity;
 import com.jzheadley.eat.ui.menu.view.RestaurantMenuView;
 
 public class RestaurantMenuPresenterImpl implements RestaurantMenuPresenter {
 
     private RestaurantMenuView restaurantMenuActivity;
-    private RestaurantService restaurantService;
+    private MenuService menuService;
 
     public RestaurantMenuPresenterImpl(RestaurantMenuActivity restaurantMenuActivity,
-                                       RestaurantService restaurantService) {
+                                       MenuService menuService) {
         this.restaurantMenuActivity = restaurantMenuActivity;
-        this.restaurantService = restaurantService;
+        this.menuService = menuService;
     }
 
+    @Override
+    public void loadMenuCategories(Restaurant restaurant) {
+
+    }
 }

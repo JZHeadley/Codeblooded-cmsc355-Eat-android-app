@@ -58,9 +58,9 @@ public class Menu implements Parcelable {
     @Override
     public String toString() {
         return "Menu{"
-                + "menuName='" + menuName + '\''
-                + ", links=" + links
-                + '}';
+            + "menuName='" + menuName + '\''
+            + ", links=" + links
+            + '}';
     }
 
     @Override

@@ -63,7 +63,7 @@ public interface EatApi {
 
     @GET("restaurants/")
     Observable<ResponseEntity> getRestaurantsByRestaurantOwner(
-            @Query("restaurantOwner") User restaurantOwner);
+        @Query("restaurantOwner") User restaurantOwner);
 
     @POST("restaurants/")
     Observable<Void> createRestaurant(@Body Restaurant restaurant);

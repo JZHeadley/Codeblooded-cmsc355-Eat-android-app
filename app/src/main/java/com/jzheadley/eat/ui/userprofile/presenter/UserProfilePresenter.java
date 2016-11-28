@@ -34,99 +34,99 @@ public class UserProfilePresenter extends BasePresenterImpl {
     public void getUser() {
         String firebaseId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userService.getUserApi()
-                .getUserByFirebaseId(firebaseId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<User>() {
-                    @Override
-                    public void onCompleted() {
+            .getUserByFirebaseId(firebaseId)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<User>() {
+                @Override
+                public void onCompleted() {
 
-                    }
+                }
 
-                    @Override
-                    public void onError(Throwable error) {
+                @Override
+                public void onError(Throwable error) {
 
-                    }
+                }
 
-                    @Override
-                    public void onNext(User user) {
-                        Log.d(TAG, "onNext: logged in user is" + user);
-                        userProfileActivity.displayUsername(user);
-                    }
-                });
+                @Override
+                public void onNext(User user) {
+                    Log.d(TAG, "onNext: logged in user is" + user);
+                    userProfileActivity.displayUsername(user);
+                }
+            });
     }
 
     public void sendPasswordReset() {
         userProfileActivity.startActivity(new Intent(userProfileActivity.getApplicationContext(),
-                ResetPasswordActivity.class));
+            ResetPasswordActivity.class));
     }
 
     public void deleteUser(User user) {
         userService.getUserApi()
-                .deleteUser(user)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Void>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: User has been deleted");
-                    }
+            .deleteUser(user)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Void>() {
+                @Override
+                public void onCompleted() {
+                    Log.d(TAG, "onCompleted: User has been deleted");
+                }
 
-                    @Override
-                    public void onError(Throwable error) {
-                        Log.e(TAG, "onError: Could not delete user", error);
-                    }
+                @Override
+                public void onError(Throwable error) {
+                    Log.e(TAG, "onError: Could not delete user", error);
+                }
 
-                    @Override
-                    public void onNext(Void avoid) {
-                        Log.d(TAG, "onNext: Deleting user");
-                    }
-                });
+                @Override
+                public void onNext(Void avoid) {
+                    Log.d(TAG, "onNext: Deleting user");
+                }
+            });
     }
 
     public void modifyUser(final User user, final String newUsername, final String newEmail) {
         FirebaseAuth.getInstance().getCurrentUser().updateEmail(newEmail)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            ((EditText) userProfileActivity.findViewById(R.id.email_profile_et))
-                                    .setHint(newEmail);
-                            int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
-                                    .replace("http://192.99.0.20:9000/users/", ""));
-                            user.setUsername(newUsername);
-                            userService.getUserApi()
-                                    .updateUser(user, userId)
-                                    .subscribeOn(Schedulers.newThread())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Observer<Void>() {
-                                        @Override
-                                        public void onCompleted() {
-                                            Log.d(TAG, "onCompleted: User has been updated");
-                                            userProfileActivity.startActivity(
-                                                    new Intent(userProfileActivity
-                                                            .getApplicationContext(),
-                                                            UserProfileActivity.class));
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        ((EditText) userProfileActivity.findViewById(R.id.email_profile_et))
+                            .setHint(newEmail);
+                        int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
+                            .replace("http://192.99.0.20:9000/users/", ""));
+                        user.setUsername(newUsername);
+                        userService.getUserApi()
+                            .updateUser(user, userId)
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<Void>() {
+                                @Override
+                                public void onCompleted() {
+                                    Log.d(TAG, "onCompleted: User has been updated");
+                                    userProfileActivity.startActivity(
+                                        new Intent(userProfileActivity
+                                            .getApplicationContext(),
+                                            UserProfileActivity.class));
 
-                                        }
+                                }
 
-                                        @Override
-                                        public void onError(Throwable error) {
-                                            Log.e(TAG, "onError: User could not be updated", error);
-                                        }
+                                @Override
+                                public void onError(Throwable error) {
+                                    Log.e(TAG, "onError: User could not be updated", error);
+                                }
 
-                                        @Override
-                                        public void onNext(Void avoid) {
-                                            Log.d(TAG, "onNext: Updating User");
+                                @Override
+                                public void onNext(Void avoid) {
+                                    Log.d(TAG, "onNext: Updating User");
 
-                                        }
-                                    });
-                        } else {
-                            Log.e(TAG, "onComplete: User's email could not be changed for "
-                                    + "some reason ", task.getException());
-                        }
+                                }
+                            });
+                    } else {
+                        Log.e(TAG, "onComplete: User's email could not be changed for "
+                            + "some reason ", task.getException());
                     }
-                });
+                }
+            });
 
 
     }

@@ -8,7 +8,7 @@ import android.os.Parcelable;
 
 public class MenuItems implements Parcelable {
     public static final Parcelable.Creator<MenuItems> CREATOR = new Parcelable
-            .Creator<MenuItems>() {
+        .Creator<MenuItems>() {
         @Override
         public MenuItems createFromParcel(Parcel source) {
             return new MenuItems(source);
@@ -45,8 +45,8 @@ public class MenuItems implements Parcelable {
     @Override
     public String toString() {
         return "MenuItems{"
-                + "href='" + href + '\''
-                + '}';
+            + "href='" + href + '\''
+            + '}';
     }
 
     @Override

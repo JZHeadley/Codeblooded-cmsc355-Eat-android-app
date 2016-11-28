@@ -10,7 +10,7 @@ public class MenuService {
 
     public MenuService() {
         menuApi = ServiceFactory.createRetrofitDebugService(MenuApi.class,
-                Constants.SERVICE_ENDPOINT);
+            Constants.SERVICE_ENDPOINT);
     }
 
     public MenuApi getMenuApi() {
