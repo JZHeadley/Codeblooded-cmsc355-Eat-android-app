@@ -27,7 +27,7 @@ public class RestaurantDetailsActivity extends BaseActivity {
     private TextView restaurantDescription;
     private Button showMenuBtn;
     private TextView restaurantName;
-
+    private Restaurant restaurant;
     private RestaurantDetailsPresenter restaurantDetailsPresenter;
     private RestaurantService restaurantService;
     private int restaurantId;
@@ -38,10 +38,11 @@ public class RestaurantDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_restaurant_details);
         restaurantService = new RestaurantService();
         restaurantDetailsPresenter = new RestaurantDetailsPresenter(this, restaurantService);
-        // restaurantId = getIntent().getExtras().getParcelable("restaurant");
-        restaurantId = getIntent().getExtras().getInt("restaurantId");
+        restaurant = getIntent().getExtras().getParcelable("restaurant");
+        // restaurantId = getIntent().getExtras().getInt("restaurantId");
         Log.i(TAG, "onCreate: " + restaurantId);
-        restaurantDetailsPresenter.loadRestaurantDetails(restaurantId + 1);
+        // restaurantDetailsPresenter.loadRestaurantDetails(restaurantId + 1);
+        displayRestaurant(restaurant);
     }
 
     // TODO: 10/9/2016 Fix the bug and actually display the restaurant that is clicked on...
@@ -54,15 +55,15 @@ public class RestaurantDetailsActivity extends BaseActivity {
 
         restaurantName.setText(restaurant.getName());
         restaurantAddress.setText(restaurant.getAddress() + "\n" + restaurant.getCity()
-                + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
+            + ", " + restaurant.getCity() + " " + restaurant.getZipcode());
         restaurantDescription.setText(restaurant.getDescription());
         Glide.with(this)
-                .load(restaurant.getPictureurl())
-                .crossFade()
-                .fitCenter()
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(new GlideDrawableImageViewTarget(restaurantPhoto));
+            .load(restaurant.getPictureurl())
+            .crossFade()
+            .fitCenter()
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(new GlideDrawableImageViewTarget(restaurantPhoto));
     }
 
     public void onMenuClick(View view) {

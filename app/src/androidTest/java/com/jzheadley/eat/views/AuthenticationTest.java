@@ -33,7 +33,6 @@ public class AuthenticationTest {
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
 
-
     /*
         Given [I am a User]
         When [I click "Register"]

@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'io.fabric'
+apply plugin: 'com.getkeepsafe.dexcount'
+
 
 def versionMajor = 1
 def versionMinor = 0
