@@ -117,4 +117,11 @@
     <string name="hint_username">Username</string>
     <string name="user_profile_update_submit_txt">Submit</string>
     <string name="btn_add_category_text">Add Category</string>
+    <string name="settings_title">Settings</string>
+    <string name="show_save_to_favorites_button">Show Save to Favorites button.</string>
+    <string name="preferences">Preferences</string>
+    <string name="sort_restaurants_by_rating_not_proximity">Sort restaurants by rating, not proximity.</string>
+    <string name="system">System</string>
+    <string name="show_notifications_for_favorite_nearby_places">Show notifications for favorite nearby places.</string>
+    <string name="show_restaurant_owner_section">Show Restaurant Owner section.</string>
 </resources>
