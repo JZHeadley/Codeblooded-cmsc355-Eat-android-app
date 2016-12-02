@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Category;
 import com.jzheadley.eat.data.models.Menu;
-import com.jzheadley.eat.data.services.CategoryService;
 import com.jzheadley.eat.data.services.MenuService;
 import com.jzheadley.eat.ui.adapters.CategoriesListAdapter;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
@@ -21,7 +20,6 @@ import java.util.List;
 public class MenuCategoriesActivity extends BaseActivity implements MenuCategoriesView {
     private MenuCategoriesPresenter menuCategoriesPresenter;
     private Menu restaurantMenu;
-    private CategoryService categoriesService;
     private RecyclerView categoriesRecyclerView;
     private MenuService menuService;
     private CategoriesListAdapter categoriesListAdapter;
@@ -30,9 +28,8 @@ public class MenuCategoriesActivity extends BaseActivity implements MenuCategori
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_categories);
-        categoriesService = new CategoryService();
         menuService = new MenuService();
-        menuCategoriesPresenter = new MenuCategoriesPresenterImpl(this, categoriesService, menuService);
+        menuCategoriesPresenter = new MenuCategoriesPresenterImpl(this, menuService);
         restaurantMenu = getIntent().getExtras().getParcelable("restaurantMenu");
 
         ((TextView) findViewById(R.id.menu_name)).setText(restaurantMenu.getMenuName());

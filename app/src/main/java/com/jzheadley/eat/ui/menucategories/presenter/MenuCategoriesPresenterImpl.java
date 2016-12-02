@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.jzheadley.eat.data.models.Menu;
 import com.jzheadley.eat.data.models.ResponseEntity;
-import com.jzheadley.eat.data.services.CategoryService;
 import com.jzheadley.eat.data.services.MenuService;
 import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.menucategories.view.MenuCategoriesActivity;
@@ -16,14 +15,12 @@ import rx.schedulers.Schedulers;
 
 public class MenuCategoriesPresenterImpl extends BasePresenterImpl implements MenuCategoriesPresenter {
     private static final String TAG = "MenuCategoriesPresenter";
-    private CategoryService categoriesService;
     private MenuService menuService;
     private MenuCategoriesView menuCategoriesView;
 
-    public MenuCategoriesPresenterImpl(MenuCategoriesActivity activity, CategoryService categoriesService, MenuService menuService) {
+    public MenuCategoriesPresenterImpl(MenuCategoriesActivity activity, MenuService menuService) {
         super(activity);
         this.menuCategoriesView = activity;
-        this.categoriesService = categoriesService;
         this.menuService = menuService;
     }
 

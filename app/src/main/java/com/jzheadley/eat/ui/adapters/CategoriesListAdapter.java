@@ -1,5 +1,6 @@
 package com.jzheadley.eat.ui.adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,6 +17,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Category;
+import com.jzheadley.eat.ui.categorymenuitems.view.CategoryMenuItemsActivity;
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
 
     @Override
     public void onBindViewHolder(final CategoryViewHolder holder, int position) {
-        Category category = categories.get(position);
+        final Category category = categories.get(position);
 
         holder.categoryButton.setText(category.getCategoryName());
         Glide.with(holder.categoryButton.getContext())
@@ -54,6 +56,14 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
                     }
                 }
             });
+        holder.categoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menuItemsIntent = new Intent(view.getContext(), CategoryMenuItemsActivity.class);
+                menuItemsIntent.putExtra("menuCategory", category);
+                view.getContext().startActivity(menuItemsIntent);
+            }
+        });
     }
 
     @Override

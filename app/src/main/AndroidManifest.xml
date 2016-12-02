@@ -75,6 +75,10 @@
             android:name=".ui.menucategories.view.MenuCategoriesActivity"
             android:parentActivityName=".ui.menu.view.RestaurantMenuActivity" />
 
+        <activity
+            android:name=".ui.categorymenuitems.view.CategoryMenuItemsActivity"
+            android:parentActivityName=".ui.menucategories.view.MenuCategoriesActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />
