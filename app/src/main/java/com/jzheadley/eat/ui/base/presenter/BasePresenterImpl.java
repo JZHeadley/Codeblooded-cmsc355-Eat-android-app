@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.jzheadley.eat.R;
+import com.jzheadley.eat.ui.about.view.AboutActivity;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.favoriterestaurants.view.FavoriteRestaurantActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
@@ -105,6 +106,19 @@ public class BasePresenterImpl implements BasePresenter,
                             Intent helpIntent = new Intent(toolbar.getContext(),
                                 HelpActivity.class);
                             toolbar.getContext().startActivity(helpIntent);
+                            return false;
+                        }
+                    }),
+
+                new SecondaryDrawerItem().withName(drawerItems[5])
+                    .withIcon(R.drawable.ic_info)
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position,
+                                                   IDrawerItem drawerItem) {
+                            Intent aboutIntent = new Intent(toolbar.getContext(),
+                                AboutActivity.class);
+                            toolbar.getContext().startActivity(aboutIntent);
                             return false;
                         }
                     })
@@ -274,11 +288,23 @@ public class BasePresenterImpl implements BasePresenter,
                 }
             }));
 
+        drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
+            .withIcon(R.drawable.ic_info)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position,
+                                           IDrawerItem drawerItem) {
+                    Intent aboutIntent = new Intent(toolbar.getContext(),
+                        AboutActivity.class);
+                    toolbar.getContext().startActivity(aboutIntent);
+                    return false;
+                }
+            }));
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
 
-            drawerItems.add(new SecondaryDrawerItem().withName("Favorite Restaurant")
+            drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[6])
                 .withIcon(R.drawable.ic_star)
                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                     @Override
@@ -290,7 +316,7 @@ public class BasePresenterImpl implements BasePresenter,
                     }
                 }));
 
-            drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[5])
+            drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[7])
                 .withIcon(R.drawable.ic_restaurant)
                 .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
                     @Override

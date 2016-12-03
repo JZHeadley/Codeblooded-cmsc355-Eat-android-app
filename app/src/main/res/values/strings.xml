@@ -93,6 +93,8 @@
         <item>Map</item>
         <item>Settings</item>
         <item>Help</item>
+        <item>About The Team</item>
+        <item>Favorite Restaurant</item>
         <item>Restaurant Owners</item>
         <item>Favorite Restaurants</item>
     </string-array>

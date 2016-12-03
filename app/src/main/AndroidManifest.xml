@@ -79,6 +79,13 @@
             android:name=".ui.categorymenuitems.view.CategoryMenuItemsActivity"
             android:parentActivityName=".ui.menucategories.view.MenuCategoriesActivity" />
 
+        <activity
+            android:name=".ui.about.view.AboutActivity"
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+        <activity
+            android:name=".ui.favoriterestaurants.view.FavoriteRestaurantActivity"
+            android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c4b5ea093758c073282dc785d39cbfbbb09d210a" />

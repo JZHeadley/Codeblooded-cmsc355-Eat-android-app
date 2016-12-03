@@ -1,4 +1,4 @@
-package com.jzheadley.eat.ui.restaurantcreation.presenter;
+package com.jzheadley.eat;
 
 import com.jzheadley.eat.data.models.Links;
 import com.jzheadley.eat.data.models.ResponseEntity;
@@ -6,6 +6,7 @@ import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.data.services.UserService;
+import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPresenter;
 import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
 
 import org.junit.After;
@@ -117,9 +118,8 @@ public class RestaurantCreationPresenterTest {
 
                                     @Override
                                     public void onNext(User user) {
-                                        Assert.assertTrue(otherRestaurant.getOwnerId()
-                                            .equals(user.getLinks().getSelf().getHref()
-                                                .replace("http://192.99.0.20:9000/users/", "")));
+                                        Assert.assertTrue(otherRestaurant.getOwnerId() == Integer.parseInt(user.getLinks().getSelf().getHref()
+                                            .replace("http://192.99.0.20:9000/users/", "")));
                                     }
                                 });
                         }
