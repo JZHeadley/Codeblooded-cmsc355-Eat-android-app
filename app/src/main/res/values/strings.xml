@@ -124,4 +124,7 @@
     <string name="system">System</string>
     <string name="show_notifications_for_favorite_nearby_places">Show notifications for favorite nearby places.</string>
     <string name="show_restaurant_owner_section">Show Restaurant Owner section.</string>
+    <string name="about_us">About Us</string>
+    <string name="zephyr">Zephyr</string>
+    <string name="courtney">Courtney</string>
 </resources>
