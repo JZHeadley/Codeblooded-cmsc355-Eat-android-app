@@ -35,7 +35,8 @@ public class RestaurantzNearbyTest {
     // Given [ that I am a customer]when [I open the app] then [I should see restaurants]
     @Test
     //test will fails if a list of Restaurants does not appear
-    public void ensureNearbyRestaurantsAppear() {
+    public void
+    ensureNearbyRestaurantsAppear() {
         onView(withId(R.id.restaurant_card_list)).check(matches(isDisplayed()));
     }
 

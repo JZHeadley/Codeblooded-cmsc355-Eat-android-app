@@ -7,7 +7,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Menu implements Parcelable {
-
     public static final Parcelable.Creator<Menu> CREATOR = new Parcelable.Creator<Menu>() {
         @Override
         public Menu createFromParcel(Parcel source) {
@@ -25,10 +24,8 @@ public class Menu implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
-
     public Menu() {
     }
-
     public Menu(String menuName, Links links) {
         this.menuName = menuName;
         this.links = links;
@@ -37,6 +34,26 @@ public class Menu implements Parcelable {
     protected Menu(Parcel in) {
         this.menuName = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Menu menu = (Menu) o;
+
+        return getMenuName().equals(menu.getMenuName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getMenuName().hashCode();
     }
 
     public String getMenuName() {
@@ -73,4 +90,6 @@ public class Menu implements Parcelable {
         dest.writeString(this.menuName);
         dest.writeParcelable(this.links, flags);
     }
+
 }
+

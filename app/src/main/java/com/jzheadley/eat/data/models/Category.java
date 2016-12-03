@@ -7,7 +7,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Category implements Parcelable {
-
     public static final Parcelable.Creator<Category> CREATOR = new Parcelable.Creator<Category>() {
         @Override
         public Category createFromParcel(Parcel source) {
@@ -25,10 +24,8 @@ public class Category implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
-
     public Category() {
     }
-
     public Category(String categoryName, Links links) {
         this.categoryName = categoryName;
         this.links = links;
@@ -41,6 +38,26 @@ public class Category implements Parcelable {
     protected Category(Parcel in) {
         this.categoryName = in.readString();
         this.links = in.readParcelable(Links.class.getClassLoader());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Category category = (Category) o;
+
+        return getCategoryName().equals(category.getCategoryName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getCategoryName().hashCode();
     }
 
     public String getCategoryName() {

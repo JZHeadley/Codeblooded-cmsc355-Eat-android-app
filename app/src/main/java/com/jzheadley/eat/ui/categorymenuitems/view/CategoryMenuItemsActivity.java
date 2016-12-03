@@ -15,6 +15,7 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.categorymenuitems.presenter.CategoryMenuItemsPresenter;
 import com.jzheadley.eat.ui.categorymenuitems.presenter.CategoryMenuItemsPresenterImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryMenuItemsActivity extends BaseActivity implements CategoryMenuItemsView {
@@ -45,7 +46,13 @@ public class CategoryMenuItemsActivity extends BaseActivity implements CategoryM
 
     @Override
     public void displayMenuItems(List<MenuItem> menuItems) {
-        menuItemsListAdapter = new MenuItemsListAdapter(menuItems);
+        List<MenuItem> uniqueMenuItems = new ArrayList<>();
+        for (MenuItem menuItem : menuItems) {
+            if (!uniqueMenuItems.contains(menuItem)) {
+                uniqueMenuItems.add(menuItem);
+            }
+        }
+        menuItemsListAdapter = new MenuItemsListAdapter(uniqueMenuItems);
         menuItemsRecyclerView.setAdapter(menuItemsListAdapter);
     }
 }
