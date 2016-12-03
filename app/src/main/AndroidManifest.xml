@@ -19,8 +19,8 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:label="@string/app_name"
-            android:name=".ui.nearbyrestaurants.view.NearbyRestaurantActivity">
+            android:name=".ui.nearbyrestaurants.view.NearbyRestaurantActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -83,7 +83,7 @@
             android:name=".ui.about.view.AboutActivity"
             android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
         <activity
-            android:name=".ui.favoriterestaurants.view.FavoriteRestaurantActivity"
+            android:name=".ui.favoriterestaurants.view.favoriteRestaurantActivity"
             android:parentActivityName=".ui.nearbyrestaurants.view.NearbyRestaurantActivity" />
 
         <meta-data
