@@ -17,6 +17,7 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenter;
 import com.jzheadley.eat.ui.menu.presenter.RestaurantMenuPresenterImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantMenuActivity extends BaseActivity implements RestaurantMenuView {
@@ -49,8 +50,13 @@ public class RestaurantMenuActivity extends BaseActivity implements RestaurantMe
 
     @Override
     public void displayMenus(List<Menu> menus) {
-
-        menusListAdapter = new MenusListAdapter(menus);
+        List<Menu> uniqueMenus = new ArrayList<>();
+        for (Menu menu : menus) {
+            if (!uniqueMenus.contains(menu)) {
+                uniqueMenus.add(menu);
+            }
+        }
+        menusListAdapter = new MenusListAdapter(uniqueMenus, this);
         menusRecyclerView.setAdapter(menusListAdapter);
     }
 }

@@ -40,7 +40,7 @@ public class MenuCreationActivity extends BaseActivity implements MenuCreationVi
     }
 
     public void displayCategories(List<Category> categories) {
-        categoriesListAdapter = new CategoriesListAdapter(categories);
+        categoriesListAdapter = new CategoriesListAdapter(categories, this);
         categoriesRecyclerView.setAdapter(categoriesListAdapter);
     }
 

@@ -25,4 +25,6 @@ public interface CategoryApi {
     @POST("categories/")
     Observable<Void> createCategory(@Body Category category);
 
+    @GET("categories/{categoryId}/menuItems")
+    Observable<ResponseEntity> getMenuItemsOfCategory(@Path("categoryId") int categoryId);
 }

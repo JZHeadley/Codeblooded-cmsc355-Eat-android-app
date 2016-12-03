@@ -53,9 +53,8 @@ public class Links implements Parcelable {
     public Links() {
     }
 
-    public Links(Self self, MenuItem menuItem) {
+    public Links(Self self) {
         this.self = self;
-        this.menuItem = menuItem;
     }
 
     public Links(Self self, Category category, MenuItems menuItems) {
