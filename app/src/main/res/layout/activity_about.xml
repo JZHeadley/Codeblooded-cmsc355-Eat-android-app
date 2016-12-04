@@ -1,154 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_below="@+id/activity_container">
 
     <RelativeLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="15dp">
 
         <TextView
-            android:fontFamily="sans-serif"
             android:id="@+id/about_us"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:layout_width="wrap_content"
+            android:fontFamily="sans-serif"
             android:text="@string/about_us"
             android:textColor="#f4ad42"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:contentDescription="@string/zephyr_s_potrait_image"
             android:id="@+id/zephyr_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/about_us"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:contentDescription="@string/zephyr_s_potrait_image"
             android:src="@drawable/zephyr_portrait" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/zephyr"
-            android:layout_below="@id/zephyr_portrait"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/zephyr_portrait"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="@string/zephyr"
             android:textColor="@color/md_black_1000"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/zephyr_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/zephyr"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
             android:text="@string/zephyr_description"
             android:textColor="@color/md_black_1000" />
 
         <ImageView
-            android:contentDescription="@string/courtney_s_portrait_image"
             android:id="@+id/courtney_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/zephyr_description"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:contentDescription="@string/courtney_s_portrait_image"
             android:src="@drawable/courtney_portrait" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/courtney"
-            android:layout_below="@id/courtney_portrait"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/courtney_portrait"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="@string/courtney"
             android:textColor="@color/md_black_1000"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/courtney_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/courtney"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
             android:text="@string/courtney_description"
             android:textColor="@color/md_black_1000" />
 
         <ImageView
-            android:contentDescription="@string/mit_s_portrait_image"
             android:id="@+id/mit_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/courtney_description"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:contentDescription="@string/mit_s_portrait_image"
             android:src="@drawable/mit_portrait" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/mit"
-            android:layout_below="@id/mit_portrait"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/mit_portrait"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="@string/mit"
             android:textColor="@color/md_black_1000"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/mit_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/mit"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
             android:text="@string/mit_description"
             android:textColor="@color/md_black_1000" />
 
         <ImageView
-            android:contentDescription="@string/tomas_s_portrait_image"
             android:id="@+id/tomas_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/mit_description"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:contentDescription="@string/tomas_s_portrait_image"
             android:src="@drawable/tomasportrait" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/tomas"
-            android:layout_below="@id/tomas_portrait"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tomas_portrait"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="Tomas"
             android:textColor="@color/md_black_1000"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tomas_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tomas"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
             android:text="@string/tomas_description"
             android:textColor="@color/md_black_1000" />
 
