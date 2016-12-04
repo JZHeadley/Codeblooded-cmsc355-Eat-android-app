@@ -7,53 +7,70 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.services.LocationService;
+import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.ui.nearbyrestaurantsmap.presenter.NearbyRestaurantMapPresenter;
 import com.jzheadley.eat.ui.nearbyrestaurantsmap.presenter.NearbyRestaurantMapPresenterImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 public class NearbyRestaurantMapActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static final String TAG = "NearbyRestaurantMapActi";
     private NearbyRestaurantMapPresenter nearbyRestaurantMapPresenter;
     private GoogleMap map;
+    private LocationService locationService;
+    private Geocoder geocoder;
+    private RestaurantService restaurantService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        nearbyRestaurantMapPresenter = new NearbyRestaurantMapPresenterImpl(this);
+        restaurantService = new RestaurantService();
+        nearbyRestaurantMapPresenter = new NearbyRestaurantMapPresenterImpl(this, restaurantService);
         setContentView(R.layout.activity_nearby_restaurant_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
             .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        locationService = new LocationService(this);
+        geocoder = new Geocoder(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        nearbyRestaurantMapPresenter.loadRestaurants();
     }
 
     public void addRestaurantsToMap(List<Restaurant> restaurants) {
+        Location restaurantLocation = null;
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(locationService.getLocation().getLatitude(), locationService.getLocation().getLongitude())));
+        Log.d(TAG, "addRestaurantsToMap: " + restaurants.toString());
+        for (Restaurant restaurant : restaurants) {
+            List<Address> possibleLocations = null;
+            if (locationService.getLocation() != null) {
+                try {
+                    possibleLocations = geocoder.getFromLocationName(restaurant.getName() + " " + restaurant.getCity() + " " + restaurant.getCountry(), 10);
+                    if (possibleLocations.size() > 0) {
+                        restaurantLocation.setLatitude(possibleLocations.get(0).getLatitude());
+                        restaurantLocation.setLongitude(possibleLocations.get(0).getLongitude());
 
+                        map.addMarker(new MarkerOptions().position(new LatLng(restaurantLocation.getLatitude(), restaurantLocation.getLongitude())).title(restaurant.getName()));
+                    }
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 }
