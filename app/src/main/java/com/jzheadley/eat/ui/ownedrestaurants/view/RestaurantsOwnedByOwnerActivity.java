@@ -1,7 +1,5 @@
 package com.jzheadley.eat.ui.ownedrestaurants.view;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.models.User;
@@ -75,7 +74,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants);
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, getBaseContext());
         recyclerView.setAdapter(restaurantsListAdapter);
     }
 

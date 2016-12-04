@@ -1,5 +1,6 @@
 package com.jzheadley.eat.ui.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
+import com.jzheadley.eat.data.services.LocationService;
 import com.jzheadley.eat.ui.restaurantdetails.view.RestaurantDetailsActivity;
 
 import java.util.List;
@@ -22,10 +24,12 @@ public class RestaurantsListAdapter extends RecyclerView
     .Adapter<RestaurantsListAdapter.RestaurantViewHolder> {
 
     private static final String TAG = "NearbyRestaurantsAdapte";
+    private final LocationService locationService;
     private List<Restaurant> restaurants;
 
-    public RestaurantsListAdapter(List<Restaurant> restaurants) {
+    public RestaurantsListAdapter(List<Restaurant> restaurants, Context ctx) {
         this.restaurants = restaurants;
+        this.locationService = new LocationService(ctx);
     }
 
 
@@ -42,6 +46,10 @@ public class RestaurantsListAdapter extends RecyclerView
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
         final Restaurant restaurant = restaurants.get(position);
         // TODO: 10/6/2016 implement getting current location and distance to restaurant
+
+        Log.d(TAG, "onBindViewHolder: " + locationService.getLocation());
+
+
         double restaurantDistance = 0;
         String restaurantDistanceText = "" + restaurantDistance;
 
