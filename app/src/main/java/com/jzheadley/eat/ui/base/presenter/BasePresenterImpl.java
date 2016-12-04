@@ -20,7 +20,7 @@ import android.widget.ProgressBar;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.about.view.AboutActivity;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
-import com.jzheadley.eat.ui.favoriterestaurants.view.FavoriteRestaurantActivity;
+import com.jzheadley.eat.ui.favoriterestaurants.view.favoriteRestaurantActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
 import com.jzheadley.eat.ui.layoutobjects.animations.ProgressBarAnimation;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
@@ -161,7 +161,7 @@ public class BasePresenterImpl implements BasePresenter,
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                             Intent favoriteIntent = new Intent(toolbar.getContext(),
-                                FavoriteRestaurantActivity.class);
+                                favoriteRestaurantActivity.class);
                             toolbar.getContext().startActivity(favoriteIntent);
                             return false;
                         }
@@ -325,7 +325,7 @@ public class BasePresenterImpl implements BasePresenter,
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent favoriteIntent = new Intent(toolbar.getContext(),
-                            FavoriteRestaurantActivity.class);
+                            favoriteRestaurantActivity.class);
                         toolbar.getContext().startActivity(favoriteIntent);
                         return false;
                     }
