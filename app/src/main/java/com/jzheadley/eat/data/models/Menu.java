@@ -24,8 +24,10 @@ public class Menu implements Parcelable {
     @SerializedName("_links")
     @Expose
     private Links links;
+
     public Menu() {
     }
+
     public Menu(String menuName, Links links) {
         this.menuName = menuName;
         this.links = links;
@@ -37,15 +39,15 @@ public class Menu implements Parcelable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
 
-        Menu menu = (Menu) o;
+        Menu menu = (Menu) obj;
 
         return getMenuName().equals(menu.getMenuName());
 

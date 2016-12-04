@@ -46,10 +46,9 @@ public class NearbyRestaurantsPresenter extends BasePresenterImpl {
                 @Override
                 public void onError(Throwable exception) {
                     Log.e(TAG, "onError: loadRestaurants has Failed");
-                    Toast.makeText(nearbyRestaurantActivity,
-                        "Eat appears to be down.  Please try again later!",
+                    Toast.makeText(nearbyRestaurantActivity, "Eat appears to be down.  Please try again later!",
                         Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onError: " + exception.getLocalizedMessage());
+                    Log.e(TAG, "onError: " + exception.getLocalizedMessage());
                 }
 
                 @Override

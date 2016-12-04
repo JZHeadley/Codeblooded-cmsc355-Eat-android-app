@@ -1,13 +1,5 @@
 package com.jzheadley.eat.ui.base.presenter;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ProgressBar;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -16,14 +8,24 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ProgressBar;
+
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.about.view.AboutActivity;
 import com.jzheadley.eat.ui.base.view.BaseActivity;
-import com.jzheadley.eat.ui.favoriterestaurants.view.favoriteRestaurantActivity;
+import com.jzheadley.eat.ui.favoriterestaurants.view.FavoriteRestaurantActivity;
 import com.jzheadley.eat.ui.help.view.HelpActivity;
 import com.jzheadley.eat.ui.layoutobjects.animations.ProgressBarAnimation;
 import com.jzheadley.eat.ui.login.view.LoginActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
+import com.jzheadley.eat.ui.nearbyrestaurantsmap.view.NearbyRestaurantMapActivity;
 import com.jzheadley.eat.ui.ownedrestaurants.view.RestaurantsOwnedByOwnerActivity;
 import com.jzheadley.eat.ui.settings.view.SettingsActivity;
 import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
@@ -83,7 +85,14 @@ public class BasePresenterImpl implements BasePresenter,
                     }),
                 // TODO: 10/10/2016 Wire Maps Click Listener up
                 new SecondaryDrawerItem().withName(drawerItems[2])
-                    .withIcon(R.drawable.ic_place),
+                    .withIcon(R.drawable.ic_place)
+                    .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                            toolbar.getContext().startActivity(new Intent(toolbar.getContext(), NearbyRestaurantMapActivity.class));
+                            return false;
+                        }
+                    }),
                 new SecondaryDrawerItem().withName(drawerItems[3])
                     .withIcon(R.drawable.ic_settings)
                     .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
@@ -152,7 +161,7 @@ public class BasePresenterImpl implements BasePresenter,
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                             Intent favoriteIntent = new Intent(toolbar.getContext(),
-                                favoriteRestaurantActivity.class);
+                                FavoriteRestaurantActivity.class);
                             toolbar.getContext().startActivity(favoriteIntent);
                             return false;
                         }
@@ -259,7 +268,14 @@ public class BasePresenterImpl implements BasePresenter,
 
         // TODO: 10/10/2016 Wire Maps Click Listener up
         drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[2])
-            .withIcon(R.drawable.ic_place));
+            .withIcon(R.drawable.ic_place)
+            .withOnDrawerItemClickListener(new OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                    toolbar.getContext().startActivity(new Intent(toolbar.getContext(), NearbyRestaurantMapActivity.class));
+                    return false;
+                }
+            }));
 
         drawerItems.add(new SecondaryDrawerItem().withName(drawerItemsTextFields[3])
             .withIcon(R.drawable.ic_settings)
@@ -309,7 +325,7 @@ public class BasePresenterImpl implements BasePresenter,
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         Intent favoriteIntent = new Intent(toolbar.getContext(),
-                            favoriteRestaurantActivity.class);
+                            FavoriteRestaurantActivity.class);
                         toolbar.getContext().startActivity(favoriteIntent);
                         return false;
                     }

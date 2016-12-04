@@ -13,12 +13,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.crashlytics.android.Crashlytics;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.mikepenz.materialdrawer.Drawer;
-
-import io.fabric.sdk.android.Fabric;
 
 
 public class BaseActivity extends AppCompatActivity implements BaseView {
@@ -34,7 +31,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         basePresenter = new BasePresenterImpl(this);
-        Fabric.with(this, new Crashlytics());
+        // Fabric.with(this, new Crashlytics());
         auth = FirebaseAuth.getInstance();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override

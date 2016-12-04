@@ -28,17 +28,22 @@ android {
             keyPassword 'android'
         }
     }
+
     compileSdkVersion 24
     buildToolsVersion '24.0.2'
     defaultConfig {
         applicationId "com.jzheadley.eat"
         minSdkVersion 16
+        multiDexEnabled true
         targetSdkVersion 24
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 //        versionCode 1
 //        versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
     buildTypes {
         release {
@@ -61,9 +66,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    androidTestCompile 'com.android.support:support-annotations:24.2.1'
-
+    compile 'com.android.support:multidex:1.0.1'
     /*
     *       Quality of Life
     */
@@ -117,7 +120,8 @@ dependencies {
     /*
     *       Testing Libraries
     */
-
+    // Makes things work idk why
+    androidTestCompile 'com.android.support:support-annotations:24.2.1'
     testCompile 'junit:junit:4.12'
     // Espresso Dependencies
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
@@ -128,7 +132,7 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
-        exclude module: 'support-annotations'
+//        exclude module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
@@ -137,6 +141,7 @@ dependencies {
         *     Google Play Services
         */
 
+    compile 'com.google.android.gms:play-services:9.6.1'
     compile 'com.google.android.gms:play-services-location:9.6.1'
 
 
