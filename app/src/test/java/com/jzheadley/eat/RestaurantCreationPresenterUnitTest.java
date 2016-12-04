@@ -25,7 +25,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @RunWith(JUnit4.class)
-public class RestaurantCreationPresenterTest {
+public class RestaurantCreationPresenterUnitTest {
 
 
     private static RestaurantCreationPresenter presenter;

@@ -1,7 +1,7 @@
 package com.jzheadley.eat.ui.adapters;
 
-import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,9 +27,9 @@ public class RestaurantsListAdapter extends RecyclerView
     private final LocationService locationService;
     private List<Restaurant> restaurants;
 
-    public RestaurantsListAdapter(List<Restaurant> restaurants, Context ctx) {
+    public RestaurantsListAdapter(List<Restaurant> restaurants, LocationService locationService) {
         this.restaurants = restaurants;
-        this.locationService = new LocationService(ctx);
+        this.locationService = locationService;
     }
 
 
@@ -46,12 +46,19 @@ public class RestaurantsListAdapter extends RecyclerView
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
         final Restaurant restaurant = restaurants.get(position);
         // TODO: 10/6/2016 implement getting current location and distance to restaurant
-
+        Location restaurantLocation;
         Log.d(TAG, "onBindViewHolder: " + locationService.getLocation());
+        // restaurantLocation = Geo
 
 
         double restaurantDistance = 0;
+        if (locationService.getLocation() != null) {
+
+            //   get distance to restaurant here
+        }
+
         String restaurantDistanceText = "" + restaurantDistance;
+        restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
 
         // Load image after text so it has something in the view if image doesn't immediately load
         Glide.with(restaurantViewHolder.itemView.getContext())
@@ -62,8 +69,8 @@ public class RestaurantsListAdapter extends RecyclerView
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.restaurant_placeholder)
             .into(new GlideDrawableImageViewTarget(restaurantViewHolder.image));
+
         Log.d(TAG, "onBindViewHolder: Position is " + position);
-        restaurantViewHolder.restaurantDistance.setText(restaurantDistanceText);
         restaurantViewHolder.restaurantDescription.setText(restaurant.getDescription());
         restaurantViewHolder.restaurantName.setText(restaurant.getName());
         restaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +81,6 @@ public class RestaurantsListAdapter extends RecyclerView
                 Intent restaurantDetailsIntent =
                     new Intent(view.getContext(), RestaurantDetailsActivity.class);
                 restaurantDetailsIntent.putExtra("restaurant", restaurant);
-                // restaurantDetailsIntent.putExtra("restaurantId", restaurantViewHolder.getAdapterPosition());
                 view.getContext().startActivity(restaurantDetailsIntent);
             }
         });

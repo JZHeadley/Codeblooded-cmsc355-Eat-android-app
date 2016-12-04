@@ -71,8 +71,8 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
                 try {
                     palette[0] = Palette.from(drawable_from_url("http://lorempixel.com/357/200/food/")).generate();
 
-                } catch (Exception e) {
-                    Log.e(TAG, e.getMessage());
+                } catch (Exception exception) {
+                    Log.e(TAG, exception.getMessage());
                 }
                 activity.runOnUiThread(new Runnable() {
                     @Override
@@ -100,7 +100,7 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
     }
 
     private Bitmap drawable_from_url(String url) throws java.io.IOException {
-        Bitmap x;
+        Bitmap bitmap;
 
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("User-agent", "Mozilla/4.0");
@@ -108,8 +108,8 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
         connection.connect();
         InputStream input = connection.getInputStream();
 
-        x = BitmapFactory.decodeStream(input);
-        return x;
+        bitmap = BitmapFactory.decodeStream(input);
+        return bitmap;
     }
 
     static class CategoryViewHolder extends RecyclerView.ViewHolder {

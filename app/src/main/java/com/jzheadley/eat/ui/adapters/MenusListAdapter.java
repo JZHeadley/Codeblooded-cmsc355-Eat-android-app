@@ -72,8 +72,8 @@ public class MenusListAdapter extends RecyclerView.Adapter<MenusListAdapter.Menu
                 try {
                     palette[0] = Palette.from(drawable_from_url("http://lorempixel.com/357/200/food/")).generate();
 
-                } catch (Exception e) {
-                    Log.e(TAG, e.getMessage());
+                } catch (Exception exception) {
+                    Log.e(TAG, exception.getMessage());
                 }
 
                 activity.runOnUiThread(new Runnable() {
@@ -102,7 +102,7 @@ public class MenusListAdapter extends RecyclerView.Adapter<MenusListAdapter.Menu
     }
 
     private Bitmap drawable_from_url(String url) throws java.io.IOException {
-        Bitmap x;
+        Bitmap bitmap;
 
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("User-agent", "Mozilla/4.0");
@@ -110,8 +110,8 @@ public class MenusListAdapter extends RecyclerView.Adapter<MenusListAdapter.Menu
         connection.connect();
         InputStream input = connection.getInputStream();
 
-        x = BitmapFactory.decodeStream(input);
-        return x;
+        bitmap = BitmapFactory.decodeStream(input);
+        return bitmap;
     }
 
     static class MenuViewHolder extends RecyclerView.ViewHolder {

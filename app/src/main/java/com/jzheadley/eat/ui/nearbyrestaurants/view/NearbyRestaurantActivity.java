@@ -28,6 +28,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
     private RestaurantsListAdapter restaurantsListAdapter;
     private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
     private RestaurantService restaurantService;
+    private LocationService locationService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,17 +37,16 @@ public class NearbyRestaurantActivity extends BaseActivity {
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                1);
-
+            new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+            1);
+        locationService = new LocationService(this);
         nearbyRestaurantsPresenter.showProgress();
-        Log.d(TAG, "onCreate: lajhfljkashdflkjahdsf" + (new LocationService(getBaseContext())).getLocation());
         if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
             nearbyRestaurantsPresenter.loadRestaurants();
         } else {
             Snackbar.make(findViewById(R.id.toolbar), "You are disconnected from the network. "
-                            + "Please resolve your connection issues and try again.",
-                    Snackbar.LENGTH_LONG).show();
+                    + "Please resolve your connection issues and try again.",
+                Snackbar.LENGTH_LONG).show();
         }
 
     }
@@ -63,22 +63,20 @@ public class NearbyRestaurantActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, getBaseContext());
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService);
         recyclerView.setAdapter(restaurantsListAdapter);
 
         nearbyRestaurantsPresenter.hideProgress();
-
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 1: {
 
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: We have location permissions!");
                 } else {
 
                     // permission denied, boo! Disable the
@@ -87,7 +85,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
                 }
                 return;
             }
-
+            default:
+                break;
             // other 'case' lines to check for other
             // permissions this app might request
         }
