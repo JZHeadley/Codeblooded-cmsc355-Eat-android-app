@@ -12,7 +12,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,7 +32,7 @@ public class LocationService extends Activity implements
     private boolean requestLocationUpdates = false;
     private LocationRequest locationRequest;
 
-    public LocationService(AppCompatActivity activity) {
+    public LocationService(Activity activity) {
         this.activity = activity;
         buildGoogleApiClient();
         googleApiClient.connect();

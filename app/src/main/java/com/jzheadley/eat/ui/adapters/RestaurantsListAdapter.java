@@ -72,7 +72,6 @@ public class RestaurantsListAdapter extends RecyclerView
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //   get distance to restaurant here
         }
 
         String restaurantDistanceText = "" + restaurantDistance;

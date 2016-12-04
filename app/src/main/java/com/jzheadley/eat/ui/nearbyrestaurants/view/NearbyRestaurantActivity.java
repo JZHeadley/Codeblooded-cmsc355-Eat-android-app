@@ -37,9 +37,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         setContentView(R.layout.activity_nearby_restaurants);
         restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
-        ActivityCompat.requestPermissions(this,
-            new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
-            1);
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         locationService = new LocationService(this);
         nearbyRestaurantsPresenter.showProgress();
         if (nearbyRestaurantsPresenter.isNetworkAvailable()) {
@@ -66,6 +64,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService, new Geocoder(this));
+
         recyclerView.setAdapter(restaurantsListAdapter);
 
         nearbyRestaurantsPresenter.hideProgress();
