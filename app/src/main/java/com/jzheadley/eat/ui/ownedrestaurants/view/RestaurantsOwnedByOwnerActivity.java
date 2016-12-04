@@ -3,6 +3,7 @@ package com.jzheadley.eat.ui.ownedrestaurants.view;
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +15,6 @@ import android.view.View;
 
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
-import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.LocationService;
 import com.jzheadley.eat.data.services.RestaurantService;
 import com.jzheadley.eat.data.services.UserService;
@@ -31,7 +31,6 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
     private RestaurantsListAdapter restaurantsListAdapter;
     private RestaurantsOwnedByOwnerPresenter restaurantsOwnedByOwnerPresenter;
     private UserService userService;
-    private User currentUser;
     private RestaurantService restaurantService;
 
     // TODO: 11/2/2016 Make this refresh after creation of a new restaurant
@@ -72,7 +71,7 @@ public class RestaurantsOwnedByOwnerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, new LocationService(this));
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, new LocationService(this), new Geocoder(this));
         recyclerView.setAdapter(restaurantsListAdapter);
     }
 

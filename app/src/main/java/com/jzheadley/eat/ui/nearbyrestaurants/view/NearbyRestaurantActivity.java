@@ -2,6 +2,7 @@ package com.jzheadley.eat.ui.nearbyrestaurants.view;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -63,7 +64,8 @@ public class NearbyRestaurantActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService);
+
+        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService, new Geocoder(this));
         recyclerView.setAdapter(restaurantsListAdapter);
 
         nearbyRestaurantsPresenter.hideProgress();
