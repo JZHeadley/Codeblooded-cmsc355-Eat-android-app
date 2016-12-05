@@ -37,6 +37,7 @@ public class RestaurantCreationPresenterUnitTest {
         presenter = new RestaurantCreationPresenter(new RestaurantCreationActivity(), new RestaurantService(), new UserService());
         links = new Links();
         restaurant = new Restaurant("UnitRestaurant", "unitPicture", null, "unit description", "unitZipcode", "unit address", "unitCity", "unitCountry", links);
+        presenter.postRestaurant(restaurant);
     }
 
     @Before
@@ -54,6 +55,7 @@ public class RestaurantCreationPresenterUnitTest {
         RxAndroidPlugins.getInstance().reset();
     }
 
+    // TDD
     @Test
     public void postRestaurant() throws Exception {
         presenter.postRestaurant(restaurant);
@@ -79,6 +81,7 @@ public class RestaurantCreationPresenterUnitTest {
             });
     }
 
+    // TDD
     @Test
     public void getUserByFirebaseId() throws Exception {
         presenter.getUserByFirebaseId("ZjE9jkJzVGY0ZfGn3620MDUpNyY2", restaurant);
@@ -129,4 +132,148 @@ public class RestaurantCreationPresenterUnitTest {
             });
     }
 
+    // TDD
+    @Test
+    public void checkDescriptionOfRestaurantPostedSet() throws Exception {
+        (new RestaurantService()).getRestaurantApi()
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    for (Restaurant otherRestaurant : responseEntity.getEmbedded().getRestaurants()) {
+                        if (otherRestaurant.getName().equals(restaurant.getName())) {
+                            Assert.assertTrue(restaurant.getDescription().equalsIgnoreCase("unit description"));
+                        }
+                    }
+                }
+            });
+    }
+
+    // TDD
+    @Test
+    public void checkdressOfRestaurantPostedSet() throws Exception {
+        (new RestaurantService()).getRestaurantApi()
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    for (Restaurant otherRestaurant : responseEntity.getEmbedded().getRestaurants()) {
+                        if (otherRestaurant.getName().equals(restaurant.getName())) {
+                            Assert.assertTrue(restaurant.getAddress().equalsIgnoreCase("unit address"));
+                        }
+                    }
+                }
+            });
+    }
+
+    // TDD
+    @Test
+    public void checkPictureOfRestaurantPostedSet() throws Exception {
+        (new RestaurantService()).getRestaurantApi()
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    for (Restaurant otherRestaurant : responseEntity.getEmbedded().getRestaurants()) {
+                        if (otherRestaurant.getName().equals(restaurant.getName())) {
+                            Assert.assertTrue(restaurant.getPictureurl().equalsIgnoreCase("unitPicture"));
+                        }
+                    }
+                }
+            });
+    }
+
+    // TDD
+    @Test
+    public void checkCityOfRestaurantPostedSet() throws Exception {
+        (new RestaurantService()).getRestaurantApi()
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    for (Restaurant otherRestaurant : responseEntity.getEmbedded().getRestaurants()) {
+                        if (otherRestaurant.getName().equals(restaurant.getName())) {
+                            Assert.assertTrue(restaurant.getCity().equalsIgnoreCase("unitCity"));
+                        }
+                    }
+                }
+            });
+    }
+
+    // TDD
+    @Test
+    public void checkZipCodeOfRestaurantPostedSet() throws Exception {
+        (new RestaurantService()).getRestaurantApi()
+            .getRestaurants()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<ResponseEntity>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+
+                @Override
+                public void onNext(ResponseEntity responseEntity) {
+                    for (Restaurant otherRestaurant : responseEntity.getEmbedded().getRestaurants()) {
+                        if (otherRestaurant.getName().equals(restaurant.getName())) {
+                            Assert.assertTrue(restaurant.getZipcode().equalsIgnoreCase("unitZipcode"));
+                        }
+                    }
+                }
+            });
+    }
 }

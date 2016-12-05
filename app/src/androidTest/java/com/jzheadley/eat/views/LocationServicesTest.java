@@ -1,6 +1,13 @@
 package com.jzheadley.eat.views;
 
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 import android.support.test.rule.ActivityTestRule;
 
 import com.jzheadley.eat.R;
@@ -9,31 +16,12 @@ import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-
 public class LocationServicesTest {
     @Rule
     public ActivityTestRule<NearbyRestaurantActivity> mActivityTestRule = new ActivityTestRule<>(NearbyRestaurantActivity.class);
 
-    private static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
+    protected static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
         return new RecyclerViewMatcher(recyclerViewId);
-    }
-
-    /*
-        Given [ that I am a customer]
-        when [i am looking at restaurants]
-        then [I should see how far the restaurants are from me]
-     */
-
-    @Test
-    public void ensureDistanceIsDisplayed() {
-        onView(withRecyclerView(R.id.restaurant_card_list).atPosition(0)).check(matches(hasDescendant(withId(R.id.restaurant_distance))));
     }
 
     /*

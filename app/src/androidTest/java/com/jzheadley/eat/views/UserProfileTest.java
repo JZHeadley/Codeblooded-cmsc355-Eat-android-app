@@ -74,8 +74,8 @@ public class UserProfileTest {
         onView(withId(R.id.user_profile_update_submit_btn)).perform(click());
         onView(withText("Yes")).perform(click());
         onView(withId(R.id.restaurant_card_list)).check(matches(isDisplayed()));
-//        onView(withId(R.id.user_profile_et)).check(matches(withHint(is("newUsername"))));
-//        onView(withId(R.id.email_profile_et)).check(matches(withHint(is("newemail@gmail.com"))));
+        // onView(withId(R.id.user_profile_et)).check(matches(withHint(is("newUsername"))));
+        // onView(withId(R.id.email_profile_et)).check(matches(withHint(is("newemail@gmail.com"))));
     }
 
 }

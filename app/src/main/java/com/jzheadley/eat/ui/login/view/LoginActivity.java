@@ -31,7 +31,6 @@ public class LoginActivity extends BaseActivity implements LoginView,
     GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_SIGN_GOOGLE = 9001;
     private static final String TAG = "LoginActivity";
-    private SignInButton signInButton;
     private GoogleApiClient googleApiClient;
     private LoginPresenter loginPresenter;
     private FirebaseAuth auth;
@@ -43,7 +42,7 @@ public class LoginActivity extends BaseActivity implements LoginView,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginPresenter = new LoginPresenterImpl(this);
-        signInButton = (SignInButton) findViewById(R.id.google_sign_in_btn);
+        SignInButton signInButton = (SignInButton) findViewById(R.id.google_sign_in_btn);
         signInButton.setOnClickListener(this);
         auth = FirebaseAuth.getInstance();
         // Configure Google Sign In
@@ -94,21 +93,21 @@ public class LoginActivity extends BaseActivity implements LoginView,
         Log.d(TAG, "onClick: SomeButtonGotClicked");
 
         switch (viewId) {
-            case R.id.btn_login:
-                signIn();
-                break;
-            case R.id.btn_signup:
-                startActivity(new Intent(getApplicationContext(), SignupActivity.class));
-                break;
-            case R.id.google_sign_in_btn:
-                Log.d(TAG, "onClick: GoogleSignIn");
-                googleSignIn();
-                break;
-            case R.id.btn_forgot_password:
-                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
-                break;
-            default:
-                break;
+          case R.id.btn_login:
+              signIn();
+              break;
+          case R.id.btn_signup:
+              startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+              break;
+          case R.id.google_sign_in_btn:
+              Log.d(TAG, "onClick: GoogleSignIn");
+              googleSignIn();
+              break;
+          case R.id.btn_forgot_password:
+              startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
+              break;
+          default:
+              break;
         }
     }
 
@@ -124,18 +123,14 @@ public class LoginActivity extends BaseActivity implements LoginView,
         String email = inputEmail.getText().toString();
         final EditText inputPassword = ((EditText) findViewById(R.id.password));
         final String password = inputPassword.getText().toString();
-        boolean present = false;
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!",
                 Toast.LENGTH_SHORT).show();
-            return;
         } else if (TextUtils.isEmpty(password)) {
             ((EditText) findViewById(R.id.password)).setError("You must enter a password");
-            return;
         } else if (password.length() < 6) {
             ((EditText) findViewById(R.id.password))
                 .setError(getString(R.string.minimum_password));
-            return;
         } else {
             //authenticate user
             loginPresenter.signInWithEmailPassword(email, password);

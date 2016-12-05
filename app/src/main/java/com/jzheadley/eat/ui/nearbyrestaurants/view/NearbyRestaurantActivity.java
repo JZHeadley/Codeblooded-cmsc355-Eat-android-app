@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -26,16 +27,14 @@ import java.util.List;
 public class NearbyRestaurantActivity extends BaseActivity {
     private static final String TAG = "NearbyRestaurantActivit";
 
-    private RestaurantsListAdapter restaurantsListAdapter;
     private NearbyRestaurantsPresenter nearbyRestaurantsPresenter;
-    private RestaurantService restaurantService;
     private LocationService locationService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
-        restaurantService = new RestaurantService();
+        RestaurantService restaurantService = new RestaurantService();
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         locationService = new LocationService(this);
@@ -63,7 +62,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService, new Geocoder(this));
+        RestaurantsListAdapter restaurantsListAdapter = new RestaurantsListAdapter(restaurants, locationService, new Geocoder(this));
 
         recyclerView.setAdapter(restaurantsListAdapter);
 
@@ -71,25 +70,25 @@ public class NearbyRestaurantActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case 1: {
+          case 1: {
 
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "onRequestPermissionsResult: We have location permissions!");
-                } else {
+              // If request is cancelled, the result arrays are empty.
+              if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                  Log.d(TAG, "onRequestPermissionsResult: We have location permissions!");
+              } else {
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(this, "Permission denied to access location", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-            default:
-                break;
-            // other 'case' lines to check for other
-            // permissions this app might request
+                  // permission denied, boo! Disable the
+                  // functionality that depends on this permission.
+                  Toast.makeText(this, "Permission denied to access location", Toast.LENGTH_SHORT).show();
+              }
+              return;
+          }
+          default:
+              break;
+          // other 'case' lines to check for other
+          // permissions this app might request
         }
     }
 }

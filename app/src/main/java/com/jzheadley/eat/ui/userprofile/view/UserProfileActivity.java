@@ -17,9 +17,7 @@ import com.jzheadley.eat.ui.nearbyrestaurants.view.NearbyRestaurantActivity;
 import com.jzheadley.eat.ui.userprofile.presenter.UserProfilePresenter;
 
 public class UserProfileActivity extends BaseActivity {
-    private static final String TAG = "UserProfileActivity";
     private UserProfilePresenter userProfilePresenter;
-    private UserService userService;
     private User user;
 
     public void displayUsername(User user) {
@@ -37,15 +35,14 @@ public class UserProfileActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        userService = new UserService();
+        UserService userService = new UserService();
         userProfilePresenter = new UserProfilePresenter(this, userService);
         userProfilePresenter.getUser();
         String newEmail;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                newEmail = null;
-            } else {
+            if (extras != null) {
+
                 newEmail = extras.getString("newEmail");
                 ((EditText) findViewById(R.id.email_profile_et))
                     .setHint(newEmail);
@@ -59,17 +56,17 @@ public class UserProfileActivity extends BaseActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sending_pass_reset_button:
-                userProfilePresenter.sendPasswordReset();
-                break;
-            case R.id.remove_user_button:
-                promptUserRemoval();
-                break;
-            case R.id.user_profile_update_submit_btn:
-                promptUserUpdate();
-                break;
-            default:
-                break;
+          case R.id.sending_pass_reset_button:
+              userProfilePresenter.sendPasswordReset();
+              break;
+          case R.id.remove_user_button:
+              promptUserRemoval();
+              break;
+          case R.id.user_profile_update_submit_btn:
+              promptUserUpdate();
+              break;
+          default:
+              break;
         }
     }
 

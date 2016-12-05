@@ -21,33 +21,32 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private EditText inputPassword;
     private EditText inputUsername;
     private SignupPresenter signupPresenter;
-    private UserService userService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        userService = new UserService();
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         inputUsername = (EditText) findViewById(R.id.username_signup);
+        UserService userService = new UserService();
         signupPresenter = new SignupPresenter(this, userService);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sign_in_button:
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
-            case R.id.sign_up_button:
-                signUp();
-                break;
-            case R.id.btn_forgot_password:
-                startActivity(new Intent(this, ResetPasswordActivity.class));
-                break;
-            default:
-                break;
+          case R.id.sign_in_button:
+              startActivity(new Intent(this, LoginActivity.class));
+              break;
+          case R.id.sign_up_button:
+              signUp();
+              break;
+          case R.id.btn_forgot_password:
+              startActivity(new Intent(this, ResetPasswordActivity.class));
+              break;
+          default:
+              break;
         }
     }
 
