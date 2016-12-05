@@ -21,7 +21,7 @@ public class LocationServicesTest {
     @Rule
     public ActivityTestRule<NearbyRestaurantActivity> mActivityTestRule = new ActivityTestRule<>(NearbyRestaurantActivity.class);
 
-    public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
+    private static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
         return new RecyclerViewMatcher(recyclerViewId);
     }
 
@@ -30,6 +30,11 @@ public class LocationServicesTest {
         when [i am looking at restaurants]
         then [I should see how far the restaurants are from me]
      */
+
+    @Test
+    public void ensureDistanceIsDisplayed() {
+        onView(withRecyclerView(R.id.restaurant_card_list).atPosition(0)).check(matches(hasDescendant(withId(R.id.restaurant_distance))));
+    }
 
     /*
       Given [that I need a nearby map]
@@ -40,11 +45,6 @@ public class LocationServicesTest {
     public void ensureMapOptionAppears() {
         onView(withId(R.id.slide_in_menu_icon)).perform(click());
         onView(withText("Map")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void ensureDistanceIsDisplayed() {
-        onView(withRecyclerView(R.id.restaurant_card_list).atPosition(0)).check(matches(hasDescendant(withId(R.id.restaurant_distance))));
     }
 
 
