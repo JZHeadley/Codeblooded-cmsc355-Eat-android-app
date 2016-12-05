@@ -34,3 +34,13 @@ __User Profile:__ Apart from the necessary information for the user to create an
 During this iteration we managed to focus on making our first iteration code better through refactoring. After that we made sure that the aspect of user profiles, login and sign up was implemented properly, as it is vital for our app's mission that the user experience is personalized and that the issues with seeing one's own information and data are minimized. 
 The next iteration will allow us to chip off of our list of stories that haven't gotten any fewer due to us splitting a few during the course of the first two iterations. Thanks to this process, however, we are now able to work on these aspects that are represented by the stories with more attention to detail and more rigorously.
 
+##Iteration 3
+*Finished location services so that a map of restaurants could be viewed
+*Nearby restaurants now show what distance they are from the current user's location
+*Menu can now be seen by users with pictures and different categories
+*Information about the team can now be viewed and was added to the slide in menu
+*Made 10 different unit tests based on methods used for backend data handling (in the test folder)
+
+During this iteration we conquered a lot of the stories that were set in the beginning but we knew would take the most time.
+Location services was by far the biggest hurdle and making sure all of the unit tests passed/learning how to make them was
+a challenge.
