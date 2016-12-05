@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.User;
 import com.jzheadley.eat.data.services.UserService;
-import com.jzheadley.eat.ui.base.presenter.BasePresenterImpl;
 import com.jzheadley.eat.ui.resetpassword.view.ResetPasswordActivity;
 import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
 
@@ -20,13 +19,12 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class UserProfilePresenter extends BasePresenterImpl {
+public class UserProfilePresenter {
     private static final String TAG = "UserProfilePresenter";
     private UserService userService;
     private UserProfileActivity userProfileActivity;
 
     public UserProfilePresenter(UserProfileActivity userProfileActivity, UserService userService) {
-        super(userProfileActivity);
         this.userProfileActivity = userProfileActivity;
         this.userService = userService;
     }
@@ -62,8 +60,11 @@ public class UserProfilePresenter extends BasePresenterImpl {
     }
 
     public void deleteUser(User user) {
+
+        int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
+            .replace("http://192.99.0.20:9000/users/", ""));
         userService.getUserApi()
-            .deleteUser(user)
+            .deleteUserById(userId)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Observer<Void>() {
@@ -92,35 +93,7 @@ public class UserProfilePresenter extends BasePresenterImpl {
                     if (task.isSuccessful()) {
                         ((EditText) userProfileActivity.findViewById(R.id.email_profile_et))
                             .setHint(newEmail);
-                        int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
-                            .replace("http://192.99.0.20:9000/users/", ""));
-                        user.setUsername(newUsername);
-                        userService.getUserApi()
-                            .updateUser(user, userId)
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<Void>() {
-                                @Override
-                                public void onCompleted() {
-                                    Log.d(TAG, "onCompleted: User has been updated");
-                                    userProfileActivity.startActivity(
-                                        new Intent(userProfileActivity
-                                            .getApplicationContext(),
-                                            UserProfileActivity.class));
-
-                                }
-
-                                @Override
-                                public void onError(Throwable error) {
-                                    Log.e(TAG, "onError: User could not be updated", error);
-                                }
-
-                                @Override
-                                public void onNext(Void avoid) {
-                                    Log.d(TAG, "onNext: Updating User");
-
-                                }
-                            });
+                        modifyDatabaseUser(user, newUsername);
                     } else {
                         Log.e(TAG, "onComplete: User's email could not be changed for "
                             + "some reason ", task.getException());
@@ -129,5 +102,37 @@ public class UserProfilePresenter extends BasePresenterImpl {
             });
 
 
+    }
+
+    public void modifyDatabaseUser(User user, String newUsername) {
+        int userId = Integer.parseInt(user.getLinks().getSelf().getHref()
+            .replace("http://192.99.0.20:9000/users/", ""));
+        user.setUsername(newUsername);
+        userService.getUserApi()
+            .updateUser(user, userId)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Void>() {
+                @Override
+                public void onCompleted() {
+                    Log.d(TAG, "onCompleted: User has been updated");
+                    userProfileActivity.startActivity(
+                        new Intent(userProfileActivity
+                            .getApplicationContext(),
+                            UserProfileActivity.class));
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+                    Log.e(TAG, "onError: User could not be updated", error);
+                }
+
+                @Override
+                public void onNext(Void avoid) {
+                    Log.d(TAG, "onNext: Updating User");
+
+                }
+            });
     }
 }

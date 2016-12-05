@@ -9,6 +9,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
@@ -49,15 +50,14 @@ public class BasePresenterImpl implements BasePresenter,
     private GoogleApiClient googleApiClient;
     private BaseActivity baseActivity;
 
-    public BasePresenterImpl(BaseActivity baseActivity) {
-        this.baseActivity = baseActivity;
+    public BasePresenterImpl(Activity baseActivity) {
+        this.baseActivity = (BaseActivity) baseActivity;
         GoogleSignInOptions gso = new GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(baseActivity.getString(R.string.default_web_client_id))
             .requestEmail()
             .build();
         googleApiClient = new GoogleApiClient.Builder(baseActivity)
-            // .enableAutoManage(baseActivity, this)
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
             .build();
         googleApiClient.connect();

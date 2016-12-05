@@ -34,7 +34,7 @@ public class NearbyRestaurantMapPresenterImpl implements NearbyRestaurantMapPres
                 }
 
                 @Override
-                public void onError(Throwable e) {
+                public void onError(Throwable exception) {
 
                 }
 

@@ -1,5 +1,7 @@
 package com.jzheadley.eat.ui.adapters;
 
+import static com.jzheadley.eat.utils.Utilities.convertMetersToMiles;
+
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -37,10 +39,6 @@ public class RestaurantsListAdapter extends RecyclerView
         this.geocoder = geocoder;
     }
 
-    public static double convertMetersToMiles(double meters) {
-        return (meters / 1609.344);
-    }
-
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater
@@ -53,24 +51,22 @@ public class RestaurantsListAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(final RestaurantViewHolder restaurantViewHolder, int position) {
         final Restaurant restaurant = restaurants.get(position);
-        // TODO: 10/6/2016 implement getting current location and distance to restaurant
         Location restaurantLocation = new Location("jzheadley");
         Log.d(TAG, "onBindViewHolder: " + locationService.getLocation());
-        // restaurantLocation = Geo
-
 
         double restaurantDistance = 0;
         List<Address> possibleLocations = null;
         if (locationService.getLocation() != null) {
             try {
-                possibleLocations = geocoder.getFromLocationName(restaurant.getName() + " " + restaurant.getCity() + " " + restaurant.getCountry(), 10);
+                possibleLocations = geocoder.getFromLocationName(restaurant.getName() + " " + restaurant.getCity() + " "
+                    + restaurant.getCountry(), 10);
                 if (possibleLocations.size() > 0) {
                     restaurantLocation.setLatitude(possibleLocations.get(0).getLatitude());
                     restaurantLocation.setLongitude(possibleLocations.get(0).getLongitude());
                     restaurantDistance = convertMetersToMiles(locationService.getLocation().distanceTo(restaurantLocation));
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
         }
 

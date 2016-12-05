@@ -54,18 +54,21 @@ public class NearbyRestaurantMapActivity extends FragmentActivity implements OnM
 
     public void addRestaurantsToMap(List<Restaurant> restaurants) {
         Location restaurantLocation = null;
-        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(locationService.getLocation().getLatitude(), locationService.getLocation().getLongitude())));
+        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(locationService.getLocation().getLatitude(),
+            locationService.getLocation().getLongitude())));
         Log.d(TAG, "addRestaurantsToMap: " + restaurants.toString());
         for (Restaurant restaurant : restaurants) {
             List<Address> possibleLocations = null;
             if (locationService.getLocation() != null) {
                 try {
-                    possibleLocations = geocoder.getFromLocationName(restaurant.getName() + " " + restaurant.getCity() + " " + restaurant.getCountry(), 10);
+                    possibleLocations = geocoder.getFromLocationName(restaurant.getName() + " " + restaurant.getCity()
+                        + " " + restaurant.getCountry(), 10);
                     if (possibleLocations.size() > 0) {
                         restaurantLocation.setLatitude(possibleLocations.get(0).getLatitude());
                         restaurantLocation.setLongitude(possibleLocations.get(0).getLongitude());
 
-                        map.addMarker(new MarkerOptions().position(new LatLng(restaurantLocation.getLatitude(), restaurantLocation.getLongitude())).title(restaurant.getName()));
+                        map.addMarker(new MarkerOptions().position(new LatLng(restaurantLocation.getLatitude(),
+                            restaurantLocation.getLongitude())).title(restaurant.getName()));
                     }
                 } catch (IOException exception) {
                     exception.printStackTrace();
