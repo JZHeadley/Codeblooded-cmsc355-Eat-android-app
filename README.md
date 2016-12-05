@@ -35,11 +35,18 @@ During this iteration we managed to focus on making our first iteration code bet
 The next iteration will allow us to chip off of our list of stories that haven't gotten any fewer due to us splitting a few during the course of the first two iterations. Thanks to this process, however, we are now able to work on these aspects that are represented by the stories with more attention to detail and more rigorously.
 
 ##Iteration 3
-*Finished location services so that a map of restaurants could be viewed
-*Nearby restaurants now show what distance they are from the current user's location
-*Menu can now be seen by users with pictures and different categories
-*Information about the team can now be viewed and was added to the slide in menu
-*Made 10 different unit tests based on methods used for backend data handling (in the test folder)
+__Location Services:__
+* Finished location services so that a map of restaurants could be viewed
+* Nearby restaurants now show what distance they are from the current user's location
+
+__Menu Viewing:__
+* Menu can now be seen by users with pictures and different categories
+
+__About Team:__
+* Information about the team can now be viewed and was added to the slide in menu
+
+__Unit Tests:__
+* Made 10 different unit tests based on methods used for backend data handling (in the test folder)
 
 During this iteration we conquered a lot of the stories that were set in the beginning but we knew would take the most time.
 Location services was by far the biggest hurdle and making sure all of the unit tests passed/learning how to make them was

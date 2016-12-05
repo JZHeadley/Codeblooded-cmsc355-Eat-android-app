@@ -11,6 +11,7 @@ import com.jzheadley.eat.ui.userprofile.view.UserProfileActivity;
 import junit.framework.Assert;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,6 +41,11 @@ public class UserProfilePresenterTest {
 
     }
 
+    @AfterClass
+    public static void finishUp() {
+        RxAndroidPlugins.getInstance().reset();
+    }
+
     @Before
     public void setUp() throws Exception {
         RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
@@ -51,6 +57,7 @@ public class UserProfilePresenterTest {
     }
 
     @After
+
     public void tearDown() {
         RxAndroidPlugins.getInstance().reset();
     }

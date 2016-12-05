@@ -163,7 +163,7 @@ public class RestaurantCreationPresenterUnitTest {
 
     // TDD
     @Test
-    public void checkdressOfRestaurantPostedSet() throws Exception {
+    public void checkAdressOfRestaurantPostedSet() throws Exception {
         (new RestaurantService()).getRestaurantApi()
             .getRestaurants()
             .subscribeOn(Schedulers.newThread())
