@@ -26,6 +26,12 @@ public class LocationServicesTest {
     }
 
     /*
+        Given [ that I am a customer]
+        when [i am looking at restaurants]
+        then [I should see how far the restaurants are from me]
+     */
+
+    /*
       Given [that I need a nearby map]
       when [I open the side menu]
       then [I should be able to select a map view]
@@ -36,11 +42,11 @@ public class LocationServicesTest {
         onView(withText("Map")).check(matches(isDisplayed()));
     }
 
-    /*
-        Given [ that I am a customer]
-        when [i am looking at restaurants]
-        then [I should see how far the restaurants are from me]
-     */
+    @Test
+    public void ensureDistanceIsDisplayed() {
+        onView(withRecyclerView(R.id.restaurant_card_list).atPosition(0)).check(matches(hasDescendant(withId(R.id.restaurant_distance))));
+    }
+
 
     /*
         Given [that I want to see a map of the restaurants]
@@ -54,9 +60,5 @@ public class LocationServicesTest {
         onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void ensureDistanceIsDisplayed() {
-        onView(withRecyclerView(R.id.restaurant_card_list).atPosition(0)).check(matches(hasDescendant(withId(R.id.restaurant_distance))));
-    }
 
 }
