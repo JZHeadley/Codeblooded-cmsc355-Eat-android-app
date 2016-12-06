@@ -36,17 +36,17 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-          case R.id.sign_in_button:
-              startActivity(new Intent(this, LoginActivity.class));
-              break;
-          case R.id.sign_up_button:
-              signUp();
-              break;
-          case R.id.btn_forgot_password:
-              startActivity(new Intent(this, ResetPasswordActivity.class));
-              break;
-          default:
-              break;
+            case R.id.sign_in_button:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case R.id.sign_up_button:
+                signUp();
+                break;
+            case R.id.btn_forgot_password:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
+                break;
+            default:
+                break;
         }
     }
 

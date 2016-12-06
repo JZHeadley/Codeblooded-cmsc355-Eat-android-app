@@ -93,21 +93,21 @@ public class LoginActivity extends BaseActivity implements LoginView,
         Log.d(TAG, "onClick: SomeButtonGotClicked");
 
         switch (viewId) {
-          case R.id.btn_login:
-              signIn();
-              break;
-          case R.id.btn_signup:
-              startActivity(new Intent(getApplicationContext(), SignupActivity.class));
-              break;
-          case R.id.google_sign_in_btn:
-              Log.d(TAG, "onClick: GoogleSignIn");
-              googleSignIn();
-              break;
-          case R.id.btn_forgot_password:
-              startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
-              break;
-          default:
-              break;
+            case R.id.btn_login:
+                signIn();
+                break;
+            case R.id.btn_signup:
+                startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+                break;
+            case R.id.google_sign_in_btn:
+                Log.d(TAG, "onClick: GoogleSignIn");
+                googleSignIn();
+                break;
+            case R.id.btn_forgot_password:
+                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
+                break;
+            default:
+                break;
         }
     }
 

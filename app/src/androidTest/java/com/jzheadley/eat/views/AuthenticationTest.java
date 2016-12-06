@@ -9,7 +9,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNot.not;
 
 import android.support.test.rule.ActivityTestRule;

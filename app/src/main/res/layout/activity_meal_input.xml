@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/activity_container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+        android:id="@+id/activity_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
-            android:layout="@layout/toolbar_main"/>
+            android:layout="@layout/toolbar_main" />
 
         <FrameLayout
             android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_below="@id/activity_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:padding="15dp">
 
         <TextView
+            android:fontFamily="sans-serif"
             android:id="@+id/meal_input_title"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
             android:text="@string/appetizers_headline"
             android:textColor="#f4ad42"
             android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/first_meal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/meal_input_title"
-            android:layout_marginBottom="15dp"
             android:background="@drawable/menu_kind"
-            android:text="First Meal"/>
+            android:id="@+id/first_meal"
+            android:layout_below="@id/meal_input_title"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:text="First Meal" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_below="@id/first_meal"
             android:layout_height="wrap_content"
-            android:layout_below="@id/first_meal">
+            android:layout_width="match_parent">
 
             <Button
                 android:id="@+id/delete_btn_meal"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:text="@string/delete_meal"/>
+                android:layout_width="wrap_content"
+                android:text="@string/delete_meal" />
 
             <Button
                 android:id="@+id/add_btn_meal"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:text="@string/add_meal"/>
+                android:layout_width="wrap_content"
+                android:text="@string/add_meal" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/confirm_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
             android:text="@string/done_button"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </RelativeLayout>
 </RelativeLayout>

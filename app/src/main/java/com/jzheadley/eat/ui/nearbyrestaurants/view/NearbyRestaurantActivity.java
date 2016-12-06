@@ -72,23 +72,23 @@ public class NearbyRestaurantActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-          case 1: {
+            case 1: {
 
-              // If request is cancelled, the result arrays are empty.
-              if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                  Log.d(TAG, "onRequestPermissionsResult: We have location permissions!");
-              } else {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: We have location permissions!");
+                } else {
 
-                  // permission denied, boo! Disable the
-                  // functionality that depends on this permission.
-                  Toast.makeText(this, "Permission denied to access location", Toast.LENGTH_SHORT).show();
-              }
-              return;
-          }
-          default:
-              break;
-          // other 'case' lines to check for other
-          // permissions this app might request
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "Permission denied to access location", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+            default:
+                break;
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 }

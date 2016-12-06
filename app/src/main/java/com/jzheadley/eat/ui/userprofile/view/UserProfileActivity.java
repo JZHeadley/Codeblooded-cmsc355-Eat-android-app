@@ -56,17 +56,17 @@ public class UserProfileActivity extends BaseActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-          case R.id.sending_pass_reset_button:
-              userProfilePresenter.sendPasswordReset();
-              break;
-          case R.id.remove_user_button:
-              promptUserRemoval();
-              break;
-          case R.id.user_profile_update_submit_btn:
-              promptUserUpdate();
-              break;
-          default:
-              break;
+            case R.id.sending_pass_reset_button:
+                userProfilePresenter.sendPasswordReset();
+                break;
+            case R.id.remove_user_button:
+                promptUserRemoval();
+                break;
+            case R.id.user_profile_update_submit_btn:
+                promptUserUpdate();
+                break;
+            default:
+                break;
         }
     }
 

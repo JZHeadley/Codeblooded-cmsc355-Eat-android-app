@@ -130,7 +130,7 @@
     <string name="zephyr">Zephyr</string>
     <string name="courtney">Courtney</string>
     <string name="zephyr_description">Zephyr works very hard to develop all aspects of the EAT app. He strings together everyone else\'s contributions, so that they complement each other neatly in a seamless way so that you can have the best possible experience.</string>
-    <string name="zephyr_s_potrait_image">Zephyr\'s potrait image</string>
+    <string name="zephyr_s_potrait_image">Zephyr\'s portrait image</string>
     <string name="courtney_s_portrait_image">Courtney\'s portrait image</string>
     <string name="courtney_description">Courtney is hard at work making the EAT app both beautiful and easy to navigate. At the same time, she makes sure everything is in order and that we comply with newest coding and design standards.</string>
     <string name="mit_s_portrait_image">Mit\'s portrait image</string>
@@ -139,4 +139,5 @@
     <string name="tomas_s_portrait_image">Tomas\'s portrait image</string>
     <string name="tomas_description">Tomas contributes significantly to our app\'s visuals and takes care that all the translations are in order as he\'s from Europe. He takes particular care to support the team logistically and to fill in when other team members are not available.</string>
     <string name="title_activity_nearby_restaurant_map">Map</string>
+    <string name="tomas">Tomas</string>
 </resources>

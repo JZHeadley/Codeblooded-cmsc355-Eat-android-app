@@ -100,29 +100,29 @@ public class RestaurantCreationActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-          case PICK_IMAGE_REQUEST:
-              // TODO: 11/2/2016 MVP This
-              if (resultCode == RESULT_OK) {
-                  UploadHelper helper = new UploadHelper(this, restaurantCreationPresenter);
-                  helper.setClientId(Constants.IMGUR_CLIENT_ID);
-                  helper.setSecretId(Constants.IMGUR_SECRET);
-                  Uri pathToFile = data.getData();
-                  helper.uploadData(data.getData());
-                  try {
-                      Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
-                          pathToFile);
-                      ImageView imageView = (ImageView)
-                          findViewById(R.id.restaurant_creation_add_photo);
-                      imageView.setImageBitmap(bitmap);
-                  } catch (IOException error) {
-                      error.printStackTrace();
-                  }
-              }
-              break;
-          case OPENING_HOURS_RESULT:
-              break;
-          default:
-              break;
+            case PICK_IMAGE_REQUEST:
+                // TODO: 11/2/2016 MVP This
+                if (resultCode == RESULT_OK) {
+                    UploadHelper helper = new UploadHelper(this, restaurantCreationPresenter);
+                    helper.setClientId(Constants.IMGUR_CLIENT_ID);
+                    helper.setSecretId(Constants.IMGUR_SECRET);
+                    Uri pathToFile = data.getData();
+                    helper.uploadData(data.getData());
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
+                            pathToFile);
+                        ImageView imageView = (ImageView)
+                            findViewById(R.id.restaurant_creation_add_photo);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (IOException error) {
+                        error.printStackTrace();
+                    }
+                }
+                break;
+            case OPENING_HOURS_RESULT:
+                break;
+            default:
+                break;
         }
     }
 
@@ -163,19 +163,19 @@ public class RestaurantCreationActivity extends BaseActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-          case R.id.btn_restaurant_creation_hours:
-              Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
-              menuHoursIntent.putExtra("restaurant", restaurant);
-              startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
-              break;
+            case R.id.btn_restaurant_creation_hours:
+                Intent menuHoursIntent = new Intent(view.getContext(), OpeningHoursActivity.class);
+                menuHoursIntent.putExtra("restaurant", restaurant);
+                startActivityForResult(menuHoursIntent, OPENING_HOURS_RESULT);
+                break;
 
-          case R.id.btn_menu_creation:
-              Intent menuCreationIntent = new Intent(view.getContext(), MenuCreationActivity.class);
-              startActivityForResult(menuCreationIntent, MENU_CREATION_RESULT);
-              break;
+            case R.id.btn_menu_creation:
+                Intent menuCreationIntent = new Intent(view.getContext(), MenuCreationActivity.class);
+                startActivityForResult(menuCreationIntent, MENU_CREATION_RESULT);
+                break;
 
-          default:
-              break;
+            default:
+                break;
         }
     }
 }
