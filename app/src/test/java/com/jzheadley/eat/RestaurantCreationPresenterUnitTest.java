@@ -10,6 +10,7 @@ import com.jzheadley.eat.ui.restaurantcreation.presenter.RestaurantCreationPrese
 import com.jzheadley.eat.ui.restaurantcreation.view.RestaurantCreationActivity;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -22,6 +23,7 @@ import rx.Scheduler;
 import rx.android.plugins.RxAndroidPlugins;
 import rx.android.plugins.RxAndroidSchedulersHook;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.plugins.RxJavaPlugins;
 import rx.schedulers.Schedulers;
 
 @RunWith(JUnit4.class)
@@ -40,15 +42,26 @@ public class RestaurantCreationPresenterUnitTest {
         presenter.postRestaurant(restaurant);
     }
 
+    @AfterClass
+    public static void after() {
+        RxAndroidPlugins.getInstance().reset();
+        RxJavaPlugins.getInstance().reset();
+
+    }
+
     @Before
     public void setUp() throws Exception {
+        RxAndroidPlugins.getInstance().reset();
+        RxJavaPlugins.getInstance().reset();
         RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
             @Override
             public Scheduler getMainThreadScheduler() {
                 return Schedulers.immediate();
             }
         });
+
     }
+
 
     @After
     public void tearDown() {

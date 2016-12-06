@@ -21,6 +21,8 @@ import rx.Scheduler;
 import rx.android.plugins.RxAndroidPlugins;
 import rx.android.plugins.RxAndroidSchedulersHook;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.plugins.RxJavaPlugins;
+import rx.plugins.RxJavaSchedulersHook;
 import rx.schedulers.Schedulers;
 
 import java.util.List;
@@ -51,6 +53,13 @@ public class UserProfilePresenterTest {
         RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
             @Override
             public Scheduler getMainThreadScheduler() {
+                return Schedulers.immediate();
+            }
+        });
+        // We want synchronous operations
+        RxJavaPlugins.getInstance().registerSchedulersHook(new RxJavaSchedulersHook() {
+            @Override
+            public Scheduler getIOScheduler() {
                 return Schedulers.immediate();
             }
         });

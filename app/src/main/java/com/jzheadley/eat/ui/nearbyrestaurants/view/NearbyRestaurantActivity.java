@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.jzheadley.eat.R;
 import com.jzheadley.eat.data.models.Restaurant;
 import com.jzheadley.eat.data.services.LocationService;
@@ -22,6 +23,8 @@ import com.jzheadley.eat.ui.base.view.BaseActivity;
 import com.jzheadley.eat.ui.nearbyrestaurants.presenter.NearbyRestaurantsPresenter;
 
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 
 public class NearbyRestaurantActivity extends BaseActivity {
@@ -35,6 +38,7 @@ public class NearbyRestaurantActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
         RestaurantService restaurantService = new RestaurantService();
+        Fabric.with(this, new Crashlytics());
         nearbyRestaurantsPresenter = new NearbyRestaurantsPresenter(this, restaurantService);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         locationService = new LocationService(this);

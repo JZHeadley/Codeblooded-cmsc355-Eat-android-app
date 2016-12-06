@@ -18,5 +18,4 @@ public class UtilitiesUnitTest {
         double milesDistance = convertMetersToMiles(meterDistance);
         Assert.assertEquals(milesDistance, (double) 125);
     }
-
 }
