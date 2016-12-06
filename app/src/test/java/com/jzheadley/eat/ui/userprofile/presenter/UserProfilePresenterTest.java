@@ -50,19 +50,15 @@ public class UserProfilePresenterTest {
 
     @Before
     public void setUp() throws Exception {
+        RxAndroidPlugins.getInstance().reset();
+        RxJavaPlugins.getInstance().reset();
         RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
             @Override
             public Scheduler getMainThreadScheduler() {
                 return Schedulers.immediate();
             }
         });
-        // We want synchronous operations
-        RxJavaPlugins.getInstance().registerSchedulersHook(new RxJavaSchedulersHook() {
-            @Override
-            public Scheduler getIOScheduler() {
-                return Schedulers.immediate();
-            }
-        });
+
     }
 
     @After
