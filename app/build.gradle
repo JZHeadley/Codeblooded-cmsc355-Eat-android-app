@@ -85,7 +85,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "test") {
     description = "Generate Jacoco coverage reports"
 
     classDirectories = fileTree(
-            dir: '../app/build/intermediates/classes',
+            dir: '../app/build/intermediates/classes/com/jzheadley/eat',
             excludes: ['**/R.class',
                        '**/R$*.class',
                        '**/*$ViewInjector*.*',
