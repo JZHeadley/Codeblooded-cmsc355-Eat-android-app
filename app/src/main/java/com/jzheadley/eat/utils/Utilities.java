@@ -3,6 +3,10 @@ package com.jzheadley.eat.utils;
 import android.text.TextUtils;
 
 public class Utilities {
+    /**
+     * @param meters A distance in meters to be converted to miles
+     * @return The entered distance converted to miles
+     */
     public static double convertMetersToMiles(double meters) {
         return (meters / 1609.344);
     }
