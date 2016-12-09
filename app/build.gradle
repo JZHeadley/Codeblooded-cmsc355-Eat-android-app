@@ -15,10 +15,10 @@ android {
         // Run: export APP_KEY={password}
         // TODO Add  release keystore in /keystore folder
         release {
-            storeFile file('keystore/release.keystore')
-            keyAlias 'alias'
-            storePassword "$System.env.APP_KEY"
-            keyPassword "$System.env.APP_KEY"
+            storeFile file('keystore/Jenkins.keystore')
+            keyAlias 'Eat'
+            storePassword "jenkins"
+            keyPassword "buildMe"
         }
 
         debug {
@@ -56,6 +56,7 @@ android {
 
         }
     }
+
     // Prevents stopping the build because of lint errors
     lintOptions {
         abortOnError false
