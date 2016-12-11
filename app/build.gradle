@@ -179,4 +179,4 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:9.6.1'
 }
 apply plugin: 'com.google.gms.google-services'
-apply from: "../config/artifacts.gradle"
+//apply from: "../config/artifacts.gradle"
